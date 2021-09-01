@@ -1,0 +1,1304 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>CMD &mdash; документация Общие заметки 1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Manjaro" href="manjaro.html" />
+    <link rel="prev" title="Linux" href="_list.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CMD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Системная информация</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Файлы и каталоги</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Поиск файлов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Работа с файловыми системами,дисками</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pacman-yaourt">Pacman, Yaourt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Сеть</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh">SSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#journalctl">Journalctl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#systemctl">Systemctl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-v">System V</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ntp">NTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#samba">Samba</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Пользователи и группы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Права на файлы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Архивация и сжатие файлов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Манипуляции с текстом</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Создание резервных копий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#midnight-commander">Midnight Commander</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git">GIT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+        
+      <li>CMD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/cmd_general.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="cmd">
+<h1>CMD<a class="headerlink" href="#cmd" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="id1">
+<h2>Системная информация<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>hostnamectl</cite></p></td>
+<td><p>информация о системе</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo hostnamectl set-hostname &lt;name&gt;</cite></p></td>
+<td><p>изменить имя host-а</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>cat /proc/cpuinfo</cite></p></td>
+<td><p>информация о процессоре</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>lsb_release -a</cite></p></td>
+<td><p>версия дистрибутива</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>cat /proc/cmdline</cite></p></td>
+<td><p>параметры запуска ядра</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>lspci -vt</cite></p></td>
+<td><p>устройства на PCI шине</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>lsusb -vt</cite></p></td>
+<td><p>устройства на USB шине</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>last reboot</cite></p></td>
+<td><p>последняя перезагрузка</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>lsmod</cite></p></td>
+<td><p>вывести загруженные модули ядра</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>pstree</cite></p></td>
+<td><p>дерево процессов</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h2>Файлы и каталоги<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>mkdir -p /tmp/dir1/dir2</cite></p></td>
+<td><p>создать дерево директорий</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>cd ..</cite></p></td>
+<td><p>перейти в директорию уровнем выше</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>cd ../..</cite></p></td>
+<td><p>перейти в директорию двумя уровнями выше</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>cd -</cite></p></td>
+<td><p>перейти в директорию, в которой находились до перехода в текущую директорию</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>cp dir/*</cite></p></td>
+<td><p>копировать директорию <cite>dir1</cite> со всем содержимым в текущую директорию</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>cp -a /tmp/dir1</cite></p></td>
+<td><p>копировать директорию <cite>dir1</cite> со всем содержимым в текущую директорию</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>cp -a dir1 dir2</cite></p></td>
+<td><p>копировать директорию <cite>dir1</cite> в директорию <cite>dir2</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>cp file file1</cite></p></td>
+<td><p>скопировать файл <cite>file1</cite> в файл <cite>file2</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ln -s file1 lnk1</cite></p></td>
+<td><p>создать символическую ссылку на файл или директорию</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ln file1 lnk1</cite></p></td>
+<td><p>создать жёсткую (физическую) ссылку на файл или директорию</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>mkdir dir1</cite></p></td>
+<td><p>создать директорию с именем <cite>dir1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>mkdir dir1 dir2</cite></p></td>
+<td><p>создать две директории одновременно</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>mkdir -p /tmp/dir1/dir2</cite></p></td>
+<td><p>создать дерево директорий</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>mv dir1 new_dir</cite></p></td>
+<td><p>переименовать или переместить файл или директорию</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>pwd</cite></p></td>
+<td><p>показать текущую директорию</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>rm -f file1</cite></p></td>
+<td><p>удалить файл с именем <cite>file1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>rm -rf dir1</cite></p></td>
+<td><p>удалить директорию с именем <cite>dir1</cite> и рекурсивно всё её содержимое</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>rm -rf dir1 dir2</cite></p></td>
+<td><p>удалить две директории и рекурсивно их содержимое</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>rmdir dir1</cite></p></td>
+<td><p>удалить директорию с именем <cite>dir1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>touch -t 0712250000 file1</cite></p></td>
+<td><p>модифицировать дату и время создания файла (YYMMDDhhmm)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2>Поиск файлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>find / -name file1</cite></p></td>
+<td><p>найти файлы и директории с именем <cite>file1</cite>. Поиск начать с корня (/)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>find /home/user1 -name *.bin</cite></p></td>
+<td><p>найти все файлы и директории, имена которых оканчиваются на <cite>. bin</cite>. Поиск начать с <cite>/ home/user1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>find /usr/bin -type f -atime +100</cite></p></td>
+<td><p>найти все файлы в <cite>/usr/bin</cite>, время последнего обращения к которым более 100 дней</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>find /usr/bin -type f -mtime -10</cite></p></td>
+<td><p>найти все файлы в <cite>/usr/bin</cite>, созданные или изменённые в течении последних 10 дней</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>find / -xdev -name *.rpm</cite></p></td>
+<td><p>найти все фалы и директории, имена которых оканчиваются на <cite>.rpm</cite>, игнорируя съёмные носители, такие как cdrom, floppy и т.п.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h2>Работа с файловыми системами,дисками<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo fuser -km /mnt/hda2</cite></p></td>
+<td><p>отмонтировать устройство hda2 если оно занято</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo mount /dev/hda2 /mnt/hda2</cite></p></td>
+<td><p>примонтировать диск с именем <cite>/dev/hda2</cite> в папку с именем <cite>/mnt/hda2</cite>- перед монтированием проверьте существование папки <cite>/mnt/hda2</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo mount -o loop file.iso /mnt/cdrom</cite></p></td>
+<td><p>примонтировать фаил или ISO образ (ISO - образ диска в ISO формате)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo mount --bind ~/dir1 /mnt/boot/dir2</cite></p></td>
+<td><p>смонтируем содержимое каталога <cite>dir1</cite> в каталог <cite>dir2</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo umount /dev/hda2</cite></p></td>
+<td><p>отмонтировать диск с именем <cite>hda2</cite> - незабудьте сначала выйти из точки монтирования <cite>/mnt/hda2</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo losetup -f --show /path/to/img.iso</cite></p></td>
+<td><p>монтирование образа состоящего из нескольких разделов. <cite>partprobe /dev/loopX</cite> перечитать разделы. После монтировать как любой накопитель (<cite>/dev/loopX</cite>)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo losetup -d /dev/loop0</cite></p></td>
+<td><p>отмонтировать устройство <cite>loop0</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo dd bs=4M if=/path/to/manjaro.iso of=/dev/sd[X] status=progress conv=notrunc,noerror,sync</cite></p></td>
+<td><p>побитовое копирование из образа на диск</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo dd bs=4M if=/dev/sd[X] of=name.iso status=progress conv=notrunc,noerror,sync</cite></p></td>
+<td><p>создаем образ диска в файл name.iso в текущем каталоге</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>lsblk</cite></p></td>
+<td><p>список дисков по иерархии</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>df -h</cite></p></td>
+<td><p>отображает информацию о смонтированных разделах с отображением общего, доступного и используемого пространства</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>mke2fs -j /dev/hda1</cite></p></td>
+<td><p>создать журналирующую файловую систему <cite>ext3</cite> на разделе <cite>hda1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>mkfs -t vfat 32 -F /dev/hda1</cite></p></td>
+<td><p>создать файловую систему <cite>FAT32</cite> на разделе <cite>hda1</cite></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pacman-yaourt">
+<h2>Pacman, Yaourt<a class="headerlink" href="#pacman-yaourt" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo pacman -S &lt;name&gt;</cite></p></td>
+<td><p>установка конкретного пакета</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo pacman -R &lt;name&gt;</cite></p></td>
+<td><p>удаление конкретного пакета</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo pacman -Rdd &lt;name&gt;</cite></p></td>
+<td><p>принудительное удаление конкретного пакета, с игнорированием зависимостей</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>pacman -Ql &lt;name&gt;</cite></p></td>
+<td><p>просмотр списка файлов пакета</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo pacman -Scc</cite></p></td>
+<td><p>очистка кэша</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo pacman -U &lt;путь&gt;</cite></p></td>
+<td><p>установка локального пакета [имя_пакета-версия.pkg.tar.xz]</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo pacman -Syy</cite></p></td>
+<td><p>синхронизация с репозиторием</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo pacman -Syu</cite></p></td>
+<td><p>обновление системы</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo pacman -Ss &lt;name&gt;</cite></p></td>
+<td><p>поиск пакета</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>yaourt -ss &lt;name&gt;</cite></p></td>
+<td><p>поиск и установка пакета</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h2>Сеть<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo ifconfig eth0</cite></p></td>
+<td><p>отобразить настройку сетевой карты <cite>eth0</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo ifconfig -a</cite></p></td>
+<td><p>отобразить все сетевые интерфейсы</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo ifconfig eth0 192.168.1.1 netmask 255.255.255.0</cite></p></td>
+<td><p>настроить IP адрес и маску подсети для сетевого интерфейса <cite>eth0</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo ifconfig eth0 down</cite></p></td>
+<td><p>отключить сетевой интерфейс <cite>eth0</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo ifconfig eth0 up</cite></p></td>
+<td><p>включить сетевой интерфейс <cite>eth0</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo ethtool eth0</cite></p></td>
+<td><p>информация о физической активности (например наличие линка)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo ifconfig eth0 broadcast 192.168.1.255</cite></p></td>
+<td><p>установить широковещательный адрес</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo ifconfig eth0 hw ether AA:BB:CC:DD:EE:FF</cite></p></td>
+<td><p>задать MAC (перед этим выполнить <cite>ifconfig eth0 down</cite>), после перезагрузки сбросится</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>wget -c www.example.com/file.iso</cite></p></td>
+<td><p>загрузить файл <cite>www.example.com/file.iso</cite> с возможностью останова и продолжения в последствии</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>echo 'wget -c www.example.com/files.iso' at 09:00</cite></p></td>
+<td><p>начать закачку в указанное время</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ssh">
+<h2>SSH<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>ssh root&#64;serverip</cite></p></td>
+<td><p>открытие соединения (пользователь на клиенте <cite>root</cite>  c IP адресом <cite>serverip</cite>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>scp root&#64;serverip:/root/file.txt /home/file.txt</cite></p></td>
+<td><p>копирует файл <cite>file.txt</cite> из удлаенного сервера на ПК</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>scp file.txt root&#64;serverip:/root/file.txt</cite></p></td>
+<td><p>копирует файл <cite>file.txt</cite> из ПК на удаленный сервер</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>scp -r dir1 root&#64;serverip:/root/dir</cite></p></td>
+<td><p>копирует папку <cite>dir1</cite> с локального хоста в папку <cite>dir</cite> на удаленный сервер</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>scp -p file.txt root&#64;serverip:~</cite></p></td>
+<td><p>копируем файл <cite>file.txt</cite> с локального компьютера в домашний каталог на удаленном сервере. Сохраняем время изменения, время доступа и права копируемого файла</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>spc root&#64;serverip:~/{file1,file2,file3}</cite></p></td>
+<td><p>копирует несколько файлов с удаленного хоста в текущую директорию на ПК</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ssh user&#64;host 'bash -s' &lt; script.sh</cite></p></td>
+<td><p>выполнить локальный скрипт на удаленной машине</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ssh-keygen -t rsa</cite></p></td>
+<td><p>создать ssh ключ <cite>-C «comment»</cite> для своего комментария</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ssh-copy-id -i ~/.ssh/id_rsa.pub user&#64;host</cite></p></td>
+<td><p>добавить ключ на сервер</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ssh-copy-id '-p 443 user&#64;server'</cite></p></td>
+<td><p>добавить ключ на сервер по иному порту</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ssh UserName&#64;RemoteServer 'команда'</cite></p></td>
+<td><p>выполнить команду на удаленной машине</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ssh user&#64;host &lt; local_file.txt</cite></p></td>
+<td><p>взять пароль из локального файла</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ssh -XC user&#64;remotehost &quot;eclipse&quot;</cite></p></td>
+<td><p>запуск графического приложения</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="journalctl">
+<h2>Journalctl<a class="headerlink" href="#journalctl" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>journalctl –list-boots</cite></p></td>
+<td><p>лист сессий</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>journalctl -b 1</cite></p></td>
+<td><p>посмотреть лог сессии «1»</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>journalctl -b -p err</cite></p></td>
+<td><p>посмотреть только ошибки</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>journalctl --since '30 min ago'</cite></p></td>
+<td><p>посмотреть логи за последние 30 минут (30 min ago)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>journalctl --vacuum-time=1years</cite></p></td>
+<td><p>удалить журнал за 1 год</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="systemctl">
+<h2>Systemctl<a class="headerlink" href="#systemctl" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>systemctl list-unit-files</cite></p></td>
+<td><p>посмотреть список установленных файлов юнитов (доступные файлы юнитов можно посмотреть в каталогах <cite>/usr/lib/systemd/system/</cite> и <cite>/etc/systemd/system/</cite>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>systemctl start &lt;name&gt;</cite></p></td>
+<td><p>незамедлительно запустить юнит</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>systemctl stop &lt;name&gt;</cite></p></td>
+<td><p>незамедлительно остановить юнит</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>systemctl restart &lt;name&gt;</cite></p></td>
+<td><p>перезапустить юнит</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>systemctl status &lt;name&gt;</cite></p></td>
+<td><p>показать статус юнита, а также запущен он или нет</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>systemctl enable &lt;name&gt;</cite></p></td>
+<td><p>включить юнит в автозапуск при загрузке системы</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>systemctl disable &lt;name&gt;</cite></p></td>
+<td><p>убрать юнит из автозапуска при загрузке системы</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>systemctl daemon-reload</cite></p></td>
+<td><p>перезагрузка всех юнитов</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="system-v">
+<h2>System V<a class="headerlink" href="#system-v" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo service &lt;name&gt; start</cite></p></td>
+<td><p>запустить сервис</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo service &lt;name&gt; stop</cite></p></td>
+<td><p>остановить сервис</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo service &lt;name&gt; restart</cite></p></td>
+<td><p>перезапустить сервис</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo service &lt;name&gt; status</cite></p></td>
+<td><p>состояние сервиса</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo service --status-all</cite></p></td>
+<td><p>состояния всех сервисов</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ntp">
+<h2>NTP<a class="headerlink" href="#ntp" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo systemctl restart ntpd.service</cite></p></td>
+<td><p>перезапустить сервис</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ntpq -pn</cite></p></td>
+<td><p>Проверить состояние получения эталонного времени</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>ntpdate -u &lt;IP&gt;</cite></p></td>
+<td><p>установить дату и время с сервера по IP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="samba">
+<h2>Samba<a class="headerlink" href="#samba" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>findsmb</cite></p></td>
+<td><p>сканируем/ищем SMB-хосты</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>smbtree</cite></p></td>
+<td><p>просмотр информации о составе сети</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>smbpasswd -a &lt;user_name&gt;</cite></p></td>
+<td><p>создание нового пользователя Samba</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>smbclient -L server -U &lt;user_name&gt;</cite></p></td>
+<td><p>получим список ресурсов SMB, доступных &lt;user_name&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>smbclient //192.168.1.1/myshare -u &lt;user_name&gt;</cite></p></td>
+<td><p>подключение к Samba как к FTP (команды cd,ls,get,put,quit)</p></td>
+</tr>
+<tr class="row-odd"><td><p>mount -t cifs -o username=&lt;Пользователь&gt;,password= //&lt;IP-адрес&gt;/&lt;Общий каталог&gt; &lt;Точка монтирования&gt;</p></td>
+<td><p>монтировать сетевую файловую систему Windows (SMB/CIFS)</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>пример: <cite>mount -t cifs -o username=Everyone,password= //10.0.0.1/public /media</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo systemctl restart smb nmb</cite></p></td>
+<td><p>перезапустить samba для system.d</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo service smbd nmbd restart</cite></p></td>
+<td><p>перезапустить samba для system V</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>О подключении к расшаренным папкам:</strong> Почему то обращаясь по IP иногда нельзя подключиться к серверу. Надежнее использовать имя ПК. Например
+для подключения расшаренного каталога <code class="docutils literal notranslate"><span class="pre">smb_share_dir</span></code> (прописан в <code class="docutils literal notranslate"><span class="pre">smb.conf</span></code>) машиной с именем <code class="docutils literal notranslate"><span class="pre">svyatoslav-g33590</span></code> в поле адреса
+в системе Windows вводим: <code class="docutils literal notranslate"><span class="pre">\\svyatoslav-g33590.local\smb_share_dir</span></code></p>
+</section>
+<section id="id6">
+<h2>Пользователи и группы<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>groupadd &lt;name&gt;</cite></p></td>
+<td><p>создать новую группу с именем <cite>group</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>groupdel &lt;name&gt;</cite></p></td>
+<td><p>удалить группу <cite>group</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>groupmod -n moon sun</cite></p></td>
+<td><p>переименовать группу <cite>moon</cite> в <cite>sun</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>passwd &lt;user&gt;</cite></p></td>
+<td><p>сменить пароль для <cite>user</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>useradd -c 'User Linux' -g admin -d /home/user1 -s /bin/bash user1</cite></p></td>
+<td><p>создать пользователя <cite>user1</cite>, назначить ему в качестве домашнего каталога <cite>/home/user1</cite>, в качестве shell’а <cite>/bin/bash</cite>, включить его в группу <cite>admin</cite> и добавить комментарий <cite>User Linux</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>useradd user1</cite></p></td>
+<td><p>создать пользователя user1</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>userdel -r user1</cite></p></td>
+<td><p>удалить пользователя user1 и его домашний каталог</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2>Права на файлы<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>chgrp group1 file1</cite></p></td>
+<td><p>сменить группу-владельца файла <cite>file1</cite> на <cite>group1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>chmod ugo+rwx directory1</cite></p></td>
+<td><p>добавить полномочия на директорию <cite>directory1</cite> ugo(User Group Other)+rwx(Read Write eXecute) - всем полные права. Аналогичное можно сделать таким образом chmod 777 directory1</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>chmod go-rwx directory1</cite></p></td>
+<td><p>отобрать у группы и всех остальных все полномочия на директорию <cite>directory1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>chmod u+s /bin/file1</cite></p></td>
+<td><p>назначить SUID-бит файлу <cite>/bin/binary_file</cite>. Это даёт возможность любому пользователю запускать на выполнение файл с полномочиями владельца файла.</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>chmod u-s /bin/file1</cite></p></td>
+<td><p>снять SUID-бит с файла <cite>/bin/binary_file</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>chown user1 file1</cite></p></td>
+<td><p>назначить владельцем файла <cite>file1</cite> пользователя <cite>user1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>chown -R user1 directory1</cite></p></td>
+<td><p>назначить рекурсивно владельцем директории <cite>directory1</cite> пользователя <cite>user1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>ls -lh</cite></p></td>
+<td><p>просмотр полномочий на файлы и директории в текущей директории</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>chattr +a file1</cite></p></td>
+<td><p>позволить открывать файл на запись только в режиме добавления</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>chattr +i file1</cite></p></td>
+<td><p>делает файл недоступным для любых изменений: редактирование, удаление, перемещение, создание линков на него</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>chattr +s file1</cite></p></td>
+<td><p>позволяет сделать удаление файла безопасным, т.е. выставленный атрибут s говорит о том, что при удалении файла, место, занимаемое файлом на диске заполняется нулями, что предотвращяет возможность восстановления данных</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>chmod +x /file1</cite></p></td>
+<td><p>сделать файл исполняемым</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id8">
+<h2>Архивация и сжатие файлов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>rar a file1.rar test_file</cite></p></td>
+<td><p>создать rar-архив <cite>file1.rar</cite> и включить в него файл <cite>test_file</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>rar a file1.rar file1 file2 dir1</cite></p></td>
+<td><p>создать rar-архив <cite>file1.rar</cite> и включить в него <cite>file1</cite>, <cite>file2</cite> и <cite>dir1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>rar x file1.rar</cite></p></td>
+<td><p>распаковать rar-архив</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>tar -cvf archive.tar file1 file2 dir1</cite></p></td>
+<td><p>создать tar-архив <cite>archive.tar</cite>, содержащий файл <cite>file1</cite>, <cite>file2</cite> и <cite>dir1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>tar -tf archive.tar</cite></p></td>
+<td><p>показать содержимое архива</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>tar -xvf archive.tar -C /tmp</cite></p></td>
+<td><p>распаковать архив в <cite>/tmp</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>zip -r file1.zip file1 file2 dir1</cite></p></td>
+<td><p>создать сжатый zip-архив и со включением в него нескольких файлов и/или директорий</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h2>Манипуляции с текстом<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>cat -n file1</cite></p></td>
+<td><p>пронумеровать строки при выводе содержимого файла</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>comm -1 file1 file2</cite></p></td>
+<td><p>сравнить содержимое двух файлов, не отображая строки принадлежащие файлу <cite>file1</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>comm -2 file1 file2</cite></p></td>
+<td><p>сравнить содержимое двух файлов, не отображая строки принадлежащие файлу <cite>file2</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>comm -3 file1 file2</cite></p></td>
+<td><p>сравнить содержимое двух файлов, удаляя строки встречающиеся в обоих файлах</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>diff file1 file2</cite></p></td>
+<td><p>сравнить два файла</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>grep Aug /var/log/messages</cite></p></td>
+<td><p>из файла <cite>/var/log/messages</cite> отобрать и вывести на стандартное устройство вывода строки, содержащие <cite>Aug</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>grep ^Aug /var/log/messages</cite></p></td>
+<td><p>из файла <cite>/var/log/messages</cite> отобрать и вывести на стандартное устройство вывода строки, начинающиеся на <cite>Aug</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>grep [0-9] /var/log/messages</cite></p></td>
+<td><p>из файла <cite>/var/log/messages</cite> отобрать и вывести на стандартное устройство вывода строки, содержащие цифры</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>grep Aug -R /var/log/*</cite></p></td>
+<td><p>отобрать и вывести на стандартное устройство вывода строки, содержащие <cite>Aug</cite>, во всех файлах, находящихся в директории <cite>/var/log</cite> и ниже</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>paste file1 file2</cite></p></td>
+<td><p>объединить содержимое <cite>file1</cite> и <cite>file2</cite> в виде таблицы: строка 1 из file1 = строка 1 колонка 1-n, строка 1 из file2 = строка 1 колонка n+1-m</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>paste -d '+' file1 file2</cite></p></td>
+<td><p>объединить содержимое <cite>file1</cite> и <cite>file2</cite> в виде таблицы с разделителем <cite>+</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sed 's/string1/string2/g' example.txt</cite></p></td>
+<td><p>в файле <cite>example.txt</cite> заменить <cite>string1</cite> на <cite>string2</cite>, результат вывести на стандартное устройство вывода</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sed '/^$/d' example.txt</cite></p></td>
+<td><p>удалить пустые строки и комментарии из файла <cite>example.txt</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sed -e '1d' exampe.txt</cite></p></td>
+<td><p>удалить первую строку из файла <cite>example.txt</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sed -n '/string1/p'</cite></p></td>
+<td><p>отобразить только строки содержашие <cite>string1</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sed -e 's/ *$//' example.txt</cite></p></td>
+<td><p>удалить пустые символы в в конце каждой строки</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sed -e 's/string1//g' example.txt</cite></p></td>
+<td><p>удалить строку <cite>string1</cite> из текста не изменяя всего остального</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sed -n '5p;5q' example.txt</cite></p></td>
+<td><p>вывести пятую строку</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sed -e 's/00*/0/g' example.txt</cite></p></td>
+<td><p>заменить последовательность из любого количества нулей одним нулём</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sort file1 file2</cite></p></td>
+<td><p>отсортировать содержимое двух файлов</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id10">
+<h2>Создание резервных копий<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>dump -0aj -f /tmp/home0.bak /home</cite></p></td>
+<td><p>создать полную резервную копию директории <cite>/home</cite> в файл <cite>/tmp/home0.bak</cite></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>dump -1aj -f /tmp/home0.bak /home</cite></p></td>
+<td><p>создать инкрементальную резервную копию директории <cite>/home</cite> в файл <cite>/tmp/home0.bak</cite></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>restore -if /tmp/home0.bak</cite></p></td>
+<td><p>восстановить из резервной копии /tmp/home0.bak</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>rsync -rogpav -e ssh –delete /home ip_address:/tmp</cite></p></td>
+<td><p>синхронизировать через SSH-туннель</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>rsync -az -e ssh –delete /home/local ip_addr:/home/public</cite></p></td>
+<td><p>синхронизировать удалённую директорию с локальной директорией через ssh-туннель со сжатием</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Установка:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">docker</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">docker-compose</span></code></p></li>
+</ul>
+<p>Настройка:</p>
+<ul class="simple">
+<li><p>добавить пользователя в группу Docker <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">usermod</span> <span class="pre">-aG</span> <span class="pre">docker</span> <span class="pre">${USER}</span></code></p></li>
+<li><p>добавим в автозагрузку <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enables</span> <span class="pre">docker.servise</span></code></p></li>
+<li><p>запустим службу <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">docker.servise</span></code></p></li>
+</ul>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 63%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>docker search &lt;name&gt;</cite></p></td>
+<td><p>поиск образа &lt;name&gt;</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker pull &lt;name&gt;</cite></p></td>
+<td><p>загрузка образа из реестра</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker run -it –name &lt;name&gt; -d eon01/&lt;name&gt;</cite></p></td>
+<td><p>запуск контейнера</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker rename &lt;old name&gt; &lt;new name&gt;</cite></p></td>
+<td><p>переименование контейнера</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker rm &lt;name&gt;</cite></p></td>
+<td><p>удаление контейнера</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker start &lt;name&gt;</cite></p></td>
+<td><p>запуск контейнера</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker stop &lt;name&gt;</cite></p></td>
+<td><p>остановка контейнера</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker restart &lt;name&gt;</cite></p></td>
+<td><p>перезагрузка контейнера</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker pause &lt;name&gt;</cite></p></td>
+<td><p>пауза</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker unpause &lt;name&gt;</cite></p></td>
+<td><p>снятие паузы</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker ps</cite></p></td>
+<td><p>работающие контейнеры</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker logs &lt;name&gt;</cite></p></td>
+<td><p>логи контейнера</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker images</cite></p></td>
+<td><p>список образов</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker load -i /путь/до/сохранения/file.tar</cite></p></td>
+<td><p>загрузка образа из .tar</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker save -o /путь/до/сохранения/file.tar</cite></p></td>
+<td><p>сохранение образа в tar-архив</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker rmi &lt;name&gt;</cite></p></td>
+<td><p>удаление образа</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker rmi $(docker images -a -q)</cite></p></td>
+<td><p>удаление всех образов</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>docker stop $(docker ps -a -q) &amp;&amp; docker rm $(docker ps -a -q)</cite></p></td>
+<td><p>остановка и удаление всех контейнеров</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker exec -it b4a144826c5a /bin/bash</cite></p></td>
+<td><p>войти в контейнер</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="midnight-commander">
+<h2>Midnight Commander<a class="headerlink" href="#midnight-commander" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 63%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>Ctrl + o</cite></p></td>
+<td><p>полноэкранная консоль</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>Ctrl + обратный слэш (рядом c Enter)</cite></p></td>
+<td><p>меню закладок</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>shift+f6</cite></p></td>
+<td><p>переименовать</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>user:pass&#64;192.168.1.210</cite></p></td>
+<td><p>подключение по FTP</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>shift+f4</cite></p></td>
+<td><p>создать новый файл</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id11">
+<h3>Редкатор<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>Shift-Ins</cite></p></td>
+<td><p>вставить текст из буфера</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>Shift+F5</cite></p></td>
+<td><p>вставка текста из внутреннего буфера обмена mc</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>Shift+Стрелки</cite></p></td>
+<td><p>выделение текста</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="git">
+<h2>GIT<a class="headerlink" href="#git" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>git init</cite></p></td>
+<td><p>создать локально новый репозиторий</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git init &lt;directory&gt;</cite></p></td>
+<td><p>cоздание репозитория в указанном каталоге</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git clone –recurse-submodules ssh://user&#64;domain.com/repo.git</cite></p></td>
+<td><p>клонировать существующий репозиторий со всеми submodule</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git status</cite></p></td>
+<td><p>состояние отслеживаемых файлов, <cite>-s</cite> краткий вид</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git commit -m &quot;Commit Comment&quot;</cite></p></td>
+<td><p>коммит с комментарием</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git add -A</cite></p></td>
+<td><p>добавить все файлы в stage</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git add -p &lt;файл&gt;</cite></p></td>
+<td><p>добавить файл в stage</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git commit –amend</cite></p></td>
+<td><p>изменение комментария к последнему комииту, если после последнего коммита не было ни каких изменений в рабочем каталоге</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git rm &lt;file_name&gt;</cite></p></td>
+<td><p>удаление файла из отслеживаемых Git, а так же его физическое удаление из рабочего каталога</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git rm -f &lt;file_name&gt;</cite></p></td>
+<td><p>удаление проиндексированного измененного файла</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git rm —cached &lt;file_name&gt;</cite></p></td>
+<td><p>удаление файла из индекса, но сохранение его в рабочем каталоге</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git log</cite></p></td>
+<td><p>показать всю историю коммитов начиная с последних</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git log -p &lt;файл&gt;</cite></p></td>
+<td><p>показать историю изменений определенного файла</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git blame &lt;файл&gt;</cite></p></td>
+<td><p>кто, какие и когда изменения вносил в &lt;файл&gt;</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git log -2</cite></p></td>
+<td><p>вывод последних n записей, в примере вывод двух последних записей</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git reset –hard HEAD</cite></p></td>
+<td><p>удалить все локальные изменения в рабочем каталоге</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git checkout HEAD &lt;файл&gt;</cite></p></td>
+<td><p>удалить локальные изменения в отдельном &lt;файле&gt; (до внесения файла в коммит)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git revert &lt;коммит&gt;</cite></p></td>
+<td><p>откатить коммит</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git remote</cite></p></td>
+<td><p>просмотр удаленных репозиториев <cite>-v</cite> подробнее</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git remote add origin https://github.com/n0tb0dy/UpRemote.git</cite></p></td>
+<td><p>добавление удаленного репозитория (вместо origin можно задать любое слово)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git push origin master</cite></p></td>
+<td><p>отправка данных на удаленный репозиторий. Формат git push [удал. сервер] [локальная ветка]</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git fetch &lt;репо&gt;</cite></p></td>
+<td><p>cкачать все изменения из &lt;remote&gt;, но не интегрировать их в HEAD</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git pull &lt;репо&gt; &lt;ветка&gt;</cite></p></td>
+<td><p>скачать изменения и сразу слить/интегрировать их в HEAD</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git remote rename &lt;old_name&gt; &lt;new_name&gt;</cite></p></td>
+<td><p>переименование удаленных репозиториев (по существу переименование локальной ссылки на удаленный репозиторий)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git remote rm origin</cite></p></td>
+<td><p>удаление удаленного репозитория (попросту отключение от него</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git branch</cite></p></td>
+<td><p>посмотреть локальные ветки</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git branch –v</cite></p></td>
+<td><p>посмотреть последний коммит на каждой из локальных веток</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git branch &lt;имя_ветки&gt;</cite></p></td>
+<td><p>создать ветку</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git branch new_branch 5a0eb04</cite></p></td>
+<td><p>создать ветку на определенном коммите</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git branch -m &lt;oldname&gt; &lt;newname&gt;</cite></p></td>
+<td><p>переименовать ветку</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git checkout &lt;имя_ветки&gt;</cite></p></td>
+<td><p>переключится на ветку</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git checkout -b &lt;имя_ветки&gt;</cite></p></td>
+<td><p>создать ветку и сразу же переключится на нее</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git branch -d &lt;имя_ветки&gt;</cite></p></td>
+<td><p>удалить ветку</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>git submodule update --init --recursive</cite></p></td>
+<td><p>слить все submodule входящие в проект</p></td>
+</tr>
+<tr class="row-even"><td><p>git submodule add <a class="reference external" href="https://github.com/chaconinc">https://github.com/chaconinc</a></p></td>
+<td><p>добавить submodeule в репозиторий</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id12">
+<h3>GIT рекомендации<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Типы коммитов:</p>
+<ul class="simple">
+<li><p><strong>Feat:</strong> новая фича, добавляемая к приложению</p></li>
+<li><p><strong>Fix:</strong> исправление бага.</p></li>
+<li><p><strong>Style:</strong> функции и обновления, имеющие отношение к стилизации.</p></li>
+<li><p><strong>Refactor:</strong> рефакторинг определенного участка кодовой базы.</p></li>
+<li><p><strong>Test:</strong> все, что касается тестирования.</p></li>
+<li><p><strong>Docs:</strong> все, что касается документации.</p></li>
+<li><p><strong>Chore:</strong> любые другие изменения, не затрагивающие код.</p></li>
+</ul>
+<p>Общие рекомендации:</p>
+<ul class="simple">
+<li><p>Отделяйте заголовок от тела сообщения пустой строкой.</p></li>
+<li><p>Не ставьте точку в конце заголовка.</p></li>
+<li><p>Заголовок и каждый отдельный абзац должны начинаться с заглавной буквы.</p></li>
+<li><p>Используйте тело сообщения, чтобы описать вносимые изменения и причины этих изменений.</p></li>
+</ul>
+<p>Шаблон коммита:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Тип<span class="o">(</span>область действия<span class="o">)</span>: Заголовок до <span class="m">70</span> символов
+<span class="linenos">2</span>
+<span class="linenos">3</span>Более детальное описание изменений, если необходимо
+<span class="linenos">4</span>
+<span class="linenos">5</span>Описание проблемы которую решает, если необходимо
+<span class="linenos">6</span>
+<span class="linenos">7</span> * Новый абзац
+<span class="linenos">8</span>
+<span class="linenos">9</span> * Новый абзац
+</pre></div>
+</div>
+<p>Пример коммита:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Fix<span class="o">(</span>uart<span class="o">)</span>: исправлена работа uart
+<span class="linenos">2</span>
+<span class="linenos">3</span>Изменена скорость работы uart
+<span class="linenos">4</span>
+<span class="linenos">5</span>Приемник управляется корректно
+<span class="linenos">6</span>
+<span class="linenos">7</span> * Скорость управляется параметром UART_CLK
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="manjaro.html" class="btn btn-neutral float-right" title="Manjaro" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_list.html" class="btn btn-neutral float-left" title="Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

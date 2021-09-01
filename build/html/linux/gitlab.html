@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>GitLab &mdash; документация Общие заметки 1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="prev" title="Manjaro" href="manjaro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GitLab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Первичная настройка</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Резервное копирование</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runner">Runner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+        
+      <li>GitLab</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/gitlab.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="gitlab">
+<h1>GitLab<a class="headerlink" href="#gitlab" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Рассматривается вариант развернутый с помощью Docker. Ниже будут представлены ссылки на официальные
+инструкции и указаны особенности. Так же в разделе <a class="reference internal" href="#gitlab-runner"><span class="std std-ref">Runner</span></a> указано как запустить GitLab вместе с CI/CD</p>
+<section id="id1">
+<h2>Первичная настройка<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Официальная инструкция расположена в разделе <a class="reference external" href="https://docs.gitlab.com/ee/install/docker.html">docker</a>. Запустить
+GitLab в Docker можно несколькими способами самый оптимальный с помощью <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (можно обойтись без compose
+если нужно запустить GitLab без Runner и прочего, но лучше сразу написать файл <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>)
+Конфигурирование происходит либо прямой правкой файла конфигурации <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code> (путь может отличаться)
+либо при запуске контейнера с помощью переменной среды <a class="reference external" href="https://docs.gitlab.com/ee/install/docker.html#pre-configure-docker-container">подробнее</a>. <br /></p>
+<p><strong>На что необходимо обратить внимание:</strong></p>
+<ol class="arabic simple">
+<li><p>Подмена адреса в <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> <br />
+Если необходимо получить доступ к GitLab на локальной машине не по адресу <a class="reference external" href="http://localhost/">localhost</a>.
+то необходимо добавить строку вида <code class="docutils literal notranslate"><span class="pre">127.0.1.1</span>&#160; <span class="pre">my.newdomen.com</span></code></p></li>
+<li><p>Правка парметра <code class="docutils literal notranslate"><span class="pre">external_url...</span></code> <br />
+Для того что бы GitLab знал свой настоящий адрес (генерировал верные ссылки для клонирования, реистрации токенов и прочего)
+необходимо в файле конфигурации указать верный <code class="docutils literal notranslate"><span class="pre">external_url</span></code>.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Резервное копирование<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>GitLab имеет встроенные средства позволяющие создавать и восстанавливать резервные копии настроек, репозиториев и т.д.
+Можно перенести всю информацию с одной машины на другую <a class="reference external" href="https://docs.gitlab.com/ee/raketasks/backup_restore.html">подробнее</a></p>
+<section id="id5">
+<h3>Создание копии<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Резервирование образа <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span> <span class="pre">-o</span> <span class="pre">/путь/до/места/хранения/image_gitlab.tar</span> <span class="pre">[имя</span> <span class="pre">контейнера</span> <span class="pre">или</span> <span class="pre">ID]</span></code></p></li>
+<li><p>Резервирование данных <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-backup</span> <span class="pre">create</span></code></p></li>
+</ol>
+<p>Файл данных контейнера будет находиться по пути: <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/data/backups</span></code> и иметь вид <code class="docutils literal notranslate"><span class="pre">1548856817_2021_08_30_14.2.1_gitlab_backup.tar</span></code>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>Для переноса конфигурации на другую машину так же необходимы файлы: <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab-secrets.json</span></code> и <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code></p>
+</div>
+</section>
+<section id="id6">
+<h3>Восстановление копии<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Если цель перенести конфигурацию с одной машины на другую необходимо:</p>
+<ol class="arabic simple">
+<li><p>Положить файл с данными вида <code class="docutils literal notranslate"><span class="pre">1548856817_2021_08_30_14.2.1_gitlab_backup.tar</span></code> по пути <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/data/backups</span></code></p></li>
+<li><p>Положить файл ключа вида <code class="docutils literal notranslate"><span class="pre">gitlab-secrets.json</span></code> по пути <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/</span></code></p></li>
+<li><p>Восстановим образ Docker (если необходимо) <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">load</span> <span class="pre">-i</span> <span class="pre">/путь/до/места/хранения/image_gitlab.tar</span></code></p></li>
+<li><p>Если контейнер работает, остановим процессы <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-ctl</span> <span class="pre">stop</span> <span class="pre">unicorn</span></code>, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-ctl</span> <span class="pre">stop</span> <span class="pre">puma</span></code>, <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-ctl</span> <span class="pre">stop</span> <span class="pre">sidekiq</span></code></p></li>
+<li><p>Убедимся что процессы остановлены <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-ctl</span> <span class="pre">status</span></code></p></li>
+<li><p>Восстановим данные <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-backup</span> <span class="pre">restore</span> <span class="pre">BACKUP=1548856817_2021_08_30_14.2.1</span></code> (см. примечание ниже)</p></li>
+<li><p>Перезапустим контейнер <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">restart</span> <span class="pre">gitlab</span></code></p></li>
+<li><p>Проверим ошибки <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-rake</span> <span class="pre">gitlab:check</span> <span class="pre">SANITIZE=true</span></code></p></li>
+</ol>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>При восстановлении данных с другой машины может возникнуть ошибка прав доступа для этого необходимо изменить владельца
+файла на такого же каким он был. Обычно это <code class="docutils literal notranslate"><span class="pre">chown</span> <span class="pre">998</span> <span class="pre">./1548856817_2021_08_30_14.2.1_gitlab_backup.tar</span></code></p>
+</div>
+</section>
+</section>
+<section id="runner">
+<span id="gitlab-runner"></span><h2>Runner<a class="headerlink" href="#runner" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Агент выполняющий задания CI/CD. Не входит в образ GitLab и устанавливается и настраивается отдельно. Есть два основных способа (запуск
+в контейнере или отдельным приложением на хостовой машине). Предпочтительный способом через Docker, но и он же сложнее в организации.
+Runner умеет выполнять задачи в различных окружениях. Основные это <code class="docutils literal notranslate"><span class="pre">shell</span></code> (выполняет задачу непосредственно на хостовой машине где установлен),
+<code class="docutils literal notranslate"><span class="pre">docker</span></code> (выполняет задачу в образе docker). Метод выбирается при регистрации runner либо прописывается в файле конфигурации
+Ниже будет описан именно этот метод <a class="reference external" href="https://docs.gitlab.com/runner/install/">подробнее о установке</a>.</p>
+<section id="id8">
+<h3>Запуск<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/d72192e0e41c9a157a7f0cdcc4e7216d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="linenos"> 2</span><span class="nt">services</span><span class="p">:</span>
+<span class="linenos"> 3</span>  <span class="nt">gitlab</span><span class="p">:</span>
+<span class="linenos"> 4</span>    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-ce:latest&#39;</span>
+<span class="linenos"> 5</span>    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="linenos"> 6</span>    <span class="nt">hostname</span><span class="p">:</span> <span class="s">&#39;gitlab_test.com&#39;</span>
+<span class="linenos"> 7</span>    <span class="nt">environment</span><span class="p">:</span>
+<span class="linenos"> 8</span>      <span class="nt">GITLAB_OMNIBUS_CONFIG</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+<span class="linenos"> 9</span>        <span class="no">external_url &#39;http://gitlab_test.com/&#39;</span>
+<span class="linenos">10</span>    <span class="nt">ports</span><span class="p">:</span>
+<span class="linenos">11</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;80:80&#39;</span>
+<span class="linenos">12</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;443:443&#39;</span>
+<span class="linenos">13</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;22:22&#39;</span>
+<span class="linenos">14</span>    <span class="nt">volumes</span><span class="p">:</span>
+<span class="linenos">15</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span>
+<span class="linenos">16</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span>
+<span class="linenos">17</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/data:/var/opt/gitlab&#39;</span>
+<span class="linenos">18</span>    <span class="nt">networks</span><span class="p">:</span>
+<span class="linenos">19</span>      <span class="nt">default</span><span class="p">:</span>
+<span class="linenos">20</span>        <span class="nt">aliases</span><span class="p">:</span>
+<span class="linenos">21</span>          <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab_test.com&#39;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>  <span class="nt">gitlab-runner</span><span class="p">:</span>
+<span class="linenos">24</span>    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-runner:latest&#39;</span>
+<span class="linenos">25</span>    <span class="nt">depends_on</span><span class="p">:</span>
+<span class="linenos">26</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab&#39;</span>
+<span class="linenos">27</span>    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="linenos">28</span>    <span class="nt">volumes</span><span class="p">:</span>
+<span class="linenos">29</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab-runner/config:/etc/gitlab-runner&#39;</span>
+<span class="linenos">30</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/var/run/docker.sock:/var/run/docker.sock&#39;</span>
+<span class="linenos">31</span>    <span class="nt">networks</span><span class="p">:</span>
+<span class="linenos">32</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;default&#39;</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="nt">networks</span><span class="p">:</span>
+<span class="linenos">35</span>  <span class="nt">default</span><span class="p">:</span>
+<span class="linenos">36</span>    <span class="nt">driver</span><span class="p">:</span> <span class="s">&#39;bridge&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Так как GitLab и Runner два обособленных контейнера, но им необходимо обмениваться данными нужно организовать сеть между контейнерами.
+это реализует блок <code class="docutils literal notranslate"><span class="pre">networks</span></code>. Подробнее можно прочитать <a class="reference external" href="https://stackoverflow.com/questions/50325932/gitlab-runner-docker-could-not-resolve-host/">тут</a></p>
+</div>
+</li>
+<li><p>Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>Настройка<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Конфигурация runner храниться в файле <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> (либо иное место если указан другой путь монтирования).
+Процесс конфигурации подразумевает регистрацию runner в Gitlab. Отредактировать конфигурацию (зарегистрировать) можно двумя способами <a class="reference external" href="https://docs.gitlab.com/runner/register/">подробнее</a> :</p>
+<ol class="arabic">
+<li><p><strong>Интерактивный режим</strong> <br />
+Выполним <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab_gitlab-runner_1</span> <span class="pre">gitlab-runner</span> <span class="pre">register</span></code> и следуем указаниям (для работоспособности все равно необходимо
+править конфигурацию вручную) этот метод может сформировать каркас конфигурации, но для runner запущенноо в Docker этого не достаточно</p></li>
+<li><p><strong>Правка конфигурации</strong> <br />
+Пример рабочей конфигурации ( <a class="reference external" href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">полное описание</a>  ) <a class="reference download internal" download="" href="../_downloads/a18cf2a398bb4b822d0115119c1d7320/config.toml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span>
+<span class="linenos"> 2</span><span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="l l-Scalar l-Scalar-Plain">[session_server]</span>
+<span class="linenos"> 5</span>  <span class="l l-Scalar l-Scalar-Plain">session_timeout = 1800</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="l l-Scalar l-Scalar-Plain">[[runners]]</span>
+<span class="linenos"> 8</span>  <span class="l l-Scalar l-Scalar-Plain">name = &quot;stm32&quot;</span> <span class="c1">#Имя</span>
+<span class="linenos"> 9</span>  <span class="l l-Scalar l-Scalar-Plain">url = &quot;http://gitlab_test.com/&quot;</span> <span class="c1">#Адрес по которому доступен GitLab</span>
+<span class="linenos">10</span>  <span class="l l-Scalar l-Scalar-Plain">token = &quot;yKFH-aCHozA75XcYU-CU&quot;</span> <span class="c1">#Токен для регистрации (выдается GitLab)</span>
+<span class="linenos">11</span>  <span class="l l-Scalar l-Scalar-Plain">executor = &quot;docker&quot;</span>
+<span class="linenos">12</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.custom_build_dir]</span>
+<span class="linenos">13</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.cache]</span>
+<span class="linenos">14</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.s3]</span>
+<span class="linenos">15</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.gcs]</span>
+<span class="linenos">16</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.azure]</span>
+<span class="linenos">17</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.docker]</span> <span class="c1">#Настройки если исполнителем выбран docker</span>
+<span class="linenos">18</span>    <span class="l l-Scalar l-Scalar-Plain">tls_verify = false</span>
+<span class="linenos">19</span>    <span class="l l-Scalar l-Scalar-Plain">image = &quot;atollic_truestudio:latest&quot;</span> <span class="c1">#Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего</span>
+<span class="linenos">20</span>    <span class="l l-Scalar l-Scalar-Plain">privileged = false</span>
+<span class="linenos">21</span>    <span class="l l-Scalar l-Scalar-Plain">disable_entrypoint_overwrite = false</span>
+<span class="linenos">22</span>    <span class="l l-Scalar l-Scalar-Plain">oom_kill_disable = false</span>
+<span class="linenos">23</span>    <span class="l l-Scalar l-Scalar-Plain">network_mode = &quot;gitlab_default&quot;</span> <span class="c1">#Важный параметр для моста между контейнерами см. описание</span>
+<span class="linenos">24</span>    <span class="l l-Scalar l-Scalar-Plain">pull_policy = &quot;if-not-present&quot;</span> <span class="c1">#Если есть локальный image использовать его</span>
+<span class="linenos">25</span>    <span class="l l-Scalar l-Scalar-Plain">disable_cache = false</span>
+<span class="linenos">26</span>    <span class="l l-Scalar l-Scalar-Plain">volumes = [&quot;/cache&quot;]</span>
+<span class="linenos">27</span>    <span class="l l-Scalar l-Scalar-Plain">shm_size = 0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Значение строки <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span></code> формируется из имени службы и имени указаном в <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>
+Например имя службы <code class="docutils literal notranslate"><span class="pre">infrastructure</span></code>, имя сети <code class="docutils literal notranslate"><span class="pre">backend</span></code> тогда строка примет вид <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span> <span class="pre">&quot;infrastructure_backend&quot;</span></code></p>
+</div>
+</li>
+</ol>
+<p>Если runner все же решено запускать отдельным приложением а GitLab запущен в Docker обратите внимание на следующее</p>
+<ol class="arabic simple">
+<li><p>Manjaro имеет в стандартном репозитории gitlab-runner</p></li>
+<li><p>После установки для автозапуска необходимо включить сервис <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">gitlab-runner.service</span> <span class="pre">--now</span></code></p></li>
+<li><p>Файл конфигурации расположен <code class="docutils literal notranslate"><span class="pre">/etc/gitlab-runner/config/config.toml</span></code></p></li>
+<li><p>Параметр <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span></code> будет иметь вид <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span> <span class="pre">&quot;host&quot;</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="runner-gitlab">
+<h3>Что делать если runner настроен, но GitLab все равно говорит об ожидании<a class="headerlink" href="#runner-gitlab" title="Ссылка на этот заголовок">¶</a></h3>
+<p>По умолчанию параметр <span class="guilabel">Run untagged jobs</span>  по пути <span class="menuselection">Settings ‣ CI/CD ‣ Runner</span> (на выбранном runner кликнуть иконку карандаша)
+отключен. Это значит если тег runner не совпадает с тегом репозитория, то runner не будет использован в этом репозитории. Можно
+отметить галочку, тогда теги будут игнорироваться</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/runner_tag.png"><img alt="../_images/runner_tag.png" src="../_images/runner_tag.png" style="width: 508.8px; height: 308.40000000000003px;" /></a>
+</figure>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="manjaro.html" class="btn btn-neutral float-left" title="Manjaro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
