@@ -94,6 +94,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">Первичная настройка</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Резервное копирование</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#runner">Runner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssl">Настройка SSL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
@@ -254,8 +255,8 @@ Runner умеет выполнять задачи в различных окру
 <span class="linenos"> 9</span>        <span class="no">external_url &#39;http://gitlab_test.com/&#39;</span>
 <span class="linenos">10</span>    <span class="nt">ports</span><span class="p">:</span>
 <span class="linenos">11</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;80:80&#39;</span>
-<span class="linenos">12</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;443:443&#39;</span>
-<span class="linenos">13</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;22:22&#39;</span>
+<span class="linenos">12</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;4443:443&#39;</span>
+<span class="linenos">13</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;2022:22&#39;</span>
 <span class="linenos">14</span>    <span class="nt">volumes</span><span class="p">:</span>
 <span class="linenos">15</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span>
 <span class="linenos">16</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span>
@@ -290,8 +291,8 @@ Runner умеет выполнять задачи в различных окру
 <li><p>Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></p></li>
 </ol>
 </section>
-<section id="id10">
-<h3>Настройка<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="gitlab-runner-settings">
+<span id="id10"></span><h3>Настройка<a class="headerlink" href="#gitlab-runner-settings" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Конфигурация runner храниться в файле <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> (либо иное место если указан другой путь монтирования).
 Процесс конфигурации подразумевает регистрацию runner в Gitlab. Отредактировать конфигурацию (зарегистрировать) можно двумя способами <a class="reference external" href="https://docs.gitlab.com/runner/register/">подробнее</a> :</p>
 <ol class="arabic">
@@ -345,6 +346,52 @@ Runner умеет выполнять задачи в различных окру
 <li><p>Параметр <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span></code> будет иметь вид <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span> <span class="pre">&quot;host&quot;</span></code></p></li>
 </ol>
 </section>
+</section>
+<section id="ssl">
+<h2>Настройка SSL<a class="headerlink" href="#ssl" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для работы GitLab через протокол <strong>https</strong> необходимо:</p>
+<ol class="arabic">
+<li><p>Получить сертификат, его можно сгенерировать с помощью <code class="docutils literal notranslate"><span class="pre">openssl</span></code></p>
+<ul>
+<li><p>Перейдем в каталог с конфигурацией GitLab <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/srv/gitlab/config</span></code></p></li>
+<li><p>Выполним ряд команд генерации сертификата:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">genrsa</span> <span class="pre">-aes128</span> <span class="pre">-out</span> <span class="pre">server.key</span> <span class="pre">2048</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">rsa</span> <span class="pre">-in</span> <span class="pre">server.key</span> <span class="pre">-out</span> <span class="pre">server.key</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">req</span> <span class="pre">-new</span> <span class="pre">-days</span> <span class="pre">3650</span> <span class="pre">-key</span> <span class="pre">server.key</span> <span class="pre">-out</span> <span class="pre">server.csr</span></code> при заполнении полей некоторые необходимо <br />
+заполнять внимательно. Первое поле <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">Name</span></code> код из двух символов например <code class="docutils literal notranslate"><span class="pre">ru</span></code>. Очень важно верно заполнить
+поле <code class="docutils literal notranslate"><span class="pre">Common</span> <span class="pre">Name</span> <span class="pre">(e.g.</span> <span class="pre">server</span> <span class="pre">FQDN</span> <span class="pre">or</span> <span class="pre">YOUR</span> <span class="pre">name)</span></code> оно должно полностью соответствовать <code class="docutils literal notranslate"><span class="pre">external_url</span></code> (без <code class="docutils literal notranslate"><span class="pre">https://</span></code>)
+например для конфигурации приведенной выше это будет <code class="docutils literal notranslate"><span class="pre">gitlab_test.com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">x509</span> <span class="pre">-in</span> <span class="pre">server.csr</span> <span class="pre">-out</span> <span class="pre">server.crt</span> <span class="pre">-req</span> <span class="pre">-signkey</span> <span class="pre">server.key</span> <span class="pre">-days</span> <span class="pre">3650</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">server.*</span></code></p></li>
+</ul>
+<p>в результате получить нужно 3 файла <code class="docutils literal notranslate"><span class="pre">server.key</span></code>, <code class="docutils literal notranslate"><span class="pre">server.csr</span></code>, <code class="docutils literal notranslate"><span class="pre">server.crt</span></code></p>
+</li>
+<li><p>Отредактируем конфигурацию GitLab <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code>
+(или можно добавить эти параметры на этапе создания контейнера) приводим поля к виду:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>external_url <span class="s1">&#39;https://gitlab_test.com&#39;</span>
+nginx<span class="o">[</span><span class="s1">&#39;enable&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+nginx<span class="o">[</span><span class="s1">&#39;client_max_body_size&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;250m&#39;</span>
+nginx<span class="o">[</span><span class="s1">&#39;redirect_http_to_https&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="nb">true</span>
+nginx<span class="o">[</span><span class="s1">&#39;ssl_certificate&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;/etc/gitlab/server.crt&quot;</span>
+nginx<span class="o">[</span><span class="s1">&#39;ssl_certificate_key&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;/etc/gitlab/server.key&quot;</span>
+nginx<span class="o">[</span><span class="s1">&#39;ssl_protocols&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;TLSv1.2 TLSv1.3&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Обновим конфигурацию <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">NAME_CONT</span> <span class="pre">gitlab-ctl</span> <span class="pre">reconfigure</span></code></p></li>
+</ul>
+</li>
+<li><p>Настройка Runner</p>
+<p>Полученный сертификат <code class="docutils literal notranslate"><span class="pre">server.crt</span></code> копируем в каталог <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config</span></code>
+можно так же смонтировать каталог где находиться сертификат что бы все было в единичном экземпляре (более правильно)
+далее регистрируем Runner. Заходим в контейнер <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">NAME_CONT</span> <span class="pre">bash</span></code> выполняем
+<code class="docutils literal notranslate"><span class="pre">gitlab-runner</span> <span class="pre">register</span> <span class="pre">--tls-ca-file=/etc/gitlab-runner/server.crt</span></code> после регистрации корректируем конфигурацию
+<code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> в соответсвии с рекомендациями <a class="reference internal" href="#gitlab-runner-settings"><span class="std std-ref">Настройка</span></a></p>
+</li>
+</ol>
 </section>
 <section id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>

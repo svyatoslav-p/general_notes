@@ -95,6 +95,8 @@ Runner умеет выполнять задачи в различных окру
 
 #. Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) ``docker-compose up -d``
 
+.. _gitlab-runner_settings:
+
 Настройка
 =========
 
@@ -123,6 +125,51 @@ Runner умеет выполнять задачи в различных окру
 #. Файл конфигурации расположен ``/etc/gitlab-runner/config/config.toml``
 #. Параметр ``network_mode =`` будет иметь вид ``network_mode = "host"``
 
+Настройка SSL
+*************
+Для работы GitLab через протокол **https** необходимо:
+
+#. Получить сертификат, его можно сгенерировать с помощью ``openssl``
+
+   * Перейдем в каталог с конфигурацией GitLab ``cd /srv/gitlab/config``
+   * Выполним ряд команд генерации сертификата:
+
+     * ``openssl genrsa -aes128 -out server.key 2048``
+     * ``openssl rsa -in server.key -out server.key``
+     * ``openssl req -new -days 3650 -key server.key -out server.csr`` при заполнении полей некоторые необходимо |br|
+       заполнять внимательно. Первое поле ``Country Name`` код из двух символов например ``ru``. Очень важно верно заполнить
+       поле ``Common Name (e.g. server FQDN or YOUR name)`` оно должно полностью соответствовать ``external_url`` (без ``https://``)
+       например для конфигурации приведенной выше это будет ``gitlab_test.com``
+     * ``openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650``
+     * ``chmod 400 server.*``
+     в результате получить нужно 3 файла ``server.key``, ``server.csr``, ``server.crt``
+   * Отредактируем конфигурацию GitLab ``/srv/gitlab/config/gitlab.rb`` 
+     (или можно добавить эти параметры на этапе создания контейнера) приводим поля к виду:
+
+      .. code-block:: bash
+
+         external_url 'https://gitlab_test.com'
+         nginx['enable'] = true
+         nginx['client_max_body_size'] = '250m'
+         nginx['redirect_http_to_https'] = true
+         nginx['ssl_certificate'] = "/etc/gitlab/server.crt"
+         nginx['ssl_certificate_key'] = "/etc/gitlab/server.key"
+         nginx['ssl_protocols'] = "TLSv1.2 TLSv1.3"
+
+   * Обновим конфигурацию ``docker exec -it NAME_CONT gitlab-ctl reconfigure``
+   
+#. Настройка Runner
+
+   Полученный сертификат ``server.crt`` копируем в каталог ``/srv/gitlab-runner/config``
+   можно так же смонтировать каталог где находиться сертификат что бы все было в единичном экземпляре (более правильно)
+   далее регистрируем Runner. Заходим в контейнер ``docker exec -it NAME_CONT bash`` выполняем 
+   ``gitlab-runner register --tls-ca-file=/etc/gitlab-runner/server.crt`` после регистрации корректируем конфигурацию
+   ``/srv/gitlab-runner/config/config.toml`` в соответсвии с рекомендациями :ref:`gitlab-runner_settings`
+      
+   
+         
+    
+
 FAQ
 ***
 
@@ -136,3 +183,4 @@ FAQ
 .. figure:: linux_image/gitlab/runner_tag.png
    :scale: 40%
    :align: center
+
