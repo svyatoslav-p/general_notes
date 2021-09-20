@@ -6,6 +6,7 @@ Linux
    cmd_general
    manjaro
    gitlab
+   vpn
 
    
 

@@ -110,10 +110,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#midnight-commander">Midnight Commander</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git">GIT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wireguard-pivpn">WireGuard + PiVPN</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
 </ul>
 </li>
 </ul>
@@ -1253,6 +1255,43 @@
 </pre></div>
 </div>
 </section>
+</section>
+<section id="wireguard-pivpn">
+<h2>WireGuard + PiVPN<a class="headerlink" href="#wireguard-pivpn" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>sudo wg-quick up wg0</cite></p></td>
+<td><p>включить VPN</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>sudo wg-quick down wg0</cite></p></td>
+<td><p>отключить VPN</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>sudo wg show</cite></p></td>
+<td><p>статистика клиентов</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>pivpn add</cite></p></td>
+<td><p>добавить пользователя</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>pivpn -r</cite></p></td>
+<td><p>удалить пользователя</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>pivpn -l</cite></p></td>
+<td><p>список пользователей</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>pivpn -qr</cite></p></td>
+<td><p>показать QR код</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 

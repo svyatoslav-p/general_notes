@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>WireGuard &mdash; документация Общие заметки 1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="prev" title="GitLab" href="gitlab.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WireGuard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Настройка сервера</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Настройка клиента</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+        
+      <li>WireGuard</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/vpn.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="wireguard">
+<h1>WireGuard<a class="headerlink" href="#wireguard" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Ниже описаны особенности настройки VPN сервера <strong>WireGuard</strong>. Так как в открытых источниках довольно
+много этой информации, описаны только особенности.</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Настройка на VPS машине <strong>Oracle Cloud</strong>  <a class="reference external" href="https://mateo.cogeanu.com/2020/wireguard-vpn-pihole-on-free-oracle-cloud/">описана в статье</a></p>
+</div>
+<section id="id2">
+<h2>Настройка сервера<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Существует множество готовых скриптов для облечения установки, рассмотрим на примере <strong>PiVPN</strong></p>
+<ol class="arabic">
+<li><p>Скачать и запустить <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-L</span> <span class="pre">https://install.pivpn.io</span> <span class="pre">|</span> <span class="pre">bash</span></code> следовать инструкциям</p>
+<ul class="simple">
+<li><p>Порт по умолчанию <code class="docutils literal notranslate"><span class="pre">51820</span></code> можно изменить, но нужно учесть это при дальнейшей настройке
+(при открытии портов роутера, создания)конфигурационного файла.</p></li>
+<li><p>На этпе выбора DNS можно оставить <strong>Goole</strong> (проверено, работает). Так же если выбрать <strong>PiVPN -is-local-DNS</strong>
+необходимо настроить свой DNS сервер иначе у клиентов не будет доступа в интернет</p></li>
+</ul>
+</li>
+<li><p>Открытие порта. <strong>WireGuard</strong> будет гонять весь трафик через порт, который был указан выше его необходимо открывать
+в роутере либо в настройках сети в облаке (если это VPS сервер)</p>
+<p>Для пропуска всего трафик через VPN сервер указать Source <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> и соответсвующий порт указанный в конфигурации</p>
+</li>
+<li><p>Корректировка конфигурации. Открываем конфигурацию сервера <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code>, добавляем правила маршрутизации
+для <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">table</span></code>. В итоге файл примет подобный вид:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Конфигурация сервера</span>
+<span class="linenos"> 2</span><span class="k">[Interface]</span>
+<span class="linenos"> 3</span><span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">INuoxmvql345fu4/JWqKcpCXOr+hrDnrflcXWcP1H1E=</span>
+<span class="linenos"> 4</span><span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.1/24</span>
+<span class="linenos"> 5</span><span class="na">MTU</span> <span class="o">=</span> <span class="s">1420</span>
+<span class="linenos"> 6</span><span class="na">ListenPort</span> <span class="o">=</span> <span class="s">51820</span>
+<span class="linenos"> 7</span><span class="na">PostUp</span> <span class="o">=</span> <span class="s">iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE</span>
+<span class="linenos"> 8</span><span class="na">PostDown</span> <span class="o">=</span> <span class="s">iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">#Клиенты сервера</span>
+<span class="linenos">11</span><span class="k">[Peer]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Запускаем сервер <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">up</span> <span class="pre">wg0</span></code></p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Настройка клиента<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>На машину клиента так же необходимо установить <strong>WireGuard</strong> (необязательно через <strong>PiVPN</strong>). Далее на сервере сгенерируем конфигруция нового клиента.
+выполним <code class="docutils literal notranslate"><span class="pre">pivpn</span> <span class="pre">add</span></code> вводим имя клиента, после этого в конфигурации сервера <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code> в разделе <code class="docutils literal notranslate"><span class="pre">Peer</span></code>
+добавится информация о новом клиенте. Кроме этого <strong>PiVPN</strong> сгенерирует файл конфигурации <code class="docutils literal notranslate"><span class="pre">~/configs/NAME_CLIENT.conf</span></code>
+вида:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">[Interface]</span>
+<span class="linenos"> 2</span><span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">0CnU5eGUI12AGMtXPCqfdiI5KTkC/CFoPaC9fFHlQ=</span>
+<span class="linenos"> 3</span><span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.2/24</span>
+<span class="linenos"> 4</span><span class="na">DNS</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">[Peer]</span>
+<span class="linenos"> 7</span><span class="na">PublicKey</span> <span class="o">=</span> <span class="s">rKX8vE0b4JuJmBt1qFijd4qrH58FesLt04XnmD0k=</span>
+<span class="linenos"> 8</span><span class="na">PresharedKey</span> <span class="o">=</span> <span class="s">z/jKBvPGccfQd+Pncm+YfE1dOfM23x/QqgzjB0vuh1E=</span>
+<span class="linenos"> 9</span><span class="na">Endpoint</span> <span class="o">=</span> <span class="s">158.70.61.25:51820</span>
+<span class="linenos">10</span><span class="na">AllowedIPs</span> <span class="o">=</span> <span class="s">0.0.0.0/0, ::0/0</span>
+</pre></div>
+</div>
+<p>этот файл необходимо переименовать и положить на клиента по пути <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code>. Далее так же запустим VPN командой <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">up</span> <span class="pre">wg0</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="gitlab.html" class="btn btn-neutral float-left" title="GitLab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
