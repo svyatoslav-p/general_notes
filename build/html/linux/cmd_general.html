@@ -14,8 +14,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
@@ -33,7 +31,6 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -1115,101 +1112,107 @@
 <tr class="row-even"><td><p><cite>git clone –recurse-submodules ssh://user&#64;domain.com/repo.git</cite></p></td>
 <td><p>клонировать существующий репозиторий со всеми submodule</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git status</cite></p></td>
+<tr class="row-odd"><td><p>git -c http.sslVerify=false clone <a class="reference external" href="https://example.com/path/">https://example.com/path/</a></p></td>
+<td><p>игнорирование SSL сертификата для текущей операции</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>git status</cite></p></td>
 <td><p>состояние отслеживаемых файлов, <cite>-s</cite> краткий вид</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git commit -m &quot;Commit Comment&quot;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git commit -m &quot;Commit Comment&quot;</cite></p></td>
 <td><p>коммит с комментарием</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git add -A</cite></p></td>
+<tr class="row-even"><td><p><cite>git add -A</cite></p></td>
 <td><p>добавить все файлы в stage</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git add -p &lt;файл&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git add -p &lt;файл&gt;</cite></p></td>
 <td><p>добавить файл в stage</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git commit –amend</cite></p></td>
+<tr class="row-even"><td><p><cite>git commit –amend</cite></p></td>
 <td><p>изменение комментария к последнему комииту, если после последнего коммита не было ни каких изменений в рабочем каталоге</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git rm &lt;file_name&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git rm &lt;file_name&gt;</cite></p></td>
 <td><p>удаление файла из отслеживаемых Git, а так же его физическое удаление из рабочего каталога</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git rm -f &lt;file_name&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git rm -f &lt;file_name&gt;</cite></p></td>
 <td><p>удаление проиндексированного измененного файла</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git rm —cached &lt;file_name&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git rm —cached &lt;file_name&gt;</cite></p></td>
 <td><p>удаление файла из индекса, но сохранение его в рабочем каталоге</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git log</cite></p></td>
+<tr class="row-even"><td><p><cite>git log</cite></p></td>
 <td><p>показать всю историю коммитов начиная с последних</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git log -p &lt;файл&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git log -p &lt;файл&gt;</cite></p></td>
 <td><p>показать историю изменений определенного файла</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git blame &lt;файл&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git blame &lt;файл&gt;</cite></p></td>
 <td><p>кто, какие и когда изменения вносил в &lt;файл&gt;</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git log -2</cite></p></td>
+<tr class="row-odd"><td><p><cite>git log -2</cite></p></td>
 <td><p>вывод последних n записей, в примере вывод двух последних записей</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git reset –hard HEAD</cite></p></td>
+<tr class="row-even"><td><p><cite>git reset –hard HEAD</cite></p></td>
 <td><p>удалить все локальные изменения в рабочем каталоге</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git checkout HEAD &lt;файл&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git checkout HEAD &lt;файл&gt;</cite></p></td>
 <td><p>удалить локальные изменения в отдельном &lt;файле&gt; (до внесения файла в коммит)</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git revert &lt;коммит&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git revert &lt;коммит&gt;</cite></p></td>
 <td><p>откатить коммит</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git remote</cite></p></td>
+<tr class="row-odd"><td><p><cite>git remote</cite></p></td>
 <td><p>просмотр удаленных репозиториев <cite>-v</cite> подробнее</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git remote add origin https://github.com/n0tb0dy/UpRemote.git</cite></p></td>
+<tr class="row-even"><td><p><cite>git remote add origin https://github.com/n0tb0dy/UpRemote.git</cite></p></td>
 <td><p>добавление удаленного репозитория (вместо origin можно задать любое слово)</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git push origin master</cite></p></td>
+<tr class="row-odd"><td><p><cite>git push origin master</cite></p></td>
 <td><p>отправка данных на удаленный репозиторий. Формат git push [удал. сервер] [локальная ветка]</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git fetch &lt;репо&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git fetch &lt;репо&gt;</cite></p></td>
 <td><p>cкачать все изменения из &lt;remote&gt;, но не интегрировать их в HEAD</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git pull &lt;репо&gt; &lt;ветка&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git pull &lt;репо&gt; &lt;ветка&gt;</cite></p></td>
 <td><p>скачать изменения и сразу слить/интегрировать их в HEAD</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git remote rename &lt;old_name&gt; &lt;new_name&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git remote rename &lt;old_name&gt; &lt;new_name&gt;</cite></p></td>
 <td><p>переименование удаленных репозиториев (по существу переименование локальной ссылки на удаленный репозиторий)</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git remote rm origin</cite></p></td>
+<tr class="row-odd"><td><p><cite>git remote rm origin</cite></p></td>
 <td><p>удаление удаленного репозитория (попросту отключение от него</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git branch</cite></p></td>
+<tr class="row-even"><td><p><cite>git branch</cite></p></td>
 <td><p>посмотреть локальные ветки</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git branch –v</cite></p></td>
+<tr class="row-odd"><td><p><cite>git branch –v</cite></p></td>
 <td><p>посмотреть последний коммит на каждой из локальных веток</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git branch &lt;имя_ветки&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git branch &lt;имя_ветки&gt;</cite></p></td>
 <td><p>создать ветку</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git branch new_branch 5a0eb04</cite></p></td>
+<tr class="row-odd"><td><p><cite>git branch new_branch 5a0eb04</cite></p></td>
 <td><p>создать ветку на определенном коммите</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git branch -m &lt;oldname&gt; &lt;newname&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git branch -m &lt;oldname&gt; &lt;newname&gt;</cite></p></td>
 <td><p>переименовать ветку</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git checkout &lt;имя_ветки&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git checkout &lt;имя_ветки&gt;</cite></p></td>
 <td><p>переключится на ветку</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git checkout -b &lt;имя_ветки&gt;</cite></p></td>
+<tr class="row-even"><td><p><cite>git checkout -b &lt;имя_ветки&gt;</cite></p></td>
 <td><p>создать ветку и сразу же переключится на нее</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>git branch -d &lt;имя_ветки&gt;</cite></p></td>
+<tr class="row-odd"><td><p><cite>git branch -d &lt;имя_ветки&gt;</cite></p></td>
 <td><p>удалить ветку</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>git submodule update --init --recursive</cite></p></td>
+<tr class="row-even"><td><p><cite>git submodule update --init --recursive</cite></p></td>
 <td><p>слить все submodule входящие в проект</p></td>
 </tr>
-<tr class="row-even"><td><p>git submodule add <a class="reference external" href="https://github.com/chaconinc">https://github.com/chaconinc</a></p></td>
+<tr class="row-odd"><td><p>git submodule add <a class="reference external" href="https://github.com/chaconinc">https://github.com/chaconinc</a></p></td>
 <td><p>добавить submodeule в репозиторий</p></td>
+</tr>
+<tr class="row-even"><td><p>git config –global http.sslVerify false</p></td>
+<td><p>игнорирование SSL сертификата всегда для этого репозитория</p></td>
 </tr>
 </tbody>
 </table>
@@ -1233,27 +1236,41 @@
 <li><p>Используйте тело сообщения, чтобы описать вносимые изменения и причины этих изменений.</p></li>
 </ul>
 <p>Шаблон коммита:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Тип<span class="o">(</span>область действия<span class="o">)</span>: Заголовок до <span class="m">70</span> символов
-<span class="linenos">2</span>
-<span class="linenos">3</span>Более детальное описание изменений, если необходимо
-<span class="linenos">4</span>
-<span class="linenos">5</span>Описание проблемы которую решает, если необходимо
-<span class="linenos">6</span>
-<span class="linenos">7</span> * Новый абзац
-<span class="linenos">8</span>
-<span class="linenos">9</span> * Новый абзац
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Тип<span class="o">(</span>область действия<span class="o">)</span>: Заголовок до <span class="m">70</span> символов
+
+Более детальное описание изменений, если необходимо
+
+Описание проблемы которую решает, если необходимо
+
+ * Новый абзац
+
+ * Новый абзац
 </pre></div>
-</div>
+</td></tr></table></div>
 <p>Пример коммита:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Fix<span class="o">(</span>uart<span class="o">)</span>: исправлена работа uart
-<span class="linenos">2</span>
-<span class="linenos">3</span>Изменена скорость работы uart
-<span class="linenos">4</span>
-<span class="linenos">5</span>Приемник управляется корректно
-<span class="linenos">6</span>
-<span class="linenos">7</span> * Скорость управляется параметром UART_CLK
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Fix<span class="o">(</span>uart<span class="o">)</span>: исправлена работа uart
+
+Изменена скорость работы uart
+
+Приемник управляется корректно
+
+ * Скорость управляется параметром UART_CLK
 </pre></div>
-</div>
+</td></tr></table></div>
 </section>
 </section>
 <section id="wireguard-pivpn">

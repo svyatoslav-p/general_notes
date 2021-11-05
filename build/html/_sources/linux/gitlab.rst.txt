@@ -118,6 +118,10 @@ Runner умеет выполнять задачи в различных окру
       Например имя службы ``infrastructure``, имя сети ``backend`` тогда строка примет вид ``network_mode = "infrastructure_backend"``
       Для просмотра всех созданных сетей можно выполнить ``docker network ls``
 
+   .. attention::
+      Включение параметра ``privileged = true`` и ``volumes = ["/var/run/docker.sock:/var/run/docker.sock"...`` предоставляют
+      Runner расширенные права доступа. Устанавливать только при необходимости (например при использование **Gitlab Registry**)
+
 Если runner все же решено запускать отдельным приложением а GitLab запущен в Docker обратите внимание на следующее
 
 #. Manjaro имеет в стандартном репозитории gitlab-runner
@@ -170,6 +174,19 @@ Runner умеет выполнять задачи в различных окру
          
     
 
+Registry
+********
+
+Для активации встроенного в GitLab движка **Registry** необходимо отредактировать конфигурацию GitLab ``/srv/gitlab/config/gitlab.rb`` 
+
+.. code-block:: bash
+
+   registry_external_url 'такой_же_как_и_external_url:5555' #например https://gitlab_test.com:5555
+   registry_nginx['enable'] = true
+   registry_nginx['listen_port'] = 5555
+
+Так же необходимо пробростить указанный порт (5555) из контенера наружу (на хост)
+
 FAQ
 ***
 
@@ -183,4 +200,3 @@ FAQ
 .. figure:: linux_image/gitlab/runner_tag.png
    :scale: 40%
    :align: center
-
