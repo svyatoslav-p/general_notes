@@ -467,7 +467,16 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;enable&#39;</span><s
 registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="m">5555</span>
 </pre></div>
 </div>
-<p>Так же необходимо пробростить указанный порт (5555) из контенера наружу (на хост)</p>
+<p>Так же необходимо пробростить указанный порт (5555) из контенера наружу (на хост) и
+на хосте в файле <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> прописать домен (например <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span> <span class="pre">git2.uonmap.com</span></code>)
+тогда можно попробовать залогиниться с хоста <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span> <span class="pre">git2.uonmap.com:5555</span></code>.
+Ввести логин пароль от учетной записи GitLab</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Возможно будет необходимо установить сертификат ssl на хост и в docker. Для Docker положить
+файл <code class="docutils literal notranslate"><span class="pre">*.crt</span></code> по пути <code class="docutils literal notranslate"><span class="pre">~/.docker/certs.d/git2.uonmap.com:5555/</span></code> или <code class="docutils literal notranslate"><span class="pre">/etc/docker/certs.d/git2.uonmap.com:5555/</span></code> где <code class="docutils literal notranslate"><span class="pre">git2.uonmap.com:5555</span></code> адрес Registry
+Для хоста заваисит от OS. Но вроде работает и без этого</p>
+</div>
 </section>
 <section id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
