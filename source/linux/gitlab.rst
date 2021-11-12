@@ -195,6 +195,11 @@ Registry
    файл ``*.crt`` по пути ``~/.docker/certs.d/git2.uonmap.com:5555/`` или ``/etc/docker/certs.d/git2.uonmap.com:5555/`` где ``git2.uonmap.com:5555`` адрес Registry
    Для хоста заваисит от OS. Но вроде работает и без этого
 
+LDAP
+****
+
+НАЧАЛО
+
 FAQ
 ***
 

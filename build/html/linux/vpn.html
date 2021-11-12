@@ -14,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
@@ -31,6 +33,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -190,29 +193,19 @@
 </li>
 <li><p>Корректировка конфигурации. Открываем конфигурацию сервера <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code>, добавляем правила маршрутизации
 для <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">table</span></code>. В итоге файл примет подобный вид:</p>
-<div class="highlight-ini notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># Конфигурация сервера</span>
-<span class="k">[Interface]</span>
-<span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">INuoxmvql345fu4/JWqKcpCXOr+hrDnrflcXWcP1H1E=</span>
-<span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.1/24</span>
-<span class="na">MTU</span> <span class="o">=</span> <span class="s">1420</span>
-<span class="na">ListenPort</span> <span class="o">=</span> <span class="s">51820</span>
-<span class="na">PostUp</span> <span class="o">=</span> <span class="s">iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE</span>
-<span class="na">PostDown</span> <span class="o">=</span> <span class="s">iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE</span>
-
-<span class="c1">#Клиенты сервера</span>
-<span class="k">[Peer]</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Конфигурация сервера</span>
+<span class="linenos"> 2</span><span class="k">[Interface]</span>
+<span class="linenos"> 3</span><span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">INuoxmvql345fu4/JWqKcpCXOr+hrDnrflcXWcP1H1E=</span>
+<span class="linenos"> 4</span><span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.1/24</span>
+<span class="linenos"> 5</span><span class="na">MTU</span> <span class="o">=</span> <span class="s">1420</span>
+<span class="linenos"> 6</span><span class="na">ListenPort</span> <span class="o">=</span> <span class="s">51820</span>
+<span class="linenos"> 7</span><span class="na">PostUp</span> <span class="o">=</span> <span class="s">iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens3 -j MASQUERADE</span>
+<span class="linenos"> 8</span><span class="na">PostDown</span> <span class="o">=</span> <span class="s">iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens3 -j MASQUERADE</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1">#Клиенты сервера</span>
+<span class="linenos">11</span><span class="k">[Peer]</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 </li>
 <li><p>Запускаем сервер <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">up</span> <span class="pre">wg0</span></code></p></li>
 </ol>
@@ -223,27 +216,18 @@
 выполним <code class="docutils literal notranslate"><span class="pre">pivpn</span> <span class="pre">add</span></code> вводим имя клиента, после этого в конфигурации сервера <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code> в разделе <code class="docutils literal notranslate"><span class="pre">Peer</span></code>
 добавится информация о новом клиенте. Кроме этого <strong>PiVPN</strong> сгенерирует файл конфигурации <code class="docutils literal notranslate"><span class="pre">~/configs/NAME_CLIENT.conf</span></code>
 вида:</p>
-<div class="highlight-ini notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">[Interface]</span>
-<span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">0CnU5eGUI12AGMtXPCqfdiI5KTkC/CFoPaC9fFHlQ=</span>
-<span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.2/24</span>
-<span class="na">DNS</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
-
-<span class="k">[Peer]</span>
-<span class="na">PublicKey</span> <span class="o">=</span> <span class="s">rKX8vE0b4JuJmBt1qFijd4qrH58FesLt04XnmD0k=</span>
-<span class="na">PresharedKey</span> <span class="o">=</span> <span class="s">z/jKBvPGccfQd+Pncm+YfE1dOfM23x/QqgzjB0vuh1E=</span>
-<span class="na">Endpoint</span> <span class="o">=</span> <span class="s">158.70.61.25:51820</span>
-<span class="na">AllowedIPs</span> <span class="o">=</span> <span class="s">0.0.0.0/0, ::0/0</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">[Interface]</span>
+<span class="linenos"> 2</span><span class="na">PrivateKey</span> <span class="o">=</span> <span class="s">0CnU5eGUI12AGMtXPCqfdiI5KTkC/CFoPaC9fFHlQ=</span>
+<span class="linenos"> 3</span><span class="na">Address</span> <span class="o">=</span> <span class="s">10.6.0.2/24</span>
+<span class="linenos"> 4</span><span class="na">DNS</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">[Peer]</span>
+<span class="linenos"> 7</span><span class="na">PublicKey</span> <span class="o">=</span> <span class="s">rKX8vE0b4JuJmBt1qFijd4qrH58FesLt04XnmD0k=</span>
+<span class="linenos"> 8</span><span class="na">PresharedKey</span> <span class="o">=</span> <span class="s">z/jKBvPGccfQd+Pncm+YfE1dOfM23x/QqgzjB0vuh1E=</span>
+<span class="linenos"> 9</span><span class="na">Endpoint</span> <span class="o">=</span> <span class="s">158.70.61.25:51820</span>
+<span class="linenos">10</span><span class="na">AllowedIPs</span> <span class="o">=</span> <span class="s">0.0.0.0/0, ::0/0</span>
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>этот файл необходимо переименовать и положить на клиента по пути <code class="docutils literal notranslate"><span class="pre">/etc/wireguard/wg0.conf</span></code>. Далее так же запустим VPN командой <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">up</span> <span class="pre">wg0</span></code>.</p>
 </section>
 </section>

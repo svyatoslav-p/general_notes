@@ -7,6 +7,7 @@ Linux
    manjaro
    gitlab
    vpn
+   ldap
 
    
 

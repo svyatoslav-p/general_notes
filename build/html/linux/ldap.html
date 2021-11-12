@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>LDAP &mdash; документация Общие заметки 1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="prev" title="WireGuard" href="vpn.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LDAP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Подготовка системы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#samba4">Установка и запуск Samba4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Опциональные действия</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Решение проблем</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+        
+      <li>LDAP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/ldap.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="ldap">
+<h1>LDAP<a class="headerlink" href="#ldap" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Глава посвящена настройке LDAP сервера на основе Samba4 (с поддержкой Active Directory и Domain Controller).
+Система на которой разворачивается сервер CentOS 8 (на CentOS 7 проблемы из-за старых версий компонентов)
+Во время установки желательно сразу прописать статический настройки сети и имя ПК <strong>Hostname</strong>
+будет использовано как префикс домена вида <code class="docutils literal notranslate"><span class="pre">Hostname.uonmap.com</span></code> Базовая <a class="reference external" href="https://www.golinuxcloud.com/samba-active-directory/">статься по конфигурации</a></p>
+<p><strong>Входные данные</strong> IP по которому доступен хост <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span></code> Имя домена <code class="docutils literal notranslate"><span class="pre">samba.uonmap.com</span></code></p>
+<section id="id2">
+<h2>Подготовка системы<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Отключение <strong>SELinux</strong> <code class="docutils literal notranslate"><span class="pre">setenforce</span> <span class="pre">0</span></code> <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/selinux/config</span></code> установить параметр <code class="docutils literal notranslate"><span class="pre">SELINUX=disabled</span></code></p></li>
+<li><p>Отключение <strong>Firewalld</strong> <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">stop</span> <span class="pre">firewalld</span></code> <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">disable</span> <span class="pre">firewalld</span></code></p></li>
+<li><p>Подключение репозиториев и обновление системы</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">epel-release</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">dnf-plugins-core</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">wget</span> <span class="pre">mc</span> <span class="pre">nano</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">config-manager</span> <span class="pre">--set-enabled</span> <span class="pre">powertools</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">update</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shutdown</span> <span class="pre">-r</span> <span class="pre">now</span></code></p></li>
+<li></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="samba4">
+<h2>Установка и запуск Samba4<a class="headerlink" href="#samba4" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic">
+<li><p>Установка <strong>Samba4</strong></p>
+<ul class="simple">
+<li><p>Пакеты для сборки: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">docbook-style-xsl</span> <span class="pre">gcc</span> <span class="pre">gdb</span> <span class="pre">gnutls-devel</span> <span class="pre">gpgme-devel</span> <span class="pre">jansson-devel</span></code>
+<code class="docutils literal notranslate"><span class="pre">keyutils-libs-devel</span> <span class="pre">krb5-workstation</span> <span class="pre">libacl-devel</span> <span class="pre">libaio-devel</span> <span class="pre">libarchive-devel</span></code>
+<code class="docutils literal notranslate"><span class="pre">libattr-devel</span> <span class="pre">libblkid-devel</span> <span class="pre">libtasn1</span> <span class="pre">libtasn1-tools</span> <span class="pre">libxml2-devel</span> <span class="pre">libxslt</span> <span class="pre">lmdb-devel</span></code>
+<code class="docutils literal notranslate"><span class="pre">openldap-devel</span> <span class="pre">pam-devel</span> <span class="pre">perl</span> <span class="pre">perl-ExtUtils-MakeMaker</span> <span class="pre">perl-Parse-Yapp</span> <span class="pre">popt-devel</span> <span class="pre">python3-cryptography</span></code>
+<code class="docutils literal notranslate"><span class="pre">python3-dns</span> <span class="pre">python3-gpg</span> <span class="pre">python36-devel</span> <span class="pre">readline-devel</span> <span class="pre">rpcgen</span> <span class="pre">systemd-devel</span> <span class="pre">tar</span> <span class="pre">zlib-devel</span> <span class="pre">flex</span> <span class="pre">bison</span> <span class="pre">dbus-devel</span> <span class="pre">python3-markdown</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">https://download.samba.org/pub/samba/samba-latest.tar.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-xzvf</span> <span class="pre">samba-latest.tar.gz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">./samba-4.xx.x/</span></code></p></li>
+<li><p>Проверка всей системы на готовность к сборке, на этом этапе возможно нужно
+будет исправлять ошибки связанные с пакетами для сборки <code class="docutils literal notranslate"><span class="pre">./configure</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">-j</span> <span class="pre">2</span></code> где <code class="docutils literal notranslate"><span class="pre">2</span></code> кол-во CPU для параллельной сборки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code></p></li>
+</ul>
+</li>
+<li><p>Преднастройка хоста</p>
+<ul class="simple">
+<li><p>Прописать домены добавив строку в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/hosts</span></code> вида <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span> <span class="pre">samba</span> <span class="pre">samba.uonmap.com</span></code></p></li>
+<li><p>Установим переменную среды в``nano /etc/profile`` прописав <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=/usr/local/samba/bin/:/usr/local/samba/sbin/:$PATH</span></code></p></li>
+</ul>
+</li>
+<li><p>Запуск базовой конфигурации <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">domain</span> <span class="pre">provision</span> <span class="pre">--use-rfc2307</span> <span class="pre">--interactive</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="go"> [root@samba]# samba-tool domain provision --use-rfc2307 --interactive</span>
+<span class="linenos">2</span><span class="go"> Realm [EXAMPLE.COM]:  UONMAP.COM  &lt;-- provide the realm name</span>
+<span class="linenos">3</span><span class="go"> Domain [EXAMPLE]:  UONMAP  &lt;-- provide the domain name</span>
+<span class="linenos">4</span><span class="go"> Server Role (dc, member, standalone) [dc]:  dc   &lt;-- Since we are configuring samba active directory, we use dc</span>
+<span class="linenos">5</span><span class="go"> DNS backend (SAMBA_INTERNAL, BIND9_FLATFILE, BIND9_DLZ, NONE) [SAMBA_INTERNAL]:  SAMBA_INTERNAL   &lt;-- We will let samba configure it&#39;s own DNS and zone files</span>
+<span class="linenos">6</span><span class="go"> DNS forwarder IP address (write &#39;none&#39; to disable forwarding) [192.168.1.108]:  8.8.8.8   &lt;-- We will use google&#39;s dns</span>
+<span class="linenos">7</span><span class="go"> Administrator password:   &lt;-- Provide the Administrator user&#39;s password</span>
+<span class="linenos">8</span><span class="go"> Retype password:</span>
+</pre></div>
+</div>
+</li>
+<li><p>Настройка DNS</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/resolv.conf</span></code> привести строку к виду <code class="docutils literal notranslate"><span class="pre">nameserver</span> <span class="pre">192.168.1.108</span></code></p></li>
+<li><p>Так же что бы DNS не сбрасывался установим его для сетевого адаптера
+<code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/sysconfig/network-scripts/ifcfg-&lt;имя&gt;</span></code>
+приведем параметр к виду <code class="docutils literal notranslate"><span class="pre">DNS1=192.168.1.108</span></code> <strong>так же необходимо прописать статические параметры сети</strong>
+если этого не было сделано</p></li>
+</ul>
+</li>
+<li><p>Запуск сервера <code class="docutils literal notranslate"><span class="pre">samba</span></code>.</p></li>
+<li><p>Просмотр состояния <code class="docutils literal notranslate"><span class="pre">testparm</span></code></p></li>
+<li><p>Базовая конфигурация <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">/usr/local/samba/private/krb5.conf</span> <span class="pre">/etc/krb5.conf</span></code></p></li>
+<li><p>Проверка <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">kinit</span> <span class="pre">Administrator</span></code> вводим пароль и смотрим результат</p></li>
+</ol>
+</section>
+<section id="id3">
+<h2>Опциональные действия<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Добавить правила <strong>firewalld</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span> <span class="pre">--add-service={dns,ldap,ldaps,kerberos}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span> <span class="pre">--add-port={389/udp,135/tcp,135/udp,138/udp,138/tcp,137/tcp,137/udp,139/udp,139/tcp,445/tcp,445/udp,3268/udp,3268/tcp,3269/tcp,3269/udp,49152/tcp}</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>Решение проблем<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id5">
+<h3>Упрощенная авторизация<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p>По умолчанию samba устанавливает максимальный уровень безопасности поэтому возникают сложности с авторизацией
+клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/usr/local/samba/etc/smb.conf</span></code>
+в раздел <code class="docutils literal notranslate"><span class="pre">[global]</span></code> параметры <code class="docutils literal notranslate"><span class="pre">ldap</span> <span class="pre">server</span> <span class="pre">require</span> <span class="pre">strong</span> <span class="pre">auth</span> <span class="pre">=</span> <span class="pre">no</span></code> и <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">ldap</span> <span class="pre">sasl</span> <span class="pre">wrapping</span> <span class="pre">=</span> <span class="pre">plain</span></code> в таком режиме при авторизации может возникнуть ошибка <code class="docutils literal notranslate"><span class="pre">AcceptSecurityContext</span> <span class="pre">error,</span> <span class="pre">data</span> <span class="pre">52e,</span> <span class="pre">v1db1</span></code>
+в таком случае логин необходимо указывать полностью например <code class="docutils literal notranslate"><span class="pre">administrator&#64;uonmap.com</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="vpn.html" class="btn btn-neutral float-left" title="WireGuard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

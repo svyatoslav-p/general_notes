@@ -14,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
@@ -31,6 +33,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -99,11 +102,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#system-v">System V</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ntp">NTP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#samba">Samba</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Пользователи и группы</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Права на файлы</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Архивация и сжатие файлов</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Манипуляции с текстом</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Создание резервных копий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Пользователи и группы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Права на файлы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Архивация и сжатие файлов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Манипуляции с текстом</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Создание резервных копий</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#midnight-commander">Midnight Commander</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git">GIT</a></li>
@@ -113,6 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
 </ul>
 </li>
 </ul>
@@ -485,6 +489,20 @@
 </tr>
 </tbody>
 </table>
+<section id="id6">
+<h3>Заметки<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Проброс сети через мост (например для виртуальной машины)</p>
+<ul class="simple">
+<li><p>Зануляем активный интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp3s0</span> <span class="pre">0.0.0.0</span></code></p></li>
+<li><p>Создаем мост <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">brctl</span> <span class="pre">addbr</span> <span class="pre">br0</span></code></p></li>
+<li><p>Связываем мост и реальный интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">brctl</span> <span class="pre">addif</span> <span class="pre">br0</span> <span class="pre">enp3s0</span></code></p></li>
+<li><p>Назначаем автоматический DHCP мосту <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dhclient</span> <span class="pre">br0</span></code></p></li>
+<li><p>Для статического IP <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">br0</span> <span class="pre">192.168.1.108</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
 </section>
 <section id="ssh">
 <h2>SSH<a class="headerlink" href="#ssh" title="Ссылка на этот заголовок">¶</a></h2>
@@ -714,8 +732,8 @@
 для подключения расшаренного каталога <code class="docutils literal notranslate"><span class="pre">smb_share_dir</span></code> (прописан в <code class="docutils literal notranslate"><span class="pre">smb.conf</span></code>) машиной с именем <code class="docutils literal notranslate"><span class="pre">svyatoslav-g33590</span></code> в поле адреса
 в системе Windows вводим: <code class="docutils literal notranslate"><span class="pre">\\svyatoslav-g33590.local\smb_share_dir</span></code></p>
 </section>
-<section id="id6">
-<h2>Пользователи и группы<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id7">
+<h2>Пользователи и группы<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 28%" />
@@ -751,8 +769,8 @@
 </tbody>
 </table>
 </section>
-<section id="id7">
-<h2>Права на файлы<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id8">
+<h2>Права на файлы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 12%" />
@@ -803,8 +821,8 @@
 </tbody>
 </table>
 </section>
-<section id="id8">
-<h2>Архивация и сжатие файлов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id9">
+<h2>Архивация и сжатие файлов<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 33%" />
@@ -840,8 +858,8 @@
 </tbody>
 </table>
 </section>
-<section id="id9">
-<h2>Манипуляции с текстом<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id10">
+<h2>Манипуляции с текстом<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 23%" />
@@ -916,8 +934,8 @@
 </tbody>
 </table>
 </section>
-<section id="id10">
-<h2>Создание резервных копий<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id11">
+<h2>Создание резервных копий<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 40%" />
@@ -1064,8 +1082,8 @@
 </tr>
 </tbody>
 </table>
-<section id="id11">
-<h3>Редкатор<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id12">
+<h3>Редкатор<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -1216,8 +1234,8 @@
 </tr>
 </tbody>
 </table>
-<section id="id12">
-<h3>GIT рекомендации<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id13">
+<h3>GIT рекомендации<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Типы коммитов:</p>
 <ul class="simple">
 <li><p><strong>Feat:</strong> новая фича, добавляемая к приложению</p></li>
@@ -1236,41 +1254,43 @@
 <li><p>Используйте тело сообщения, чтобы описать вносимые изменения и причины этих изменений.</p></li>
 </ul>
 <p>Шаблон коммита:</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Тип<span class="o">(</span>область действия<span class="o">)</span>: Заголовок до <span class="m">70</span> символов
-
-Более детальное описание изменений, если необходимо
-
-Описание проблемы которую решает, если необходимо
-
- * Новый абзац
-
- * Новый абзац
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Тип<span class="o">(</span>область действия<span class="o">)</span>: Заголовок до <span class="m">70</span> символов
+<span class="linenos">2</span>
+<span class="linenos">3</span>Более детальное описание изменений, если необходимо
+<span class="linenos">4</span>
+<span class="linenos">5</span>Описание проблемы которую решает, если необходимо
+<span class="linenos">6</span>
+<span class="linenos">7</span> * Новый абзац
+<span class="linenos">8</span>
+<span class="linenos">9</span> * Новый абзац
 </pre></div>
-</td></tr></table></div>
+</div>
 <p>Пример коммита:</p>
-<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>Fix<span class="o">(</span>uart<span class="o">)</span>: исправлена работа uart
-
-Изменена скорость работы uart
-
-Приемник управляется корректно
-
- * Скорость управляется параметром UART_CLK
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>Fix<span class="o">(</span>uart<span class="o">)</span>: исправлена работа uart
+<span class="linenos">2</span>
+<span class="linenos">3</span>Изменена скорость работы uart
+<span class="linenos">4</span>
+<span class="linenos">5</span>Приемник управляется корректно
+<span class="linenos">6</span>
+<span class="linenos">7</span> * Скорость управляется параметром UART_CLK
+<span class="linenos">8</span> *
 </pre></div>
-</td></tr></table></div>
+</div>
+</section>
+<section id="id14">
+<h3>GIT наборы команд<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p><strong>Залить все ветки в репозиторий.</strong> Запустить скрипт из корня проекта <a class="reference download internal" download="" href="../_downloads/9f54878b5119e837895e00c26dd1e99a/pull_all_branch.sh"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#!/bin/bash</span>
+<span class="linenos">2</span><span class="k">for</span> branch <span class="k">in</span> <span class="k">$(</span>git branch --all <span class="p">|</span> grep <span class="s1">&#39;^\s*remotes&#39;</span> <span class="p">|</span> egrep --invert-match <span class="s1">&#39;(:?HEAD|master)$&#39;</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+<span class="linenos">3</span>    git branch --track <span class="s2">&quot;</span><span class="si">${</span><span class="nv">branch</span><span class="p">##*/</span><span class="si">}</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$branch</span><span class="s2">&quot;</span>
+<span class="linenos">4</span><span class="k">done</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span>git push --all origin <span class="o">&amp;&amp;</span> git push --tags
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 </section>
 <section id="wireguard-pivpn">
