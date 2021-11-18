@@ -97,6 +97,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#samba4">Установка и запуск Samba4</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Опциональные действия</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Решение проблем</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
 </ul>
@@ -176,6 +177,11 @@
 Система на которой разворачивается сервер CentOS 8 (на CentOS 7 проблемы из-за старых версий компонентов)
 Во время установки желательно сразу прописать статический настройки сети и имя ПК <strong>Hostname</strong>
 будет использовано как префикс домена вида <code class="docutils literal notranslate"><span class="pre">Hostname.uonmap.com</span></code> Базовая <a class="reference external" href="https://www.golinuxcloud.com/samba-active-directory/">статься по конфигурации</a></p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Для изменения имени хоста выполнить <code class="docutils literal notranslate"><span class="pre">hostnamectl</span> <span class="pre">set-hostname</span> <span class="pre">dctr.uonmap.com</span></code>. Желательно
+давать имя хосту по шаблону <code class="docutils literal notranslate"><span class="pre">name-pc.domain.prefix</span></code></p>
+</div>
 <p><strong>Входные данные</strong> IP по которому доступен хост <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span></code> Имя домена <code class="docutils literal notranslate"><span class="pre">samba.uonmap.com</span></code></p>
 <section id="id2">
 <h2>Подготовка системы<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
@@ -217,7 +223,7 @@
 <li><p>Преднастройка хоста</p>
 <ul class="simple">
 <li><p>Прописать домены добавив строку в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/hosts</span></code> вида <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span> <span class="pre">samba</span> <span class="pre">samba.uonmap.com</span></code></p></li>
-<li><p>Установим переменную среды в``nano /etc/profile`` прописав <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=/usr/local/samba/bin/:/usr/local/samba/sbin/:$PATH</span></code></p></li>
+<li><p>Установим переменную среды в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/profile</span></code> прописав <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=/usr/local/samba/bin/:/usr/local/samba/sbin/:$PATH</span></code></p></li>
 </ul>
 </li>
 <li><p>Запуск базовой конфигурации <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">domain</span> <span class="pre">provision</span> <span class="pre">--use-rfc2307</span> <span class="pre">--interactive</span></code></p>
@@ -249,12 +255,31 @@
 </section>
 <section id="id3">
 <h2>Опциональные действия<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Добавить правила <strong>firewalld</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span> <span class="pre">--add-service={dns,ldap,ldaps,kerberos}</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span> <span class="pre">--add-port={389/udp,135/tcp,135/udp,138/udp,138/tcp,137/tcp,137/udp,139/udp,139/tcp,445/tcp,445/udp,3268/udp,3268/tcp,3269/tcp,3269/udp,49152/tcp}</span></code></p></li>
 </ul>
+</li>
+<li><p>Добавить в автозапуск</p>
+<ul class="simple">
+<li><p>Создадим сервис (проверьте корректность путей): <strong>/etc/systemd/system/samba.service</strong> <a class="reference download internal" download="" href="../_downloads/af8229cba6a04af1bfed6678d75f43d8/samba.service"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p></li>
+</ul>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span> <span class="s">Samba 4 Active Directory</span>
+<span class="na">After</span><span class="o">=</span><span class="s">syslog.target</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
+<span class="na">PIDFile</span><span class="o">=</span><span class="s">/usr/local/samba/var/run/samba.pid</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/samba/sbin/samba</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
 </li>
 </ol>
 </section>
@@ -266,6 +291,13 @@
 клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/usr/local/samba/etc/smb.conf</span></code>
 в раздел <code class="docutils literal notranslate"><span class="pre">[global]</span></code> параметры <code class="docutils literal notranslate"><span class="pre">ldap</span> <span class="pre">server</span> <span class="pre">require</span> <span class="pre">strong</span> <span class="pre">auth</span> <span class="pre">=</span> <span class="pre">no</span></code> и <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">ldap</span> <span class="pre">sasl</span> <span class="pre">wrapping</span> <span class="pre">=</span> <span class="pre">plain</span></code> в таком режиме при авторизации может возникнуть ошибка <code class="docutils literal notranslate"><span class="pre">AcceptSecurityContext</span> <span class="pre">error,</span> <span class="pre">data</span> <span class="pre">52e,</span> <span class="pre">v1db1</span></code>
 в таком случае логин необходимо указывать полностью например <code class="docutils literal notranslate"><span class="pre">administrator&#64;uonmap.com</span></code></p>
+</section>
+</section>
+<section id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="active-directory">
+<h3>Где посмотреть атрибуты Active Directory<a class="headerlink" href="#active-directory" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Один из источников <a class="reference external" href="http://www.selfadsi.org/user-attributes.htm/">атрибуты</a></p>
 </section>
 </section>
 </section>

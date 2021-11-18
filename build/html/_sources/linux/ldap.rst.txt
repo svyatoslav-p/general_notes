@@ -10,6 +10,10 @@ LDAP
 Во время установки желательно сразу прописать статический настройки сети и имя ПК **Hostname**
 будет использовано как префикс домена вида ``Hostname.uonmap.com`` Базовая `статься по конфигурации <https://www.golinuxcloud.com/samba-active-directory/>`_
 
+.. note::
+   Для изменения имени хоста выполнить ``hostnamectl set-hostname dctr.uonmap.com``. Желательно
+   давать имя хосту по шаблону ``name-pc.domain.prefix``
+
 **Входные данные** IP по которому доступен хост ``192.168.1.108`` Имя домена ``samba.uonmap.com``
 
 
@@ -48,7 +52,7 @@ LDAP
 #. Преднастройка хоста
 
    - Прописать домены добавив строку в ``nano /etc/hosts`` вида ``192.168.1.108 samba samba.uonmap.com``
-   - Установим переменную среды в``nano /etc/profile`` прописав ``export PATH=/usr/local/samba/bin/:/usr/local/samba/sbin/:$PATH``
+   - Установим переменную среды в ``nano /etc/profile`` прописав ``export PATH=/usr/local/samba/bin/:/usr/local/samba/sbin/:$PATH``
 
 #. Запуск базовой конфигурации ``samba-tool domain provision --use-rfc2307 --interactive``
 
@@ -85,6 +89,13 @@ LDAP
    - ``firewall-cmd --add-service={dns,ldap,ldaps,kerberos}``
    - ``firewall-cmd --add-port={389/udp,135/tcp,135/udp,138/udp,138/tcp,137/tcp,137/udp,139/udp,139/tcp,445/tcp,445/udp,3268/udp,3268/tcp,3269/tcp,3269/udp,49152/tcp}``
 
+#. Добавить в автозапуск
+
+   - Создадим сервис (проверьте корректность путей): **/etc/systemd/system/samba.service** :download:`Скачать <linux_files/ldap/samba.service>` 
+
+   .. literalinclude:: linux_files/ldap/samba.service
+     :language: ini
+
 Решение проблем
 ***************
 
@@ -95,3 +106,10 @@ LDAP
 клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в ``nano /usr/local/samba/etc/smb.conf``
 в раздел ``[global]`` параметры ``ldap server require strong auth = no`` и ``client ldap sasl wrapping = plain`` в таком режиме при авторизации может возникнуть ошибка ``AcceptSecurityContext error, data 52e, v1db1``
 в таком случае логин необходимо указывать полностью например ``administrator@uonmap.com``
+
+FAQ
+***
+Где посмотреть атрибуты Active Directory
+========================================
+
+Один из источников `атрибуты <http://www.selfadsi.org/user-attributes.htm/>`_
