@@ -81,6 +81,19 @@ LDAP
 #. Базовая конфигурация **Kerberos** ``cp /usr/local/samba/private/krb5.conf /etc/krb5.conf``
 #. Проверка **Kerberos** ``kinit Administrator`` вводим пароль и смотрим результат
 
+Пример конфигураций
+*******************
+
+#. Файл ``/usr/local/samba/etc/smb.conf``
+
+   .. literalinclude:: linux_files/ldap/smb.conf
+     :language: ini
+
+#. Файл ``/etc/krb5.conf``
+
+   .. literalinclude:: linux_files/ldap/krb5.conf
+     :language: ini
+
 Опциональные действия
 *********************
 
@@ -113,3 +126,9 @@ FAQ
 ========================================
 
 Один из источников `атрибуты <http://www.selfadsi.org/user-attributes.htm/>`_
+
+Как проверить доступность сервера
+=================================
+
+Выполнить команду на клиенте вида ``ldapsearch  -b "DC=uonmap,DC=com" -s sub -D``
+``"CN=Administrator,CN=Users,DC=uonmap,DC=com" -H ldap://192.168.1.108:389 -w "Pass" -x "(uid=git_test@test.com)"``

@@ -95,8 +95,9 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LDAP</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Подготовка системы</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#samba4">Установка и запуск Samba4</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Опциональные действия</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Решение проблем</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Пример конфигураций</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Опциональные действия</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Решение проблем</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
@@ -254,7 +255,56 @@
 </ol>
 </section>
 <section id="id3">
-<h2>Опциональные действия<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Пример конфигураций<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic">
+<li><p>Файл <code class="docutils literal notranslate"><span class="pre">/usr/local/samba/etc/smb.conf</span></code></p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global parameters</span>
+<span class="k">[global]</span>
+	<span class="na">dns forwarder</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
+	<span class="na">netbios name</span> <span class="o">=</span> <span class="s">DCTRL</span>
+	<span class="na">realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+	<span class="na">server role</span> <span class="o">=</span> <span class="s">active directory domain controller</span>
+	<span class="na">workgroup</span> <span class="o">=</span> <span class="s">UONMAP</span>
+	<span class="na">ldap server require strong auth</span> <span class="o">=</span> <span class="s">no</span>
+	<span class="na">client ldap sasl wrapping</span> <span class="o">=</span> <span class="s">plain</span>
+	<span class="na">idmap_ldb:use rfc2307</span> <span class="o">=</span> <span class="s">yes</span>
+
+<span class="k">[sysvol]</span>
+	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol</span>
+	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+
+<span class="k">[netlogon]</span>
+	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol/uonmap.com/scripts</span>
+	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>Файл <code class="docutils literal notranslate"><span class="pre">/etc/krb5.conf</span></code></p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[libdefaults]</span>
+	<span class="na">default_realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+	<span class="na">dns_lookup_realm</span> <span class="o">=</span> <span class="s">false</span>
+	<span class="na">dns_lookup_kdc</span> <span class="o">=</span> <span class="s">true</span>
+	<span class="na">ticket_lifetime</span> <span class="o">=</span> <span class="s">24h</span>
+	<span class="na">forwardable</span> <span class="o">=</span> <span class="s">yes</span>
+
+<span class="k">[realms]</span>
+<span class="na">UONMAP.COM</span> <span class="o">=</span> <span class="s">{</span>
+	<span class="na">default_domain</span> <span class="o">=</span> <span class="s">uonmap.com</span>
+	<span class="na">kdc</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
+	<span class="na">admin_server</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
+<span class="na">}</span>
+
+<span class="k">[domain_realm]</span>
+	<span class="na">dctrl</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+	<span class="na">.uonmap.com</span> <span class="o">=</span> <span class="s">.UONMAP.COM</span>
+	<span class="na">uonmap.com</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id4">
+<h2>Опциональные действия<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic">
 <li><p>Добавить правила <strong>firewalld</strong></p>
 <ul class="simple">
@@ -283,10 +333,10 @@
 </li>
 </ol>
 </section>
-<section id="id4">
-<h2>Решение проблем<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
 <section id="id5">
-<h3>Упрощенная авторизация<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<h2>Решение проблем<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id6">
+<h3>Упрощенная авторизация<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
 <p>По умолчанию samba устанавливает максимальный уровень безопасности поэтому возникают сложности с авторизацией
 клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/usr/local/samba/etc/smb.conf</span></code>
 в раздел <code class="docutils literal notranslate"><span class="pre">[global]</span></code> параметры <code class="docutils literal notranslate"><span class="pre">ldap</span> <span class="pre">server</span> <span class="pre">require</span> <span class="pre">strong</span> <span class="pre">auth</span> <span class="pre">=</span> <span class="pre">no</span></code> и <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">ldap</span> <span class="pre">sasl</span> <span class="pre">wrapping</span> <span class="pre">=</span> <span class="pre">plain</span></code> в таком режиме при авторизации может возникнуть ошибка <code class="docutils literal notranslate"><span class="pre">AcceptSecurityContext</span> <span class="pre">error,</span> <span class="pre">data</span> <span class="pre">52e,</span> <span class="pre">v1db1</span></code>
@@ -298,6 +348,11 @@
 <section id="active-directory">
 <h3>Где посмотреть атрибуты Active Directory<a class="headerlink" href="#active-directory" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Один из источников <a class="reference external" href="http://www.selfadsi.org/user-attributes.htm/">атрибуты</a></p>
+</section>
+<section id="id8">
+<h3>Как проверить доступность сервера<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Выполнить команду на клиенте вида <code class="docutils literal notranslate"><span class="pre">ldapsearch</span>&#160; <span class="pre">-b</span> <span class="pre">&quot;DC=uonmap,DC=com&quot;</span> <span class="pre">-s</span> <span class="pre">sub</span> <span class="pre">-D</span></code>
+<code class="docutils literal notranslate"><span class="pre">&quot;CN=Administrator,CN=Users,DC=uonmap,DC=com&quot;</span> <span class="pre">-H</span> <span class="pre">ldap://192.168.1.108:389</span> <span class="pre">-w</span> <span class="pre">&quot;Pass&quot;</span> <span class="pre">-x</span> <span class="pre">&quot;(uid=git_test&#64;test.com)&quot;</span></code></p>
 </section>
 </section>
 </section>

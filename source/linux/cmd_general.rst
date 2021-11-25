@@ -546,6 +546,22 @@ Docker
 
    #. Перезапускаем ``systemctl daemon-reload`` и ``systemctl restart docker.service``
 
+#. Установка оффлайн на CentOS 7
+
+   .. code-block:: bash
+
+      wget --content-disposition https://nct.onlyoffice.com/sh/Xsy # Hello world image
+      wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-XX.noarch.rpm
+      wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-XX.x86_64.rpm
+      wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-XX.x86_64.rpm
+      wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-selinux-XX.noarch.rpm
+      wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-XX.x86_64.rpm
+      sudo systemctl restart network # Just for test purposes
+      
+      sudo rpm -i container-selinux-XX.noarch.rpm
+      sudo rpm -i docker-ce-XX.x86_64.rpm docker-ce-cli-XX.x86_64.rpm docker-ce-selinux-XX.noarch.rpm containerd.io-XX.x86_64.rpm
+      sudo systemctl start docker
+
 Midnight Commander
 ******************
 
