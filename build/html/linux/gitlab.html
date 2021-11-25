@@ -249,48 +249,49 @@ Runner умеет выполнять задачи в различных окру
 <h3>Запуск<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic">
 <li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/d72192e0e41c9a157a7f0cdcc4e7216d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="linenos"> 2</span><span class="nt">services</span><span class="p">:</span>
-<span class="linenos"> 3</span>  <span class="nt">gitlab</span><span class="p">:</span>
-<span class="linenos"> 4</span>    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-ce:latest&#39;</span>
-<span class="linenos"> 5</span>    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-<span class="linenos"> 6</span>    <span class="nt">hostname</span><span class="p">:</span> <span class="s">&#39;gitlab_test.com&#39;</span>
-<span class="linenos"> 7</span>    <span class="nt">environment</span><span class="p">:</span>
-<span class="linenos"> 8</span>      <span class="nt">GITLAB_OMNIBUS_CONFIG</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-<span class="linenos"> 9</span>        <span class="no">external_url &#39;http://gitlab_test.com/&#39;</span>
-<span class="linenos">10</span>    <span class="nt">ports</span><span class="p">:</span>
-<span class="linenos">11</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;80:80&#39;</span>
-<span class="linenos">12</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;443:443&#39;</span>
-<span class="linenos">13</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;2022:22&#39;</span>
-<span class="linenos">14</span>    <span class="nt">volumes</span><span class="p">:</span>
-<span class="linenos">15</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span>
-<span class="linenos">16</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span>
-<span class="linenos">17</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/data:/var/opt/gitlab&#39;</span>
-<span class="linenos">18</span>    <span class="nt">networks</span><span class="p">:</span>
-<span class="linenos">19</span>      <span class="nt">default</span><span class="p">:</span>
-<span class="linenos">20</span>        <span class="nt">aliases</span><span class="p">:</span>
-<span class="linenos">21</span>          <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab_test.com&#39;</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span>  <span class="nt">gitlab-runner</span><span class="p">:</span>
-<span class="linenos">24</span>    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-runner:latest&#39;</span>
-<span class="linenos">25</span>    <span class="nt">depends_on</span><span class="p">:</span>
-<span class="linenos">26</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab&#39;</span>
-<span class="linenos">27</span>    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-<span class="linenos">28</span>    <span class="nt">volumes</span><span class="p">:</span>
-<span class="linenos">29</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab-runner/config:/etc/gitlab-runner&#39;</span>
-<span class="linenos">30</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;/var/run/docker.sock:/var/run/docker.sock&#39;</span>
-<span class="linenos">31</span>    <span class="nt">networks</span><span class="p">:</span>
-<span class="linenos">32</span>      <span class="p p-Indicator">-</span> <span class="s">&#39;default&#39;</span>
-<span class="linenos">33</span>
-<span class="linenos">34</span><span class="nt">networks</span><span class="p">:</span>
-<span class="linenos">35</span>  <span class="nt">default</span><span class="p">:</span>
-<span class="linenos">36</span>    <span class="nt">driver</span><span class="p">:</span> <span class="s">&#39;bridge&#39;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">gitlab</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-ce:latest&#39;</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">hostname</span><span class="p">:</span> <span class="s">&#39;gitlab_test.com&#39;</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="nt">GITLAB_OMNIBUS_CONFIG</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">external_url &#39;http://gitlab_test.com/&#39;</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;80:80&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;443:443&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;2022:22&#39;</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/data:/var/opt/gitlab&#39;</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="nt">default</span><span class="p">:</span>
+        <span class="nt">aliases</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab_test.com&#39;</span>
+
+  <span class="nt">gitlab-runner</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-runner:latest&#39;</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab&#39;</span>
+    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab-runner/config:/etc/gitlab-runner&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;/var/run/docker.sock:/var/run/docker.sock&#39;</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;default&#39;</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">default</span><span class="p">:</span>
+    <span class="nt">driver</span><span class="p">:</span> <span class="s">&#39;bridge&#39;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
 <p>Так как GitLab и Runner два обособленных контейнера, но им необходимо обмениваться данными нужно организовать сеть между контейнерами.
-это реализует блок <code class="docutils literal notranslate"><span class="pre">networks</span></code>. Подробнее можно прочитать <a class="reference external" href="https://stackoverflow.com/questions/50325932/gitlab-runner-docker-could-not-resolve-host/">тут</a></p>
+это реализует блок <code class="docutils literal notranslate"><span class="pre">networks</span></code>. <strong>Имя создаваемой сети зависит от каталога в котором запущен</strong> <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Например если <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>
+лежит в каталоге  с именем <code class="docutils literal notranslate"><span class="pre">git</span></code>, то создается сеть <code class="docutils literal notranslate"><span class="pre">git_default</span></code> Подробнее можно прочитать <a class="reference external" href="https://stackoverflow.com/questions/50325932/gitlab-runner-docker-could-not-resolve-host/">тут</a></p>
 </div>
 </li>
 <li><p>Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></p></li>
@@ -306,33 +307,33 @@ Runner умеет выполнять задачи в различных окру
 править конфигурацию вручную) этот метод может сформировать каркас конфигурации, но для runner запущенноо в Docker этого не достаточно</p></li>
 <li><p><strong>Правка конфигурации</strong> <br />
 Пример рабочей конфигурации ( <a class="reference external" href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">полное описание</a>  ) <a class="reference download internal" download="" href="../_downloads/a18cf2a398bb4b822d0115119c1d7320/config.toml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span>
-<span class="linenos"> 2</span><span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span>
-<span class="linenos"> 3</span>
-<span class="linenos"> 4</span><span class="l l-Scalar l-Scalar-Plain">[session_server]</span>
-<span class="linenos"> 5</span>  <span class="l l-Scalar l-Scalar-Plain">session_timeout = 1800</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="l l-Scalar l-Scalar-Plain">[[runners]]</span>
-<span class="linenos"> 8</span>  <span class="l l-Scalar l-Scalar-Plain">name = &quot;stm32&quot;</span> <span class="c1">#Имя</span>
-<span class="linenos"> 9</span>  <span class="l l-Scalar l-Scalar-Plain">url = &quot;http://gitlab_test.com/&quot;</span> <span class="c1">#Адрес по которому доступен GitLab</span>
-<span class="linenos">10</span>  <span class="l l-Scalar l-Scalar-Plain">token = &quot;yKFH-aCHozA75XcYU-CU&quot;</span> <span class="c1">#Токен для регистрации (выдается GitLab)</span>
-<span class="linenos">11</span>  <span class="l l-Scalar l-Scalar-Plain">executor = &quot;docker&quot;</span>
-<span class="linenos">12</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.custom_build_dir]</span>
-<span class="linenos">13</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.cache]</span>
-<span class="linenos">14</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.s3]</span>
-<span class="linenos">15</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.gcs]</span>
-<span class="linenos">16</span>    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.azure]</span>
-<span class="linenos">17</span>  <span class="l l-Scalar l-Scalar-Plain">[runners.docker]</span> <span class="c1">#Настройки если исполнителем выбран docker</span>
-<span class="linenos">18</span>    <span class="l l-Scalar l-Scalar-Plain">tls_verify = false</span>
-<span class="linenos">19</span>    <span class="l l-Scalar l-Scalar-Plain">image = &quot;ubuntu:latest&quot;</span> <span class="c1">#Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего</span>
-<span class="linenos">20</span>    <span class="l l-Scalar l-Scalar-Plain">privileged = true</span>
-<span class="linenos">21</span>    <span class="l l-Scalar l-Scalar-Plain">disable_entrypoint_overwrite = false</span>
-<span class="linenos">22</span>    <span class="l l-Scalar l-Scalar-Plain">oom_kill_disable = false</span>
-<span class="linenos">23</span>    <span class="l l-Scalar l-Scalar-Plain">network_mode = &quot;gitlab_default&quot;</span> <span class="c1">#Важный параметр для моста между контейнерами см. описание</span>
-<span class="linenos">24</span>    <span class="l l-Scalar l-Scalar-Plain">pull_policy = &quot;if-not-present&quot;</span> <span class="c1">#Если есть локальный image использовать его</span>
-<span class="linenos">25</span>    <span class="l l-Scalar l-Scalar-Plain">disable_cache = false</span>
-<span class="linenos">26</span>    <span class="l l-Scalar l-Scalar-Plain">volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]</span>
-<span class="linenos">27</span>    <span class="l l-Scalar l-Scalar-Plain">shm_size = 0</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span>
+<span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[session_server]</span>
+  <span class="l l-Scalar l-Scalar-Plain">session_timeout = 1800</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[[runners]]</span>
+  <span class="l l-Scalar l-Scalar-Plain">name = &quot;stm32&quot;</span> <span class="c1">#Имя</span>
+  <span class="l l-Scalar l-Scalar-Plain">url = &quot;http://gitlab_test.com/&quot;</span> <span class="c1">#Адрес по которому доступен GitLab</span>
+  <span class="l l-Scalar l-Scalar-Plain">token = &quot;yKFH-aCHozA75XcYU-CU&quot;</span> <span class="c1">#Токен для регистрации (выдается GitLab)</span>
+  <span class="l l-Scalar l-Scalar-Plain">executor = &quot;docker&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">[runners.custom_build_dir]</span>
+  <span class="l l-Scalar l-Scalar-Plain">[runners.cache]</span>
+    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.s3]</span>
+    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.gcs]</span>
+    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.azure]</span>
+  <span class="l l-Scalar l-Scalar-Plain">[runners.docker]</span> <span class="c1">#Настройки если исполнителем выбран docker</span>
+    <span class="l l-Scalar l-Scalar-Plain">tls_verify = false</span>
+    <span class="l l-Scalar l-Scalar-Plain">image = &quot;ubuntu:latest&quot;</span> <span class="c1">#Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего</span>
+    <span class="l l-Scalar l-Scalar-Plain">privileged = true</span>
+    <span class="l l-Scalar l-Scalar-Plain">disable_entrypoint_overwrite = false</span>
+    <span class="l l-Scalar l-Scalar-Plain">oom_kill_disable = false</span>
+    <span class="l l-Scalar l-Scalar-Plain">network_mode = &quot;gitlab_default&quot;</span> <span class="c1">#Важный параметр для моста между контейнерами см. описание</span>
+    <span class="l l-Scalar l-Scalar-Plain">pull_policy = &quot;if-not-present&quot;</span> <span class="c1">#Если есть локальный image использовать его</span>
+    <span class="l l-Scalar l-Scalar-Plain">disable_cache = false</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]</span>
+    <span class="l l-Scalar l-Scalar-Plain">shm_size = 0</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -363,19 +364,23 @@ Runner расширенные права доступа. Устанавлива�
 <ol class="arabic">
 <li><p>Получить сертификат, его можно сгенерировать с помощью <code class="docutils literal notranslate"><span class="pre">openssl</span></code></p>
 <ul>
-<li><p>Перейдем в каталог с конфигурацией GitLab <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/srv/gitlab/config</span></code></p></li>
-<li><p>Выполним ряд команд генерации сертификата:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">genrsa</span> <span class="pre">-aes128</span> <span class="pre">-out</span> <span class="pre">server.key</span> <span class="pre">2048</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">rsa</span> <span class="pre">-in</span> <span class="pre">server.key</span> <span class="pre">-out</span> <span class="pre">server.key</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">req</span> <span class="pre">-new</span> <span class="pre">-days</span> <span class="pre">3650</span> <span class="pre">-key</span> <span class="pre">server.key</span> <span class="pre">-out</span> <span class="pre">server.csr</span></code> при заполнении полей некоторые необходимо <br />
-заполнять внимательно. Первое поле <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">Name</span></code> код из двух символов например <code class="docutils literal notranslate"><span class="pre">ru</span></code>. Очень важно верно заполнить
+<li><p>Выполним команду генерации сертификата (должен содержать поле <code class="docutils literal notranslate"><span class="pre">subjectAltName</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>openssl req -newkey rsa:4096 -nodes -sha256 -keyout  ./server.key -x509 -days <span class="m">3650</span> -out ./server.crt -addext <span class="s2">&quot;subjectAltName = DNS:git2.uonmap.com, DNS:uonmap.com, DNS:192.168.0.61&quot;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># ./server.key - имя для сгенерированного ключа</span>
+<span class="linenos">4</span><span class="c1"># ./server.crt - имя самого сертификата</span>
+<span class="linenos">5</span><span class="c1"># subjectAltName - поле необходимо для корректной авторизации клиентов в gitlab registry</span>
+<span class="linenos">6</span><span class="c1">#                  тут прописываем все возможные домены ресурса</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>при заполнении полей некоторые необходимо заполнять внимательно. Первое
+поле <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">Name</span></code> код из двух символов например <code class="docutils literal notranslate"><span class="pre">ru</span></code>. Очень важно верно заполнить
 поле <code class="docutils literal notranslate"><span class="pre">Common</span> <span class="pre">Name</span> <span class="pre">(e.g.</span> <span class="pre">server</span> <span class="pre">FQDN</span> <span class="pre">or</span> <span class="pre">YOUR</span> <span class="pre">name)</span></code> оно должно полностью соответствовать <code class="docutils literal notranslate"><span class="pre">external_url</span></code> (без <code class="docutils literal notranslate"><span class="pre">https://</span></code>)
-например для конфигурации приведенной выше это будет <code class="docutils literal notranslate"><span class="pre">gitlab_test.com</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">openssl</span> <span class="pre">x509</span> <span class="pre">-in</span> <span class="pre">server.csr</span> <span class="pre">-out</span> <span class="pre">server.crt</span> <span class="pre">-req</span> <span class="pre">-signkey</span> <span class="pre">server.key</span> <span class="pre">-days</span> <span class="pre">3650</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">server.*</span></code></p></li>
-</ul>
-<p>в результате получить нужно 3 файла <code class="docutils literal notranslate"><span class="pre">server.key</span></code>, <code class="docutils literal notranslate"><span class="pre">server.csr</span></code>, <code class="docutils literal notranslate"><span class="pre">server.crt</span></code></p>
+например для конфигурации приведенной выше это будет <code class="docutils literal notranslate"><span class="pre">gitlab_test.com</span></code></p>
+</div>
+<p>в результате нужно 2 файла <code class="docutils literal notranslate"><span class="pre">server.key</span></code>, <code class="docutils literal notranslate"><span class="pre">server.crt</span></code></p>
 </li>
 <li><p>Отредактируем конфигурацию GitLab <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code>
 (или можно добавить эти параметры на этапе создания контейнера) приводим поля к виду:</p>
@@ -415,12 +420,9 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 на хосте в файле <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> прописать домен (например <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span> <span class="pre">git2.uonmap.com</span></code>)
 тогда можно попробовать залогиниться с хоста <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span> <span class="pre">git2.uonmap.com:5555</span></code>.
 Ввести логин пароль от учетной записи GitLab</p>
-<div class="admonition note">
-<p class="admonition-title">Примечание</p>
-<p>Возможно будет необходимо установить сертификат ssl на хост и в docker. Для Docker положить
-файл <code class="docutils literal notranslate"><span class="pre">*.crt</span></code> по пути <code class="docutils literal notranslate"><span class="pre">~/.docker/certs.d/git2.uonmap.com:5555/</span></code> или <code class="docutils literal notranslate"><span class="pre">/etc/docker/certs.d/git2.uonmap.com:5555/</span></code> где <code class="docutils literal notranslate"><span class="pre">git2.uonmap.com:5555</span></code> адрес Registry
-Для хоста заваисит от OS. Но вроде работает и без этого</p>
-</div>
+<p>Для успешной авторизации с другой машины в сети на клиенте необходимо установить сертификат для Docker.
+Копируем файл <code class="docutils literal notranslate"><span class="pre">server.crt</span></code> в каталог <code class="docutils literal notranslate"><span class="pre">/etc/docker/certs.d/git2.uonmap.com:5555/ca.crt</span></code> и переименовываем в <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code>
+где <code class="docutils literal notranslate"><span class="pre">git2.uonmap.com:5555</span></code> адрес Registry на машину с которой хотим авторизоваться.</p>
 </section>
 <section id="ldap">
 <h2>LDAP<a class="headerlink" href="#ldap" title="Ссылка на этот заголовок">¶</a></h2>

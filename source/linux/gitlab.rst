@@ -87,11 +87,11 @@ Runner умеет выполнять задачи в различных окру
 
    .. literalinclude:: linux_files/gitlab/docker-compose.yml
      :language: yaml
-     :linenos:
    
    .. note::
       Так как GitLab и Runner два обособленных контейнера, но им необходимо обмениваться данными нужно организовать сеть между контейнерами.
-      это реализует блок ``networks``. Подробнее можно прочитать `тут <https://stackoverflow.com/questions/50325932/gitlab-runner-docker-could-not-resolve-host/>`_ 
+      это реализует блок ``networks``. **Имя создаваемой сети зависит от каталога в котором запущен** ``docker-compose.yml``. Например если ``docker-compose.yml`` 
+      лежит в каталоге  с именем ``git``, то создается сеть ``git_default`` Подробнее можно прочитать `тут <https://stackoverflow.com/questions/50325932/gitlab-runner-docker-could-not-resolve-host/>`_ 
 
 #. Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) ``docker-compose up -d``
 
@@ -111,7 +111,6 @@ Runner умеет выполнять задачи в различных окру
 
    .. literalinclude:: linux_files/gitlab/config.toml
      :language: yaml
-     :linenos:
 
    .. note::
       Значение строки ``network_mode =`` формируется из имени службы и имени указаном в ``docker-compose.yml``
@@ -135,18 +134,25 @@ Runner умеет выполнять задачи в различных окру
 
 #. Получить сертификат, его можно сгенерировать с помощью ``openssl``
 
-   * Перейдем в каталог с конфигурацией GitLab ``cd /srv/gitlab/config``
-   * Выполним ряд команд генерации сертификата:
+   * Выполним команду генерации сертификата (должен содержать поле ``subjectAltName``):
 
-     * ``openssl genrsa -aes128 -out server.key 2048``
-     * ``openssl rsa -in server.key -out server.key``
-     * ``openssl req -new -days 3650 -key server.key -out server.csr`` при заполнении полей некоторые необходимо |br|
-       заполнять внимательно. Первое поле ``Country Name`` код из двух символов например ``ru``. Очень важно верно заполнить
+     .. code-block:: bash
+       :linenos:
+
+       openssl req -newkey rsa:4096 -nodes -sha256 -keyout  ./server.key -x509 -days 3650 -out ./server.crt -addext "subjectAltName = DNS:git2.uonmap.com, DNS:uonmap.com, DNS:192.168.0.61"
+
+       # ./server.key - имя для сгенерированного ключа
+       # ./server.crt - имя самого сертификата
+       # subjectAltName - поле необходимо для корректной авторизации клиентов в gitlab registry
+       #                  тут прописываем все возможные домены ресурса
+
+     .. note::
+       при заполнении полей некоторые необходимо заполнять внимательно. Первое 
+       поле ``Country Name`` код из двух символов например ``ru``. Очень важно верно заполнить
        поле ``Common Name (e.g. server FQDN or YOUR name)`` оно должно полностью соответствовать ``external_url`` (без ``https://``)
        например для конфигурации приведенной выше это будет ``gitlab_test.com``
-     * ``openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650``
-     * ``chmod 400 server.*``
-     в результате получить нужно 3 файла ``server.key``, ``server.csr``, ``server.crt``
+
+     в результате нужно 2 файла ``server.key``, ``server.crt``
    * Отредактируем конфигурацию GitLab ``/srv/gitlab/config/gitlab.rb`` 
      (или можно добавить эти параметры на этапе создания контейнера) приводим поля к виду:
 
@@ -190,10 +196,9 @@ Registry
 тогда можно попробовать залогиниться с хоста ``docker login git2.uonmap.com:5555``.
 Ввести логин пароль от учетной записи GitLab
 
-.. note::
-   Возможно будет необходимо установить сертификат ssl на хост и в docker. Для Docker положить
-   файл ``*.crt`` по пути ``~/.docker/certs.d/git2.uonmap.com:5555/`` или ``/etc/docker/certs.d/git2.uonmap.com:5555/`` где ``git2.uonmap.com:5555`` адрес Registry
-   Для хоста заваисит от OS. Но вроде работает и без этого
+Для успешной авторизации с другой машины в сети на клиенте необходимо установить сертификат для Docker.
+Копируем файл ``server.crt`` в каталог ``/etc/docker/certs.d/git2.uonmap.com:5555/ca.crt`` и переименовываем в ``ca.crt`` 
+где ``git2.uonmap.com:5555`` адрес Registry на машину с которой хотим авторизоваться. 
 
 LDAP
 ****

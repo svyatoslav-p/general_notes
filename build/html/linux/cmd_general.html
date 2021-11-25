@@ -1049,8 +1049,38 @@
 <tr class="row-odd"><td><p><cite>docker network ls</cite></p></td>
 <td><p>доступные сети внутри docker</p></td>
 </tr>
+<tr class="row-even"><td><p><cite>docker -H tcp://192.168.0.52:2375 ps</cite></p></td>
+<td><p>контейнеры на удаленном docker</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>(если открыт socket на сервере)</p></td>
+</tr>
 </tbody>
 </table>
+<section id="id12">
+<h3>Заметки<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Открыть удаленное подключение к демону (проверено на CentOS 7)</p>
+<ol class="arabic">
+<li><p>Создаем файл конфигурации для Docker daemon или добавляем в текущую <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/docker/daemon.json</span></code></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;tcp://0.0.0.0:2375&quot;</span><span class="p">,</span> <span class="s2">&quot;unix:///var/run/docker.sock&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Создаем <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/systemd/system/docker.service.d/override.conf</span></code> (каталог <code class="docutils literal notranslate"><span class="pre">docker.service.d</span></code> создать если отсутсвует)</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/dockerd</span>
+</pre></div>
+</div>
+</li>
+<li><p>Перезапускаем <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">daemon-reload</span></code> и <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">docker.service</span></code></p></li>
+</ol>
+</li>
+</ol>
+</section>
 </section>
 <section id="midnight-commander">
 <h2>Midnight Commander<a class="headerlink" href="#midnight-commander" title="Ссылка на этот заголовок">¶</a></h2>
@@ -1082,8 +1112,8 @@
 </tr>
 </tbody>
 </table>
-<section id="id12">
-<h3>Редкатор<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id13">
+<h3>Редкатор<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -1234,8 +1264,8 @@
 </tr>
 </tbody>
 </table>
-<section id="id13">
-<h3>GIT рекомендации<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id14">
+<h3>GIT рекомендации<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Типы коммитов:</p>
 <ul class="simple">
 <li><p><strong>Feat:</strong> новая фича, добавляемая к приложению</p></li>
@@ -1277,8 +1307,8 @@
 </pre></div>
 </div>
 </section>
-<section id="id14">
-<h3>GIT наборы команд<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id15">
+<h3>GIT наборы команд<a class="headerlink" href="#id15" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic">
 <li><p><strong>Залить все ветки в репозиторий.</strong> Запустить скрипт из корня проекта <a class="reference download internal" download="" href="../_downloads/9f54878b5119e837895e00c26dd1e99a/pull_all_branch.sh"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#!/bin/bash</span>
