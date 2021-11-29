@@ -558,7 +558,7 @@ Docker
       wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-XX.x86_64.rpm
       sudo systemctl restart network # Just for test purposes
       
-      sudo rpm -i container-selinux-XXnoarch.rpm
+      sudo rpm -i container-selinux-XX.noarch.rpm
       sudo rpm -i docker-ce-XX.x86_64.rpm docker-ce-cli-XX.x86_64.rpm docker-ce-selinux-XX.noarch.rpm containerd.io-XX.x86_64.rpm
       sudo systemctl start docker
 

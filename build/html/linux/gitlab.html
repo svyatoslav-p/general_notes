@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ru" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>GitLab &mdash; документация Общие заметки 1</title>
   
@@ -14,16 +13,11 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
   
-
   
-  
-
   
 
   
@@ -33,10 +27,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
         <script src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -59,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Общие заметки
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Общие заметки
           
 
           
@@ -145,8 +139,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -160,7 +152,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/linux/gitlab.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
           
         
@@ -174,7 +166,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="gitlab">
+  <div class="section" id="gitlab">
 <h1>GitLab<a class="headerlink" href="#gitlab" title="Ссылка на этот заголовок">¶</a></h1>
 <p>Рассматривается вариант развернутый с помощью Docker. Ниже будут представлены ссылки на официальные
 инструкции и указаны особенности. Так же в разделе <a class="reference internal" href="#gitlab-runner"><span class="std std-ref">Runner</span></a> указано как запустить GitLab вместе с CI/CD.
@@ -185,7 +177,7 @@
 и поправьте приложенные ниже конфигурации в соответсвии с инструкцией (добавив <code class="docutils literal notranslate"><span class="pre">:Z</span></code> к монтируемым томам)
 иначе получите ошибку о недоступном <code class="docutils literal notranslate"><span class="pre">docker.sock</span></code></p>
 </div>
-<section id="id1">
+<div class="section" id="id1">
 <h2>Первичная настройка<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Официальная инструкция расположена в разделе <a class="reference external" href="https://docs.gitlab.com/ee/install/docker.html">docker</a>. Запустить
 GitLab в Docker можно несколькими способами самый оптимальный с помощью <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (можно обойтись без compose
@@ -201,12 +193,12 @@ GitLab в Docker можно несколькими способами самый
 Для того что бы GitLab знал свой настоящий адрес (генерировал верные ссылки для клонирования, реистрации токенов и прочего)
 необходимо в файле конфигурации указать верный <code class="docutils literal notranslate"><span class="pre">external_url</span></code>.</p></li>
 </ol>
-</section>
-<section id="id3">
+</div>
+<div class="section" id="id3">
 <h2>Резервное копирование<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
 <p>GitLab имеет встроенные средства позволяющие создавать и восстанавливать резервные копии настроек, репозиториев и т.д.
 Можно перенести всю информацию с одной машины на другую <a class="reference external" href="https://docs.gitlab.com/ee/raketasks/backup_restore.html">подробнее</a></p>
-<section id="id5">
+<div class="section" id="id5">
 <h3>Создание копии<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Резервирование образа <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span> <span class="pre">-o</span> <span class="pre">/путь/до/места/хранения/image_gitlab.tar</span> <span class="pre">[имя</span> <span class="pre">контейнера</span> <span class="pre">или</span> <span class="pre">ID]</span></code></p></li>
@@ -217,8 +209,8 @@ GitLab в Docker можно несколькими способами самый
 <p class="admonition-title">Внимание</p>
 <p>Для переноса конфигурации на другую машину так же необходимы файлы: <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab-secrets.json</span></code> и <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code></p>
 </div>
-</section>
-<section id="id6">
+</div>
+<div class="section" id="id6">
 <h3>Восстановление копии<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Если цель перенести конфигурацию с одной машины на другую необходимо:</p>
 <ol class="arabic simple">
@@ -236,19 +228,19 @@ GitLab в Docker можно несколькими способами самый
 <p>При восстановлении данных с другой машины может возникнуть ошибка прав доступа для этого необходимо изменить владельца
 файла или <strong>архивировать бэкап на той же машине где он был создан</strong> тогда права не изменяться</p>
 </div>
-</section>
-</section>
-<section id="runner">
+</div>
+</div>
+<div class="section" id="runner">
 <span id="gitlab-runner"></span><h2>Runner<a class="headerlink" href="#runner" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Агент выполняющий задания CI/CD. Не входит в образ GitLab и устанавливается и настраивается отдельно. Есть два основных способа (запуск
 в контейнере или отдельным приложением на хостовой машине). Предпочтительный способом через Docker, но и он же сложнее в организации.
 Runner умеет выполнять задачи в различных окружениях. Основные это <code class="docutils literal notranslate"><span class="pre">shell</span></code> (выполняет задачу непосредственно на хостовой машине где установлен),
 <code class="docutils literal notranslate"><span class="pre">docker</span></code> (выполняет задачу в образе docker). Метод выбирается при регистрации runner либо прописывается в файле конфигурации
 Ниже будет описан именно этот метод <a class="reference external" href="https://docs.gitlab.com/runner/install/">подробнее о установке</a>.</p>
-<section id="id8">
+<div class="section" id="id8">
 <h3>Запуск<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic">
-<li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/d72192e0e41c9a157a7f0cdcc4e7216d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
+<li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/4f467e71c57a2419ce2c0107195115ed/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
   <span class="nt">gitlab</span><span class="p">:</span>
@@ -296,8 +288,8 @@ Runner умеет выполнять задачи в различных окру
 </li>
 <li><p>Запустим контейнеры и сеть между ними (находясь в каталоге конфигурации) <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></p></li>
 </ol>
-</section>
-<section id="gitlab-runner-settings">
+</div>
+<div class="section" id="gitlab-runner-settings">
 <span id="id10"></span><h3>Настройка<a class="headerlink" href="#gitlab-runner-settings" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Конфигурация runner храниться в файле <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> (либо иное место если указан другой путь монтирования).
 Процесс конфигурации подразумевает регистрацию runner в Gitlab. Отредактировать конфигурацию (зарегистрировать) можно двумя способами <a class="reference external" href="https://docs.gitlab.com/runner/register/">подробнее</a> :</p>
@@ -306,7 +298,7 @@ Runner умеет выполнять задачи в различных окру
 Выполним <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab_gitlab-runner_1</span> <span class="pre">gitlab-runner</span> <span class="pre">register</span></code> и следуем указаниям (для работоспособности все равно необходимо
 править конфигурацию вручную) этот метод может сформировать каркас конфигурации, но для runner запущенноо в Docker этого не достаточно</p></li>
 <li><p><strong>Правка конфигурации</strong> <br />
-Пример рабочей конфигурации ( <a class="reference external" href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">полное описание</a>  ) <a class="reference download internal" download="" href="../_downloads/a18cf2a398bb4b822d0115119c1d7320/config.toml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
+Пример рабочей конфигурации ( <a class="reference external" href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">полное описание</a>  ) <a class="reference download internal" download="" href="../_downloads/14867006efff69a98819bd5ca02786d9/config.toml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span>
 <span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span>
 
@@ -356,23 +348,28 @@ Runner расширенные права доступа. Устанавлива�
 <li><p>Файл конфигурации расположен <code class="docutils literal notranslate"><span class="pre">/etc/gitlab-runner/config/config.toml</span></code></p></li>
 <li><p>Параметр <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span></code> будет иметь вид <code class="docutils literal notranslate"><span class="pre">network_mode</span> <span class="pre">=</span> <span class="pre">&quot;host&quot;</span></code></p></li>
 </ol>
-</section>
-</section>
-<section id="ssl">
+</div>
+</div>
+<div class="section" id="ssl">
 <h2>Настройка SSL<a class="headerlink" href="#ssl" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для работы GitLab через протокол <strong>https</strong> необходимо:</p>
 <ol class="arabic">
 <li><p>Получить сертификат, его можно сгенерировать с помощью <code class="docutils literal notranslate"><span class="pre">openssl</span></code></p>
 <ul>
 <li><p>Выполним команду генерации сертификата (должен содержать поле <code class="docutils literal notranslate"><span class="pre">subjectAltName</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>openssl req -newkey rsa:4096 -nodes -sha256 -keyout  ./server.key -x509 -days <span class="m">3650</span> -out ./server.crt -addext <span class="s2">&quot;subjectAltName = DNS:git2.uonmap.com, DNS:uonmap.com, DNS:192.168.0.61&quot;</span>
-<span class="linenos">2</span>
-<span class="linenos">3</span><span class="c1"># ./server.key - имя для сгенерированного ключа</span>
-<span class="linenos">4</span><span class="c1"># ./server.crt - имя самого сертификата</span>
-<span class="linenos">5</span><span class="c1"># subjectAltName - поле необходимо для корректной авторизации клиентов в gitlab registry</span>
-<span class="linenos">6</span><span class="c1">#                  тут прописываем все возможные домены ресурса</span>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span>openssl req -newkey rsa:4096 -nodes -sha256 -keyout  ./server.key -x509 -days <span class="m">3650</span> -out ./server.crt -addext <span class="s2">&quot;subjectAltName = DNS:git2.uonmap.com, DNS:uonmap.com, DNS:192.168.0.61&quot;</span>
+
+<span class="c1"># ./server.key - имя для сгенерированного ключа</span>
+<span class="c1"># ./server.crt - имя самого сертификата</span>
+<span class="c1"># subjectAltName - поле необходимо для корректной авторизации клиентов в gitlab registry</span>
+<span class="c1">#                  тут прописываем все возможные домены ресурса</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
 <p>при заполнении полей некоторые необходимо заполнять внимательно. Первое
@@ -407,8 +404,8 @@ nginx<span class="o">[</span><span class="s1">&#39;ssl_protocols&#39;</span><spa
 <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> в соответсвии с рекомендациями <a class="reference internal" href="#gitlab-runner-settings"><span class="std std-ref">Настройка</span></a></p>
 </li>
 </ol>
-</section>
-<section id="registry">
+</div>
+<div class="section" id="registry">
 <h2>Registry<a class="headerlink" href="#registry" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для активации встроенного в GitLab движка <strong>Registry</strong> необходимо отредактировать конфигурацию GitLab <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>registry_external_url <span class="s1">&#39;такой_же_как_и_external_url:5555&#39;</span> <span class="c1">#например https://gitlab_test.com:5555</span>
@@ -423,53 +420,61 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 <p>Для успешной авторизации с другой машины в сети на клиенте необходимо установить сертификат для Docker.
 Копируем файл <code class="docutils literal notranslate"><span class="pre">server.crt</span></code> в каталог <code class="docutils literal notranslate"><span class="pre">/etc/docker/certs.d/git2.uonmap.com:5555/ca.crt</span></code> и переименовываем в <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code>
 где <code class="docutils literal notranslate"><span class="pre">git2.uonmap.com:5555</span></code> адрес Registry на машину с которой хотим авторизоваться.</p>
-</section>
-<section id="ldap">
+</div>
+<div class="section" id="ldap">
 <h2>LDAP<a class="headerlink" href="#ldap" title="Ссылка на этот заголовок">¶</a></h2>
 <p>ПОКА ТУТ ПУСТО</p>
-</section>
-<section id="faq">
+</div>
+<div class="section" id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
-<section id="runner-gitlab">
+<div class="section" id="runner-gitlab">
 <h3>Что делать если runner настроен, но GitLab все равно говорит об ожидании<a class="headerlink" href="#runner-gitlab" title="Ссылка на этот заголовок">¶</a></h3>
 <p>По умолчанию параметр <span class="guilabel">Run untagged jobs</span>  по пути <span class="menuselection">Settings ‣ CI/CD ‣ Runner</span> (на выбранном runner кликнуть иконку карандаша)
 отключен. Это значит если тег runner не совпадает с тегом репозитория, то runner не будет использован в этом репозитории. Можно
 отметить галочку, тогда теги будут игнорироваться</p>
-<figure class="align-center">
+<div class="figure align-center">
 <a class="reference internal image-reference" href="../_images/runner_tag.png"><img alt="../_images/runner_tag.png" src="../_images/runner_tag.png" style="width: 508.8px; height: 308.40000000000003px;" /></a>
-</figure>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="vpn.html" class="btn btn-neutral float-right" title="WireGuard" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="manjaro.html" class="btn btn-neutral float-left" title="Manjaro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+      
+        <a href="vpn.html" class="btn btn-neutral float-right" title="WireGuard" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="manjaro.html" class="btn btn-neutral float-left" title="Manjaro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Предыдущая</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021.
+        
+        &copy; Авторские права 2021
 
     </p>
   </div>
     
     
     
-    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    Собрано при помощи <a href="http://sphinx-doc.org/">Sphinx</a> с использованием
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">темы,</a>
     
     предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

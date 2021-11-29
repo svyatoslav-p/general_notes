@@ -6,49 +6,58 @@ WireGuard
 #########
 
 Ниже описаны особенности настройки VPN сервера **WireGuard**. Так как в открытых источниках довольно
-много этой информации, описаны только особенности.
-
-.. note::
-   Настройка на VPS машине **Oracle Cloud**  `описана в статье <https://mateo.cogeanu.com/2020/wireguard-vpn-pihole-on-free-oracle-cloud/>`_ 
+много информации, описаны только особенности.
 
 Настройка сервера
 *****************
 
-Существует множество готовых скриптов для облечения установки, рассмотрим на примере **PiVPN**
+Рассмотрим настройку на примере Ubuntu запущенной на VPS машине сервиса **Oracle Cloud**.
 
-#. Скачать и запустить ``curl -L https://install.pivpn.io | bash`` следовать инструкциям
+#. Добавим правило для **Firewall**. В настройках облачной машины переходим  :guilabel:`Networking` -> :guilabel:`Virtual Cloud Networks`  -> :guilabel:`NAME_VCN`
+   и добавим порт на котором будет работать **WireGuard** (по умолчанию ``51820``, но в рамках безопасности можно изменить например ``52820``). Если настравивате
+   на локальной машине нужно тоже самое сделать на маршрутизаторе.
 
-   * Порт по умолчанию ``51820`` можно изменить, но нужно учесть это при дальнейшей настройке 
-     (при открытии портов роутера, создания)конфигурационного файла.
+   .. figure:: linux_image/vpn/oracle_rules_wg.png
 
-   * На этпе выбора DNS можно оставить **Goole** (проверено, работает). Так же если выбрать **PiVPN -is-local-DNS**
-     необходимо настроить свой DNS сервер иначе у клиентов не будет доступа в интернет
+#. Установку **WireGuard** выполним через скрипт `WireGuard installer <https://github.com/angristan/wireguard-install/>`_ 
 
-#. Открытие порта. **WireGuard** будет гонять весь трафик через порт, который был указан выше его необходимо открывать
-   в роутере либо в настройках сети в облаке (если это VPS сервер)
+   .. note:: 
+      Можно установить любым удобным способом, но с **Oracle Cloud** настроить корректную работу удалось только с использованием этого скрипта
+      Так же работает со скриптом **PiVPN**, но с ним не получилось настроить доступность клиентов между собой, эти трудности связаны именно с 
+      **Oracle Cloud** вероятнее всего необходимо что то открыть еще.
 
-   .. note::
-   Для пропуска всего трафик через VPN сервер указать Source ``0.0.0.0/0`` и соответсвующий порт указанный в конфигурации
+   #. Копируем скрипт ``curl -O https://raw.githubusercontent.com/angristan/wireguard-install/master/wireguard-install.sh``
+   #. Делаем его исполняемым ``chmod +x wireguard-install.sh``
+   #. Запускаем ``sudo ./wireguard-install.sh``
+   
+   .. figure:: linux_image/vpn/wg_angristan_script.png
 
-#. Корректировка конфигурации. Открываем конфигурацию сервера ``/etc/wireguard/wg0.conf``, добавляем правила маршрутизации
-   для ``ip table``. В итоге файл примет подобный вид:
+#. Остановим интерфейс ``sudo wg-quick down wg0`` и добавим правила маршрутизации
 
-   .. literalinclude:: linux_files/vpn/wg0_serv.conf
-      :language: ini
-      :linenos:
+   #. Открываем конфигурацию ``sudo nano /etc/wireguard/wg0.conf``. Редактируем поля ``PostUp`` и ``PostDown``
 
-#. Запускаем сервер ``sudo wg-quick up wg0``
+      .. code-block:: ini
+   
+         # ВНИМАНИЕ! замените адаптер enp0s3, wg0 и порт 52820 на свой
+         # Для работы на Oracle Cloud
+         PostUp = iptables -I FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -I FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; iptables -I INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT
+         PostDown = iptables -D FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; sudo iptables -D INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT
 
-Настройка клиента
-*****************
+         # В большенстве случаев достаточно этих правил
+         PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+         PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE
 
-На машину клиента так же необходимо установить **WireGuard** (необязательно через **PiVPN**). Далее на сервере сгенерируем конфигруция нового клиента.
-выполним ``pivpn add`` вводим имя клиента, после этого в конфигурации сервера ``/etc/wireguard/wg0.conf`` в разделе ``Peer``
-добавится информация о новом клиенте. Кроме этого **PiVPN** сгенерирует файл конфигурации ``~/configs/NAME_CLIENT.conf``
-вида:
+#. Запускаем интерфейс интерфейс ``sudo wg-quick up wg0``        
 
-.. literalinclude:: linux_files/vpn/wg0_client.conf
-   :language: ini
-   :linenos:
+#. Добавим в автозапуск ``sudo systemctl enable wg-quick@wg0.service``
 
-этот файл необходимо переименовать и положить на клиента по пути ``/etc/wireguard/wg0.conf``. Далее так же запустим VPN командой ``sudo wg-quick up wg0``.
+Далее если повторно вызвать скрипт ``sudo ./wireguard-install.sh`` можно добавить клиента.
+
+FAQ
+***
+
+Перенапрявлять весь трафик через VPN
+====================================
+
+Если нужно отправлять весь трафик через туннел (нетолько трафик хоста), то в конфигурации клиента заменить строку 
+``AllowedIPs = 0.0.0.0/0, ::/0`` на ``AllowedIPs = 0.0.0.0/1, 128.0.0.0/1, ::/1, 8000::/1``

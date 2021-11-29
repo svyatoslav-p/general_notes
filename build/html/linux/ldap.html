@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ru" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>LDAP &mdash; документация Общие заметки 1</title>
   
@@ -14,16 +13,11 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
   
-
   
-  
-
   
 
   
@@ -33,10 +27,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
         <script src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -58,7 +52,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> Общие заметки
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Общие заметки
           
 
           
@@ -143,8 +137,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -158,7 +150,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/linux/ldap.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
           
         
@@ -172,7 +164,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="ldap">
+  <div class="section" id="ldap">
 <h1>LDAP<a class="headerlink" href="#ldap" title="Ссылка на этот заголовок">¶</a></h1>
 <p>Глава посвящена настройке LDAP сервера на основе Samba4 (с поддержкой Active Directory и Domain Controller).
 Система на которой разворачивается сервер CentOS 8 (на CentOS 7 проблемы из-за старых версий компонентов)
@@ -184,7 +176,7 @@
 давать имя хосту по шаблону <code class="docutils literal notranslate"><span class="pre">name-pc.domain.prefix</span></code></p>
 </div>
 <p><strong>Входные данные</strong> IP по которому доступен хост <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span></code> Имя домена <code class="docutils literal notranslate"><span class="pre">samba.uonmap.com</span></code></p>
-<section id="id2">
+<div class="section" id="id2">
 <h2>Подготовка системы<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Отключение <strong>SELinux</strong> <code class="docutils literal notranslate"><span class="pre">setenforce</span> <span class="pre">0</span></code> <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/selinux/config</span></code> установить параметр <code class="docutils literal notranslate"><span class="pre">SELINUX=disabled</span></code></p></li>
@@ -201,8 +193,8 @@
 </ul>
 </li>
 </ol>
-</section>
-<section id="samba4">
+</div>
+<div class="section" id="samba4">
 <h2>Установка и запуск Samba4<a class="headerlink" href="#samba4" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic">
 <li><p>Установка <strong>Samba4</strong></p>
@@ -228,16 +220,23 @@
 </ul>
 </li>
 <li><p>Запуск базовой конфигурации <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">domain</span> <span class="pre">provision</span> <span class="pre">--use-rfc2307</span> <span class="pre">--interactive</span></code></p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="go"> [root@samba]# samba-tool domain provision --use-rfc2307 --interactive</span>
-<span class="linenos">2</span><span class="go"> Realm [EXAMPLE.COM]:  UONMAP.COM  &lt;-- provide the realm name</span>
-<span class="linenos">3</span><span class="go"> Domain [EXAMPLE]:  UONMAP  &lt;-- provide the domain name</span>
-<span class="linenos">4</span><span class="go"> Server Role (dc, member, standalone) [dc]:  dc   &lt;-- Since we are configuring samba active directory, we use dc</span>
-<span class="linenos">5</span><span class="go"> DNS backend (SAMBA_INTERNAL, BIND9_FLATFILE, BIND9_DLZ, NONE) [SAMBA_INTERNAL]:  SAMBA_INTERNAL   &lt;-- We will let samba configure it&#39;s own DNS and zone files</span>
-<span class="linenos">6</span><span class="go"> DNS forwarder IP address (write &#39;none&#39; to disable forwarding) [192.168.1.108]:  8.8.8.8   &lt;-- We will use google&#39;s dns</span>
-<span class="linenos">7</span><span class="go"> Administrator password:   &lt;-- Provide the Administrator user&#39;s password</span>
-<span class="linenos">8</span><span class="go"> Retype password:</span>
+<div class="highlight-console notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="go"> [root@samba]# samba-tool domain provision --use-rfc2307 --interactive</span>
+<span class="go"> Realm [EXAMPLE.COM]:  UONMAP.COM  &lt;-- provide the realm name</span>
+<span class="go"> Domain [EXAMPLE]:  UONMAP  &lt;-- provide the domain name</span>
+<span class="go"> Server Role (dc, member, standalone) [dc]:  dc   &lt;-- Since we are configuring samba active directory, we use dc</span>
+<span class="go"> DNS backend (SAMBA_INTERNAL, BIND9_FLATFILE, BIND9_DLZ, NONE) [SAMBA_INTERNAL]:  SAMBA_INTERNAL   &lt;-- We will let samba configure it&#39;s own DNS and zone files</span>
+<span class="go"> DNS forwarder IP address (write &#39;none&#39; to disable forwarding) [192.168.1.108]:  8.8.8.8   &lt;-- We will use google&#39;s dns</span>
+<span class="go"> Administrator password:   &lt;-- Provide the Administrator user&#39;s password</span>
+<span class="go"> Retype password:</span>
 </pre></div>
-</div>
+</td></tr></table></div>
 </li>
 <li><p>Настройка DNS</p>
 <ul class="simple">
@@ -253,57 +252,57 @@
 <li><p>Базовая конфигурация <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">/usr/local/samba/private/krb5.conf</span> <span class="pre">/etc/krb5.conf</span></code></p></li>
 <li><p>Проверка <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">kinit</span> <span class="pre">Administrator</span></code> вводим пароль и смотрим результат</p></li>
 </ol>
-</section>
-<section id="id3">
+</div>
+<div class="section" id="id3">
 <h2>Пример конфигураций<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic">
 <li><p>Файл <code class="docutils literal notranslate"><span class="pre">/usr/local/samba/etc/smb.conf</span></code></p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global parameters</span>
 <span class="k">[global]</span>
 	<span class="na">dns forwarder</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
-	<span class="na">netbios name</span> <span class="o">=</span> <span class="s">DCTRL</span>
-	<span class="na">realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">server role</span> <span class="o">=</span> <span class="s">active directory domain controller</span>
-	<span class="na">workgroup</span> <span class="o">=</span> <span class="s">UONMAP</span>
-	<span class="na">ldap server require strong auth</span> <span class="o">=</span> <span class="s">no</span>
-	<span class="na">client ldap sasl wrapping</span> <span class="o">=</span> <span class="s">plain</span>
-	<span class="na">idmap_ldb:use rfc2307</span> <span class="o">=</span> <span class="s">yes</span>
+<span class="s">	netbios name = DCTRL</span>
+<span class="s">	realm = UONMAP.COM</span>
+<span class="s">	server role = active directory domain controller</span>
+<span class="s">	workgroup = UONMAP</span>
+<span class="s">	ldap server require strong auth = no</span>
+<span class="s">	client ldap sasl wrapping = plain</span>
+<span class="s">	idmap_ldb:use rfc2307 = yes</span>
 
 <span class="k">[sysvol]</span>
 	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol</span>
-	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+<span class="s">	read only = No</span>
 
 <span class="k">[netlogon]</span>
 	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol/uonmap.com/scripts</span>
-	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+<span class="s">	read only = No</span>
 </pre></div>
 </div>
 </li>
 <li><p>Файл <code class="docutils literal notranslate"><span class="pre">/etc/krb5.conf</span></code></p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[libdefaults]</span>
 	<span class="na">default_realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">dns_lookup_realm</span> <span class="o">=</span> <span class="s">false</span>
-	<span class="na">dns_lookup_kdc</span> <span class="o">=</span> <span class="s">true</span>
-	<span class="na">ticket_lifetime</span> <span class="o">=</span> <span class="s">24h</span>
-	<span class="na">forwardable</span> <span class="o">=</span> <span class="s">yes</span>
+<span class="s">	dns_lookup_realm = false</span>
+<span class="s">	dns_lookup_kdc = true</span>
+<span class="s">	ticket_lifetime = 24h</span>
+<span class="s">	forwardable = yes</span>
 
 <span class="k">[realms]</span>
 <span class="na">UONMAP.COM</span> <span class="o">=</span> <span class="s">{</span>
-	<span class="na">default_domain</span> <span class="o">=</span> <span class="s">uonmap.com</span>
-	<span class="na">kdc</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
-	<span class="na">admin_server</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
+<span class="s">	default_domain = uonmap.com</span>
+<span class="s">	kdc = dctrl.uonmap.com</span>
+<span class="s">	admin_server = dctrl.uonmap.com</span>
 <span class="na">}</span>
 
 <span class="k">[domain_realm]</span>
 	<span class="na">dctrl</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">.uonmap.com</span> <span class="o">=</span> <span class="s">.UONMAP.COM</span>
-	<span class="na">uonmap.com</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+<span class="s">	.uonmap.com = .UONMAP.COM</span>
+<span class="s">	uonmap.com = UONMAP.COM</span>
 </pre></div>
 </div>
 </li>
 </ol>
-</section>
-<section id="id4">
+</div>
+<div class="section" id="id4">
 <h2>Опциональные действия<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic">
 <li><p>Добавить правила <strong>firewalld</strong></p>
@@ -314,7 +313,7 @@
 </li>
 <li><p>Добавить в автозапуск</p>
 <ul class="simple">
-<li><p>Создадим сервис (проверьте корректность путей): <strong>/etc/systemd/system/samba.service</strong> <a class="reference download internal" download="" href="../_downloads/af8229cba6a04af1bfed6678d75f43d8/samba.service"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p></li>
+<li><p>Создадим сервис (проверьте корректность путей): <strong>/etc/systemd/system/samba.service</strong> <a class="reference download internal" download="" href="../_downloads/7cbfe03db8b5a5bf895f4e9983ad3747/samba.service"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p></li>
 </ul>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
 <span class="na">Description</span><span class="o">=</span> <span class="s">Samba 4 Active Directory</span>
@@ -332,58 +331,65 @@
 </div>
 </li>
 </ol>
-</section>
-<section id="id5">
+</div>
+<div class="section" id="id5">
 <h2>Решение проблем<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
-<section id="id6">
+<div class="section" id="id6">
 <h3>Упрощенная авторизация<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
 <p>По умолчанию samba устанавливает максимальный уровень безопасности поэтому возникают сложности с авторизацией
 клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/usr/local/samba/etc/smb.conf</span></code>
 в раздел <code class="docutils literal notranslate"><span class="pre">[global]</span></code> параметры <code class="docutils literal notranslate"><span class="pre">ldap</span> <span class="pre">server</span> <span class="pre">require</span> <span class="pre">strong</span> <span class="pre">auth</span> <span class="pre">=</span> <span class="pre">no</span></code> и <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">ldap</span> <span class="pre">sasl</span> <span class="pre">wrapping</span> <span class="pre">=</span> <span class="pre">plain</span></code> в таком режиме при авторизации может возникнуть ошибка <code class="docutils literal notranslate"><span class="pre">AcceptSecurityContext</span> <span class="pre">error,</span> <span class="pre">data</span> <span class="pre">52e,</span> <span class="pre">v1db1</span></code>
 в таком случае логин необходимо указывать полностью например <code class="docutils literal notranslate"><span class="pre">administrator&#64;uonmap.com</span></code></p>
-</section>
-</section>
-<section id="faq">
+</div>
+</div>
+<div class="section" id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
-<section id="active-directory">
+<div class="section" id="active-directory">
 <h3>Где посмотреть атрибуты Active Directory<a class="headerlink" href="#active-directory" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Один из источников <a class="reference external" href="http://www.selfadsi.org/user-attributes.htm/">атрибуты</a></p>
-</section>
-<section id="id8">
+</div>
+<div class="section" id="id8">
 <h3>Как проверить доступность сервера<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Выполнить команду на клиенте вида <code class="docutils literal notranslate"><span class="pre">ldapsearch</span>&#160; <span class="pre">-b</span> <span class="pre">&quot;DC=uonmap,DC=com&quot;</span> <span class="pre">-s</span> <span class="pre">sub</span> <span class="pre">-D</span></code>
 <code class="docutils literal notranslate"><span class="pre">&quot;CN=Administrator,CN=Users,DC=uonmap,DC=com&quot;</span> <span class="pre">-H</span> <span class="pre">ldap://192.168.1.108:389</span> <span class="pre">-w</span> <span class="pre">&quot;Pass&quot;</span> <span class="pre">-x</span> <span class="pre">&quot;(uid=git_test&#64;test.com)&quot;</span></code></p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="vpn.html" class="btn btn-neutral float-left" title="WireGuard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+      
+      
+        <a href="vpn.html" class="btn btn-neutral float-left" title="WireGuard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Предыдущая</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021.
+        
+        &copy; Авторские права 2021
 
     </p>
   </div>
     
     
     
-    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    Собрано при помощи <a href="http://sphinx-doc.org/">Sphinx</a> с использованием
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">темы,</a>
     
     предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

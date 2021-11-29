@@ -1,0 +1,27 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "stm32" #Имя
+  url = "http://gitlab_test.com/" #Адрес по которому доступен GitLab
+  token = "yKFH-aCHozA75XcYU-CU" #Токен для регистрации (выдается GitLab)
+  executor = "docker"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.docker] #Настройки если исполнителем выбран docker
+    tls_verify = false
+    image = "ubuntu:latest" #Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    network_mode = "gitlab_default" #Важный параметр для моста между контейнерами см. описание
+    pull_policy = "if-not-present" #Если есть локальный image использовать его
+    disable_cache = false
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+    shm_size = 0
