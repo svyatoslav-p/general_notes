@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="ru" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>WireGuard &mdash; документация Общие заметки 1</title>
   
@@ -13,11 +14,16 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
 
   
   
+
   
+  
+
   
 
   
@@ -27,10 +33,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/translations.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
@@ -53,7 +59,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Общие заметки
+            <a href="../index.html" class="icon icon-home"> Общие заметки
           
 
           
@@ -92,6 +98,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kvm.html">KVM</a></li>
 </ul>
 </li>
 </ul>
@@ -134,6 +141,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -147,7 +156,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/linux/vpn.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
           
         
@@ -161,20 +170,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="wireguard">
+  <section id="wireguard">
 <h1>WireGuard<a class="headerlink" href="#wireguard" title="Ссылка на этот заголовок">¶</a></h1>
 <p>Ниже описаны особенности настройки VPN сервера <strong>WireGuard</strong>. Так как в открытых источниках довольно
 много информации, описаны только особенности.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h2>Настройка сервера<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Рассмотрим настройку на примере Ubuntu запущенной на VPS машине сервиса <strong>Oracle Cloud</strong>.</p>
 <ol class="arabic">
 <li><p>Добавим правило для <strong>Firewall</strong>. В настройках облачной машины переходим  <span class="guilabel">Networking</span> -&gt; <span class="guilabel">Virtual Cloud Networks</span>  -&gt; <span class="guilabel">NAME_VCN</span>
 и добавим порт на котором будет работать <strong>WireGuard</strong> (по умолчанию <code class="docutils literal notranslate"><span class="pre">51820</span></code>, но в рамках безопасности можно изменить например <code class="docutils literal notranslate"><span class="pre">52820</span></code>). Если настравивате
 на локальной машине нужно тоже самое сделать на маршрутизаторе.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/oracle_rules_wg.png" src="../_images/oracle_rules_wg.png" />
-</div>
+</figure>
 </li>
 <li><p>Установку <strong>WireGuard</strong> выполним через скрипт <a class="reference external" href="https://github.com/angristan/wireguard-install/">WireGuard installer</a></p>
 <div class="admonition note">
@@ -188,9 +197,9 @@
 <li><p>Делаем его исполняемым <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">wireguard-install.sh</span></code></p></li>
 <li><p>Запускаем <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">./wireguard-install.sh</span></code></p></li>
 </ol>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="../_images/wg_angristan_script.png" src="../_images/wg_angristan_script.png" />
-</div>
+</figure>
 </li>
 <li><p>Остановим интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">down</span> <span class="pre">wg0</span></code> и добавим правила маршрутизации</p>
 <ol class="arabic">
@@ -212,53 +221,45 @@
 <li><p>Добавим в автозапуск <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">wg-quick&#64;wg0.service</span></code></p></li>
 </ol>
 <p>Далее если повторно вызвать скрипт <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">./wireguard-install.sh</span></code> можно добавить клиента.</p>
-</div>
-<div class="section" id="faq">
+</section>
+<section id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Ссылка на этот заголовок">¶</a></h2>
-<div class="section" id="vpn">
+<section id="vpn">
 <h3>Перенапрявлять весь трафик через VPN<a class="headerlink" href="#vpn" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Если нужно отправлять весь трафик через туннел (нетолько трафик хоста), то в конфигурации клиента заменить строку
 <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/0,</span> <span class="pre">::/0</span></code> на <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/1,</span> <span class="pre">128.0.0.0/1,</span> <span class="pre">::/1,</span> <span class="pre">8000::/1</span></code></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="ldap.html" class="btn btn-neutral float-right" title="LDAP" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="gitlab.html" class="btn btn-neutral float-left" title="GitLab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Предыдущая</a>
-      
+        <a href="ldap.html" class="btn btn-neutral float-right" title="LDAP" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gitlab.html" class="btn btn-neutral float-left" title="GitLab" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Авторские права 2021
+        &#169; Copyright 2021.
 
     </p>
   </div>
     
     
     
-    Собрано при помощи <a href="http://sphinx-doc.org/">Sphinx</a> с использованием
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">темы,</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
     
     предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

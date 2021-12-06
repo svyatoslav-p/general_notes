@@ -471,7 +471,7 @@ Docker
 Настройка:
 
 - добавить пользователя в группу Docker ``sudo usermod -aG docker ${USER}``
-- добавим в автозагрузку ``sudo systemctl enables docker.servise``
+- добавим в автозагрузку ``sudo systemctl enable docker.servise``
 - запустим службу ``sudo systemctl start docker.servise``
 
 +------------------------------------------------------------------+---------------------------------------+
@@ -521,6 +521,8 @@ Docker
 +------------------------------------------------------------------+---------------------------------------+
 |                                                                  | (если открыт socket на сервере)       |
 +------------------------------------------------------------------+---------------------------------------+
+| `docker volume prune`                                            | удалить неиспользуемые volume         |
++------------------------------------------------------------------+---------------------------------------+
 
 
 Заметки
@@ -550,7 +552,6 @@ Docker
 
    .. code-block:: bash
 
-      wget --content-disposition https://nct.onlyoffice.com/sh/Xsy # Hello world image
       wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-XX.noarch.rpm
       wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-XX.x86_64.rpm
       wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-cli-XX.x86_64.rpm
@@ -559,7 +560,7 @@ Docker
       sudo systemctl restart network # Just for test purposes
       
       sudo rpm -i container-selinux-XX.noarch.rpm
-      sudo rpm -i docker-ce-XX.x86_64.rpm docker-ce-cli-XX.x86_64.rpm docker-ce-selinux-XX.noarch.rpm containerd.io-XX.x86_64.rpm
+      sudo rpm -i docker-ce-20.10.9-3.el7.x86_64.rpm docker-ce-cli-20.10.9-3.el7.x86_64.rpm docker-ce-selinux-17.03.3.ce-1.el7.noarch.rpm containerd.io-1.4.9-3.1.el7.x86_64.rpm docker-ce-rootless-extras-20.10.9-3.el7.x86_64.rpm docker-scan-plugin-0.9.0-3.el7.x86_64.rpm
       sudo systemctl start docker
 
 Midnight Commander
@@ -751,3 +752,24 @@ WireGuard + PiVPN
 +--------------------------+-----------------------+
 | `pivpn -qr`              | показать QR код       |
 +--------------------------+-----------------------+
+
+Virsh, QEMU
+***********
+
++-----------------------------------------+------------------------------+
+|                 Команда                 |           Описание           |
++=========================================+==============================+
+| `sudo virsh list --all`                 | Показать все машины          |
++-----------------------------------------+------------------------------+
+| `sudo virsh shutdown NAME`              | отключить штатно машину      |
++-----------------------------------------+------------------------------+
+| `sudo virsh start NAME`                 | включить машину              |
++-----------------------------------------+------------------------------+
+| `sudo virsh domblklist NAME`            | информация о диске           |
++-----------------------------------------+------------------------------+
+| `qemu-img info /path/disk.qcow2`        | подробная информация о диске |
++-----------------------------------------+------------------------------+
+| `qemu-img resize /path/disk.qcow2 +10G` | Добавить 10G к диску         |
++-----------------------------------------+------------------------------+
+| `pivpn -qr`                             | показать QR код              |
++-----------------------------------------+------------------------------+

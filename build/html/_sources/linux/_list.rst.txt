@@ -8,6 +8,7 @@ Linux
    gitlab
    vpn
    ldap
+   kvm
 
    
 

@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>KVM &mdash; документация Общие заметки 1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="prev" title="LDAP" href="ldap.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">KVM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Увеличить место на диске</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+        
+      <li>KVM</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/linux/kvm.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="kvm">
+<h1>KVM<a class="headerlink" href="#kvm" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="id1">
+<h2>Увеличить место на диске<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Отключаем виртуальную машину <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">virsh</span> <span class="pre">shutdown</span> <span class="pre">NAME</span></code> (желательно если есть Docker
+внутри машины остановить контейнеры до выключения).</p></li>
+<li><p>Найдем расположение диска виртуалки <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">virsh</span> <span class="pre">domblklist</span> <span class="pre">NAME</span></code> и можем посмотреть информацию о нем <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">qemu-img</span> <span class="pre">info</span> <span class="pre">/path/disk.qcow2</span></code></p></li>
+<li><p>Добавим место на диск <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">qemu-img</span> <span class="pre">resize</span> <span class="pre">/path/disk.qcow2</span> <span class="pre">+10G</span></code></p></li>
+<li><p>Запустим виртуальную машину <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">virsh</span> <span class="pre">start</span> <span class="pre">NAME</span></code> и дальнейшие действия выполняем уже на виртуалке.</p></li>
+</ol>
+<p>Далее рассмотрим процесс увеличения простарнсва диска для <strong>зашифрованного LVM</strong> диска.</p>
+<ol class="arabic">
+<li><p>Посмотрим информацию о текущих дисках</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[root@git2 ~]# </span>lsblk
+<span class="go">NAME                                          MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT</span>
+<span class="go">sr0                                            11:0    1 1024M  0 rom</span>
+<span class="go">vda                                           252:0    0  170G  0 disk</span>
+<span class="go">├─vda1                                        252:1    0    1G  0 part  /boot</span>
+<span class="go">└─vda2                                        252:2    0  149G  0 part</span>
+<span class="go">  └─luks-c53ff21a-b967-4ce9-ac91-1a183997f769 253:0    0  149G  0 crypt</span>
+<span class="go">    ├─centos-root                             253:1    0  140G  0 lvm   /</span>
+<span class="go">    ├─centos-swap                             253:2    0    7G  0 lvm   [SWAP]</span>
+<span class="go">    └─centos-home                             253:3    0    2G  0 lvm   /home</span>
+<span class="gp">[root@git2 ~]# </span>pvs
+<span class="go">  PV                                                    VG     Fmt  Attr PSize   PFree</span>
+<span class="go">  /dev/mapper/luks-c53ff21a-b967-4ce9-ac91-1a183997f769 centos lvm2 a--  148.99g    0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Установим <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">-y</span> <span class="pre">install</span> <span class="pre">cloud-utils-growpart</span></code></p></li>
+<li><p>Увеличим раздел vda2 <code class="docutils literal notranslate"><span class="pre">growpart</span> <span class="pre">/dev/vda</span> <span class="pre">2</span></code> посмотрим информацию</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[root@git2 ~]# </span>lsblk
+<span class="go">NAME                                          MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT</span>
+<span class="go">sr0                                            11:0    1 1024M  0 rom</span>
+<span class="go">vda                                           252:0    0  170G  0 disk</span>
+<span class="go">├─vda1                                        252:1    0    1G  0 part  /boot</span>
+<span class="go">└─vda2                                        252:2    0  169G  0 part</span>
+<span class="go">  └─luks-c53ff21a-b967-4ce9-ac91-1a183997f769 253:0    0  149G  0 crypt</span>
+<span class="go">    ├─centos-root                             253:1    0  140G  0 lvm   /</span>
+<span class="go">    ├─centos-swap                             253:2    0    7G  0 lvm   [SWAP]</span>
+<span class="go">    └─centos-home                             253:3    0    2G  0 lvm   /home</span>
+</pre></div>
+</div>
+<p>Видим раздел vda2 увеличился.</p>
+</li>
+<li><p>Если диск зашифрован, то необходимо выполнить <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">resize</span> <span class="pre">luks-c53ff21a-b967-4ce9-ac91-1a183997f769</span></code>
+и убедиться, что зашифрованный раздел увеличен. Если диск не шифрован (отсутсвует строка <code class="docutils literal notranslate"><span class="pre">luks-c53ff21a-b967-4ce9-ac91-1a183997f769</span></code>)
+выполним <code class="docutils literal notranslate"><span class="pre">lvextend</span> <span class="pre">-r</span> <span class="pre">-l</span> <span class="pre">+100%FREE</span> <span class="pre">/dev/centos/root</span></code> (выбрав нужный раздел)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[root@git2 ~]# </span>lsblk
+<span class="go">NAME                                          MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT</span>
+<span class="go">sr0                                            11:0    1 1024M  0 rom</span>
+<span class="go">vda                                           252:0    0  170G  0 disk</span>
+<span class="go">├─vda1                                        252:1    0    1G  0 part  /boot</span>
+<span class="go">└─vda2                                        252:2    0  169G  0 part</span>
+<span class="go">  └─luks-c53ff21a-b967-4ce9-ac91-1a183997f769 253:0    0  169G  0 crypt</span>
+<span class="go">    ├─centos-root                             253:1    0  140G  0 lvm   /</span>
+<span class="go">    ├─centos-swap                             253:2    0    7G  0 lvm   [SWAP]</span>
+<span class="go">    └─centos-home                             253:3    0    2G  0 lvm   /home</span>
+</pre></div>
+</div>
+</li>
+<li><p>Добавим место к необходимому разделу LVM <code class="docutils literal notranslate"><span class="pre">lvresize</span> <span class="pre">-l+100%FREE</span> <span class="pre">/dev/centos/root</span></code>
+Теперь раздел <code class="docutils literal notranslate"><span class="pre">centos-root</span></code> должен быть увеличен</p></li>
+<li><p>Для файловой системы <strong>xfs</strong> необходимо обновить таблицу <code class="docutils literal notranslate"><span class="pre">xfs_growfs</span> <span class="pre">/dev/centos/root</span></code>. Для
+других ФС команда будет иной</p></li>
+<li><p>Убедимся что все прошло успешно</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[root@git2 ~]# </span>df -h
+<span class="go">Filesystem               Size  Used Avail Use% Mounted on</span>
+<span class="go">devtmpfs                 3.8G     0  3.8G   0% /dev</span>
+<span class="go">tmpfs                    3.8G     0  3.8G   0% /dev/shm</span>
+<span class="go">tmpfs                    3.8G  8.8M  3.8G   1% /run</span>
+<span class="go">tmpfs                    3.8G     0  3.8G   0% /sys/fs/cgroup</span>
+<span class="go">/dev/mapper/centos-root  160G   60G  101G  37% /</span>
+<span class="go">/dev/vda1               1014M  198M  817M  20% /boot</span>
+<span class="go">/dev/mapper/centos-home  2.0G   33M  2.0G   2% /home</span>
+<span class="go">none                     3.8G  4.0K  3.8G   1% /etc/resolv.conf</span>
+<span class="go">overlay                  160G   60G  101G  37% /var/lib/docker/overlay2/e6f07e5ba823a6e7dab6ec02291e264eb63b8d1e3adccc9879960344a07cd457/merged</span>
+<span class="go">overlay                  160G   60G  101G  37% /var/lib/docker/overlay2/e687735d29d5d47cc70442f796db2f847f9936034e700c6632e0da11893326b9/merged</span>
+<span class="go">overlay                  160G   60G  101G  37% /var/lib/docker/overlay2/2d8c94edf346d9ea67842b3f5f26f0311a099c4fd6a5c0087ee9ca8ffa67cd20/merged</span>
+<span class="go">overlay                  160G   60G  101G  37% /var/lib/docker/overlay2/f973a411c61e16be7aa8a15289f2e16de01d8cee05a62d57d27006baa59f1728/merged</span>
+<span class="go">tmpfs                    764M     0  764M   0% /run/user/0</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="ldap.html" class="btn btn-neutral float-left" title="LDAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
