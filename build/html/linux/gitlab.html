@@ -446,6 +446,12 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 <a class="reference internal image-reference" href="../_images/runner_tag.png"><img alt="../_images/runner_tag.png" src="../_images/runner_tag.png" style="width: 508.8px; height: 308.40000000000003px;" /></a>
 </figure>
 </section>
+<section id="readonly">
+<h3>Как перевести в режим ReadOnly<a class="headerlink" href="#readonly" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для перевода всего экземпляра GitLab необходимо отредактировать файл (путь указан внутри контейнера)
+<code class="docutils literal notranslate"><span class="pre">/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/database.rb</span></code> параметр <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">self.read_only</span></code>
+выставить значение <code class="docutils literal notranslate"><span class="pre">true</span></code>. Выполнить реконфигурацию <code class="docutils literal notranslate"><span class="pre">gitlab-ctl</span> <span class="pre">reconfigure</span></code> и перезапуск контейнера</p>
+</section>
 </section>
 </section>
 

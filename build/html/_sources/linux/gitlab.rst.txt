@@ -225,3 +225,10 @@ FAQ
 .. figure:: linux_image/gitlab/runner_tag.png
    :scale: 40%
    :align: center
+
+Как перевести в режим ReadOnly
+==============================
+
+Для перевода всего экземпляра GitLab необходимо отредактировать файл (путь указан внутри контейнера)
+``/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/database.rb`` параметр ``def self.read_only``
+выставить значение ``true``. Выполнить реконфигурацию ``gitlab-ctl reconfigure`` и перезапуск контейнера
