@@ -1042,22 +1042,25 @@
 <tr class="row-even"><td><p><cite>docker rmi $(docker images -a -q)</cite></p></td>
 <td><p>удаление всех образов</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>docker stop $(docker ps -a -q) &amp;&amp; docker rm $(docker ps -a -q)</cite></p></td>
+<tr class="row-odd"><td><p><cite>docker rmi $(docker images -f «dangling=true» -q) –force</cite></p></td>
+<td><p>удалить все образы без тега</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>docker stop $(docker ps -a -q) &amp;&amp; docker rm $(docker ps -a -q)</cite></p></td>
 <td><p>остановка и удаление всех контейнеров</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>docker exec -it b4a144826c5a /bin/bash</cite></p></td>
+<tr class="row-odd"><td><p><cite>docker exec -it b4a144826c5a /bin/bash</cite></p></td>
 <td><p>войти в контейнер</p></td>
 </tr>
-<tr class="row-odd"><td><p><cite>docker network ls</cite></p></td>
+<tr class="row-even"><td><p><cite>docker network ls</cite></p></td>
 <td><p>доступные сети внутри docker</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>docker -H tcp://192.168.0.52:2375 ps</cite></p></td>
+<tr class="row-odd"><td><p><cite>docker -H tcp://192.168.0.52:2375 ps</cite></p></td>
 <td><p>контейнеры на удаленном docker</p></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td><p>(если открыт socket на сервере)</p></td>
 </tr>
-<tr class="row-even"><td><p><cite>docker volume prune</cite></p></td>
+<tr class="row-odd"><td><p><cite>docker volume prune</cite></p></td>
 <td><p>удалить неиспользуемые volume</p></td>
 </tr>
 </tbody>
@@ -1338,6 +1341,15 @@ sudo systemctl start docker
 <span class="linenos">6</span>git push --all origin <span class="o">&amp;&amp;</span> git push --tags
 </pre></div>
 </div>
+</li>
+<li><p><strong>Создать новую пустую ветку без истории</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--orphan</span> <span class="pre">production</span></code> (<code class="docutils literal notranslate"><span class="pre">production</span></code> - имя ветки)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rm</span> <span class="pre">-rf</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> (если нужно добавить новые файлы)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--allow-empty</span> <span class="pre">-m</span> <span class="pre">&quot;init</span> <span class="pre">production</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">production</span></code></p></li>
+</ul>
 </li>
 </ol>
 </section>

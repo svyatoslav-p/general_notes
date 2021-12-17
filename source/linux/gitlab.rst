@@ -182,10 +182,6 @@ Runner умеет выполнять задачи в различных окру
    далее регистрируем Runner. Заходим в контейнер ``docker exec -it NAME_CONT bash`` выполняем 
    ``gitlab-runner register --tls-ca-file=/etc/gitlab-runner/server.crt`` после регистрации корректируем конфигурацию
    ``/srv/gitlab-runner/config/config.toml`` в соответсвии с рекомендациями :ref:`gitlab-runner_settings`
-      
-   
-         
-    
 
 Registry
 ********
@@ -206,6 +202,13 @@ Registry
 Для успешной авторизации с другой машины в сети на клиенте необходимо установить сертификат для Docker.
 Копируем файл ``server.crt`` в каталог ``/etc/docker/certs.d/git2.uonmap.com:5555/ca.crt`` и переименовываем в ``ca.crt`` 
 где ``git2.uonmap.com:5555`` адрес Registry на машину с которой хотим авторизоваться. 
+
+.. attention::
+
+   Если Registry работает в том же экземпляре (внутри GitLab) необходимо раз в какое то время удалять неиспользуемые слои и образы.
+   Можно выполнить ``docker exec -it gitlab gitlab-ctl registry-garbage-collect -m`` `подробнее <https://docs.gitlab.com/ee/administration/packages/container_registry.html#removing-untagged-manifests-and-unreferenced-layers>`_
+   По идеи эта команда должна удалить все лишнее из Registry, но почему то образы без тегов (временные слои видимо) остаются,
+   можно выполнить еще ``docker rmi $(docker images -f "dangling=true" -q) --force`` это наверника удалит все образы без тегов
 
 LDAP
 ****

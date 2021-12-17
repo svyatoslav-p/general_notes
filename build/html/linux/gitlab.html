@@ -430,6 +430,13 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 <p>Для успешной авторизации с другой машины в сети на клиенте необходимо установить сертификат для Docker.
 Копируем файл <code class="docutils literal notranslate"><span class="pre">server.crt</span></code> в каталог <code class="docutils literal notranslate"><span class="pre">/etc/docker/certs.d/git2.uonmap.com:5555/ca.crt</span></code> и переименовываем в <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code>
 где <code class="docutils literal notranslate"><span class="pre">git2.uonmap.com:5555</span></code> адрес Registry на машину с которой хотим авторизоваться.</p>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>Если Registry работает в том же экземпляре (внутри GitLab) необходимо раз в какое то время удалять неиспользуемые слои и образы.
+Можно выполнить <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-ctl</span> <span class="pre">registry-garbage-collect</span> <span class="pre">-m</span></code> <a class="reference external" href="https://docs.gitlab.com/ee/administration/packages/container_registry.html#removing-untagged-manifests-and-unreferenced-layers">подробнее</a>
+По идеи эта команда должна удалить все лишнее из Registry, но почему то образы без тегов (временные слои видимо) остаются,
+можно выполнить еще <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span> <span class="pre">$(docker</span> <span class="pre">images</span> <span class="pre">-f</span> <span class="pre">&quot;dangling=true&quot;</span> <span class="pre">-q)</span> <span class="pre">--force</span></code> это наверника удалит все образы без тегов</p>
+</div>
 </section>
 <section id="ldap">
 <h2>LDAP<a class="headerlink" href="#ldap" title="Ссылка на этот заголовок">¶</a></h2>
