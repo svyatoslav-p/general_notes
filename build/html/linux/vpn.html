@@ -229,6 +229,13 @@
 <p>Если нужно отправлять весь трафик через туннел (нетолько трафик хоста), то в конфигурации клиента заменить строку
 <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/0,</span> <span class="pre">::/0</span></code> на <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/1,</span> <span class="pre">128.0.0.0/1,</span> <span class="pre">::/1,</span> <span class="pre">8000::/1</span></code></p>
 </section>
+<section id="wg">
+<h3>Как запустить более одного интерфейса wg*<a class="headerlink" href="#wg" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для последующих интерфейсов все делается аналогично. <strong>Очень важный момент</strong> только для одной кофигурации
+можно задать перенапрявлять весь трафик <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/0,</span> <span class="pre">::/0</span></code> на остальных должны быть прописаны конкретные адреса.
+Например второй интерфейс имеет адрес <code class="docutils literal notranslate"><span class="pre">10.8.0.4/32</span></code> и используется как клиент тогда параметр <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">10.8.0.1/32</span></code>
+Это означает что все запросы хоста на адрес <code class="docutils literal notranslate"><span class="pre">10.8.0.1</span></code> будут идти через этот тунель (адреса можно указать любые)</p>
+</section>
 </section>
 </section>
 

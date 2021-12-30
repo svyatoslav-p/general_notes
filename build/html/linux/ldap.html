@@ -254,6 +254,8 @@
 <li><p>Просмотр состояния <code class="docutils literal notranslate"><span class="pre">testparm</span></code></p></li>
 <li><p>Базовая конфигурация <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">/usr/local/samba/private/krb5.conf</span> <span class="pre">/etc/krb5.conf</span></code></p></li>
 <li><p>Проверка <strong>Kerberos</strong> <code class="docutils literal notranslate"><span class="pre">kinit</span> <span class="pre">Administrator</span></code> вводим пароль и смотрим результат</p></li>
+<li><p>Отключение срока действия пароля по умолчанию <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">domain</span> <span class="pre">passwordsettings</span> <span class="pre">set</span> <span class="pre">--max-pwd-age=0</span></code>
+что бы посмотреть текущие настройки выполнить <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">domain</span> <span class="pre">passwordsettings</span> <span class="pre">show</span></code></p></li>
 </ol>
 </section>
 <section id="id3">
@@ -308,6 +310,8 @@
 <section id="id4">
 <h2>Опциональные действия<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic">
+<li><p>Бессрочные пароли. По умолчанию для нового пользователя устанавливается срок действия пароля (около 30-40 дней) что бы отключить необходимо выполнить
+<code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">user</span> <span class="pre">setexpiry</span> <span class="pre">USER_NAME</span> <span class="pre">--noexpiry</span></code></p></li>
 <li><p>Добавить правила <strong>firewalld</strong></p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">firewall-cmd</span> <span class="pre">--add-service={dns,ldap,ldaps,kerberos}</span></code></p></li>

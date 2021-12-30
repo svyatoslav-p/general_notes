@@ -80,6 +80,8 @@ LDAP
 #. Просмотр состояния ``testparm``
 #. Базовая конфигурация **Kerberos** ``cp /usr/local/samba/private/krb5.conf /etc/krb5.conf``
 #. Проверка **Kerberos** ``kinit Administrator`` вводим пароль и смотрим результат
+#. Отключение срока действия пароля по умолчанию ``samba-tool domain passwordsettings set --max-pwd-age=0`` 
+   что бы посмотреть текущие настройки выполнить ``samba-tool domain passwordsettings show`` 
 
 Пример конфигураций
 *******************
@@ -96,6 +98,9 @@ LDAP
 
 Опциональные действия
 *********************
+
+#. Бессрочные пароли. По умолчанию для нового пользователя устанавливается срок действия пароля (около 30-40 дней) что бы отключить необходимо выполнить
+   ``samba-tool user setexpiry USER_NAME --noexpiry``
 
 #. Добавить правила **firewalld** 
 

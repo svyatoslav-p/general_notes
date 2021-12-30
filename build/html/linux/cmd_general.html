@@ -92,21 +92,21 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">CMD</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Системная информация</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Файлы и каталоги</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Поиск файлов</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Работа с файловыми системами,дисками</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Поиск файлов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Работа с файловыми системами,дисками</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pacman-yaourt">Pacman, Yaourt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Сеть</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Сеть</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ssh">SSH</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#journalctl">Journalctl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#systemctl">Systemctl</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#system-v">System V</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ntp">NTP</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#samba">Samba</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">Пользователи и группы</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Права на файлы</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Архивация и сжатие файлов</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Манипуляции с текстом</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Создание резервных копий</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Пользователи и группы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Права на файлы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Архивация и сжатие файлов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Манипуляции с текстом</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Создание резервных копий</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#docker">Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#midnight-commander">Midnight Commander</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git">GIT</a></li>
@@ -311,11 +311,28 @@
 <tr class="row-odd"><td><p><cite>touch -t 0712250000 file1</cite></p></td>
 <td><p>модифицировать дату и время создания файла (YYMMDDhhmm)</p></td>
 </tr>
+<tr class="row-even"><td><p><cite>gpg -c file</cite></p></td>
+<td><p>зашифровать файл</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>gpg -d file.gpg</cite></p></td>
+<td><p>дешифровать файл</p></td>
+</tr>
 </tbody>
 </table>
-</section>
 <section id="id3">
-<h2>Поиск файлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h3>Расширенные команды<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Шифрование GPG</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;PASS&quot;|gpg</span> <span class="pre">-c</span> <span class="pre">--batch</span> <span class="pre">--passphrase-fd</span> <span class="pre">0</span> <span class="pre">FILE</span></code> Зашифровать FILE паролем PASS</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;PASS&quot;|gpg</span> <span class="pre">--batch</span> <span class="pre">--passphrase-fd</span> <span class="pre">0</span> <span class="pre">--decrypt-file</span> <span class="pre">FILE</span></code> Дешифровать FILE паролем PASS</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="id4">
+<h2>Поиск файлов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 23%" />
@@ -345,8 +362,8 @@
 </tbody>
 </table>
 </section>
-<section id="id4">
-<h2>Работа с файловыми системами,дисками<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id5">
+<h2>Работа с файловыми системами,дисками<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 39%" />
@@ -446,8 +463,8 @@
 </tbody>
 </table>
 </section>
-<section id="id5">
-<h2>Сеть<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id6">
+<h2>Сеть<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 37%" />
@@ -491,10 +508,10 @@
 </tr>
 </tbody>
 </table>
-<section id="id6">
-<h3>Заметки<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
-<ol class="arabic simple">
-<li><p>Проброс сети через мост (например для виртуальной машины)</p>
+<section id="id7">
+<h3>Заметки<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Проброс сети через мост (например для виртуальной машины). После перезагрузки изменения сбросятся.</p>
 <ul class="simple">
 <li><p>Зануляем активный интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">enp3s0</span> <span class="pre">0.0.0.0</span></code></p></li>
 <li><p>Создаем мост <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">brctl</span> <span class="pre">addbr</span> <span class="pre">br0</span></code></p></li>
@@ -502,6 +519,7 @@
 <li><p>Назначаем автоматический DHCP мосту <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dhclient</span> <span class="pre">br0</span></code></p></li>
 <li><p>Для статического IP <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">br0</span> <span class="pre">192.168.1.108</span></code></p></li>
 </ul>
+<p><strong>Более простой и гибкий метод выполнить проброс через</strong> <code class="docutils literal notranslate"><span class="pre">netctl</span></code></p>
 </li>
 </ol>
 </section>
@@ -734,8 +752,8 @@
 для подключения расшаренного каталога <code class="docutils literal notranslate"><span class="pre">smb_share_dir</span></code> (прописан в <code class="docutils literal notranslate"><span class="pre">smb.conf</span></code>) машиной с именем <code class="docutils literal notranslate"><span class="pre">svyatoslav-g33590</span></code> в поле адреса
 в системе Windows вводим: <code class="docutils literal notranslate"><span class="pre">\\svyatoslav-g33590.local\smb_share_dir</span></code></p>
 </section>
-<section id="id7">
-<h2>Пользователи и группы<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id8">
+<h2>Пользователи и группы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 28%" />
@@ -771,8 +789,8 @@
 </tbody>
 </table>
 </section>
-<section id="id8">
-<h2>Права на файлы<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id9">
+<h2>Права на файлы<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 12%" />
@@ -823,8 +841,8 @@
 </tbody>
 </table>
 </section>
-<section id="id9">
-<h2>Архивация и сжатие файлов<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id10">
+<h2>Архивация и сжатие файлов<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 33%" />
@@ -860,8 +878,8 @@
 </tbody>
 </table>
 </section>
-<section id="id10">
-<h2>Манипуляции с текстом<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id11">
+<h2>Манипуляции с текстом<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 23%" />
@@ -936,8 +954,8 @@
 </tbody>
 </table>
 </section>
-<section id="id11">
-<h2>Создание резервных копий<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id12">
+<h2>Создание резервных копий<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 40%" />
@@ -1065,8 +1083,8 @@
 </tr>
 </tbody>
 </table>
-<section id="id12">
-<h3>Заметки<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id13">
+<h3>Заметки<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic">
 <li><p>Открыть удаленное подключение к демону (проверено на CentOS 7)</p>
 <ol class="arabic">
@@ -1134,8 +1152,8 @@ sudo systemctl start docker
 </tr>
 </tbody>
 </table>
-<section id="id13">
-<h3>Редкатор<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id14">
+<h3>Редкатор<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 26%" />
@@ -1286,8 +1304,8 @@ sudo systemctl start docker
 </tr>
 </tbody>
 </table>
-<section id="id14">
-<h3>GIT рекомендации<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id15">
+<h3>GIT рекомендации<a class="headerlink" href="#id15" title="Ссылка на этот заголовок">¶</a></h3>
 <p>Типы коммитов:</p>
 <ul class="simple">
 <li><p><strong>Feat:</strong> новая фича, добавляемая к приложению</p></li>
@@ -1329,8 +1347,8 @@ sudo systemctl start docker
 </pre></div>
 </div>
 </section>
-<section id="id15">
-<h3>GIT наборы команд<a class="headerlink" href="#id15" title="Ссылка на этот заголовок">¶</a></h3>
+<section id="id16">
+<h3>GIT наборы команд<a class="headerlink" href="#id16" title="Ссылка на этот заголовок">¶</a></h3>
 <ol class="arabic">
 <li><p><strong>Залить все ветки в репозиторий.</strong> Запустить скрипт из корня проекта <a class="reference download internal" download="" href="../_downloads/9f54878b5119e837895e00c26dd1e99a/pull_all_branch.sh"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="ch">#!/bin/bash</span>
