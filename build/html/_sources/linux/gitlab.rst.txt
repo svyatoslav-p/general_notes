@@ -235,3 +235,19 @@ FAQ
 Для перевода всего экземпляра GitLab необходимо отредактировать файл (путь указан внутри контейнера)
 ``/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/database.rb`` параметр ``def self.read_only``
 выставить значение ``true``. Выполнить реконфигурацию ``gitlab-ctl reconfigure`` и перезапуск контейнера
+
+Submodule ошибка сборки при CI/CD
+=================================
+
+Если необходимо подключить submodule для репозитория, который храниться на этом же сервере, то необходимо в файле ``.gitmodules`` текущего проекта
+прописывать относительный путь на ссылаемый репозиторий иначе при сборке проекта через CI/CD будет появляться ошибка вида ``fatal: could not read Username for 'https://gitlab.com': No such device or address``
+`подробнее тут <https://docs.gitlab.com/ee/ci/git_submodules.html#configure-the-gitmodules-file>`_
+
+Пример файла ``.gitmodules``
+
+.. code-block:: bash
+
+  [submodule "proto_contracts"]
+      path = proto_contracts
+      url = https://gitlab.com/areller/proto_contracts.git # Эту строку заменить на строку ниже
+      url = ../../areller/proto_contracts.git
