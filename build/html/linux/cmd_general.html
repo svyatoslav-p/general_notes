@@ -430,6 +430,14 @@
 </ul>
 <p><strong>Более простой и гибкий метод выполнить проброс через</strong> <code class="docutils literal notranslate"><span class="pre">netctl</span></code></p>
 </li>
+<li><p>Создать Tap интерфейс и привязать к мосту.</p>
+<ul class="simple">
+<li><p>Создадим интерфейс tap0 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ip</span> <span class="pre">tuntap</span> <span class="pre">add</span> <span class="pre">tap0</span> <span class="pre">mode</span> <span class="pre">tap</span></code></p></li>
+<li><p>Привяжем его к мосту br1 (должен быть уже создан и настроен) <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">brctl</span> <span class="pre">addif</span> <span class="pre">br1</span> <span class="pre">tap0</span></code></p></li>
+<li><p>Запустим интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">ifconfig</span> <span class="pre">tap0</span> <span class="pre">up</span></code></p></li>
+</ul>
+<p>Этот интерфейс можно использовать для подключения виртуалки созданной через QEMU к той же сети что и хост</p>
+</li>
 </ol>
 </div>
 </div>
