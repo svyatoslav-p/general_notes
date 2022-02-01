@@ -9,6 +9,7 @@ Linux
    vpn
    ldap
    kvm
+   kotlin
 
    
 
