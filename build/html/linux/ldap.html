@@ -171,46 +171,46 @@
 <h2>Пример конфигураций<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h2>
 <ol class="arabic">
 <li><p>Файл <code class="docutils literal notranslate"><span class="pre">/usr/local/samba/etc/smb.conf</span></code></p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global parameters</span>
-<span class="k">[global]</span>
-	<span class="na">dns forwarder</span> <span class="o">=</span> <span class="s">8.8.8.8</span>
-	<span class="na">netbios name</span> <span class="o">=</span> <span class="s">DCTRL</span>
-	<span class="na">realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">server role</span> <span class="o">=</span> <span class="s">active directory domain controller</span>
-	<span class="na">workgroup</span> <span class="o">=</span> <span class="s">UONMAP</span>
-	<span class="na">ldap server require strong auth</span> <span class="o">=</span> <span class="s">no</span>
-	<span class="na">client ldap sasl wrapping</span> <span class="o">=</span> <span class="s">plain</span>
-	<span class="na">idmap_ldb:use rfc2307</span> <span class="o">=</span> <span class="s">yes</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global parameters</span><span class="w"></span>
+<span class="k">[global]</span><span class="w"></span>
+<span class="w">	</span><span class="na">dns forwarder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">8.8.8.8</span><span class="w"></span>
+<span class="w">	</span><span class="na">netbios name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">DCTRL</span><span class="w"></span>
+<span class="w">	</span><span class="na">realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UONMAP.COM</span><span class="w"></span>
+<span class="w">	</span><span class="na">server role</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">active directory domain controller</span><span class="w"></span>
+<span class="w">	</span><span class="na">workgroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UONMAP</span><span class="w"></span>
+<span class="w">	</span><span class="na">ldap server require strong auth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span><span class="w"></span>
+<span class="w">	</span><span class="na">client ldap sasl wrapping</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">plain</span><span class="w"></span>
+<span class="w">	</span><span class="na">idmap_ldb:use rfc2307</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
 
-<span class="k">[sysvol]</span>
-	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol</span>
-	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+<span class="k">[sysvol]</span><span class="w"></span>
+<span class="w">	</span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/local/samba/var/locks/sysvol</span><span class="w"></span>
+<span class="w">	</span><span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">No</span><span class="w"></span>
 
-<span class="k">[netlogon]</span>
-	<span class="na">path</span> <span class="o">=</span> <span class="s">/usr/local/samba/var/locks/sysvol/uonmap.com/scripts</span>
-	<span class="na">read only</span> <span class="o">=</span> <span class="s">No</span>
+<span class="k">[netlogon]</span><span class="w"></span>
+<span class="w">	</span><span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/local/samba/var/locks/sysvol/uonmap.com/scripts</span><span class="w"></span>
+<span class="w">	</span><span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">No</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
 <li><p>Файл <code class="docutils literal notranslate"><span class="pre">/etc/krb5.conf</span></code></p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[libdefaults]</span>
-	<span class="na">default_realm</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">dns_lookup_realm</span> <span class="o">=</span> <span class="s">false</span>
-	<span class="na">dns_lookup_kdc</span> <span class="o">=</span> <span class="s">true</span>
-	<span class="na">ticket_lifetime</span> <span class="o">=</span> <span class="s">24h</span>
-	<span class="na">forwardable</span> <span class="o">=</span> <span class="s">yes</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[libdefaults]</span><span class="w"></span>
+<span class="w">	</span><span class="na">default_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UONMAP.COM</span><span class="w"></span>
+<span class="w">	</span><span class="na">dns_lookup_realm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span><span class="w"></span>
+<span class="w">	</span><span class="na">dns_lookup_kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w"></span>
+<span class="w">	</span><span class="na">ticket_lifetime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">24h</span><span class="w"></span>
+<span class="w">	</span><span class="na">forwardable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span><span class="w"></span>
 
-<span class="k">[realms]</span>
-<span class="na">UONMAP.COM</span> <span class="o">=</span> <span class="s">{</span>
-	<span class="na">default_domain</span> <span class="o">=</span> <span class="s">uonmap.com</span>
-	<span class="na">kdc</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
-	<span class="na">admin_server</span> <span class="o">=</span> <span class="s">dctrl.uonmap.com</span>
-<span class="na">}</span>
+<span class="k">[realms]</span><span class="w"></span>
+<span class="na">UONMAP.COM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{</span><span class="w"></span>
+<span class="w">	</span><span class="na">default_domain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">uonmap.com</span><span class="w"></span>
+<span class="w">	</span><span class="na">kdc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dctrl.uonmap.com</span><span class="w"></span>
+<span class="w">	</span><span class="na">admin_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">dctrl.uonmap.com</span><span class="w"></span>
+<span class="na">}</span><span class="w"></span>
 
-<span class="k">[domain_realm]</span>
-	<span class="na">dctrl</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
-	<span class="na">.uonmap.com</span> <span class="o">=</span> <span class="s">.UONMAP.COM</span>
-	<span class="na">uonmap.com</span> <span class="o">=</span> <span class="s">UONMAP.COM</span>
+<span class="k">[domain_realm]</span><span class="w"></span>
+<span class="w">	</span><span class="na">dctrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UONMAP.COM</span><span class="w"></span>
+<span class="w">	</span><span class="na">.uonmap.com</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">.UONMAP.COM</span><span class="w"></span>
+<span class="w">	</span><span class="na">uonmap.com</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">UONMAP.COM</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
@@ -231,18 +231,18 @@
 <ul class="simple">
 <li><p>Создадим сервис (проверьте корректность путей): <strong>/etc/systemd/system/samba.service</strong> <a class="reference download internal" download="" href="../_downloads/af8229cba6a04af1bfed6678d75f43d8/samba.service"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p></li>
 </ul>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span> <span class="s">Samba 4 Active Directory</span>
-<span class="na">After</span><span class="o">=</span><span class="s">syslog.target</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="w"> </span><span class="s">Samba 4 Active Directory</span><span class="w"></span>
+<span class="na">After</span><span class="o">=</span><span class="s">syslog.target</span><span class="w"></span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span><span class="w"></span>
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">PIDFile</span><span class="o">=</span><span class="s">/usr/local/samba/var/run/samba.pid</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/samba/sbin/samba</span>
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">Type</span><span class="o">=</span><span class="s">forking</span><span class="w"></span>
+<span class="na">PIDFile</span><span class="o">=</span><span class="s">/usr/local/samba/var/run/samba.pid</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/samba/sbin/samba</span><span class="w"></span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span><span class="w"></span>
 </pre></div>
 </div>
 </li>

@@ -165,42 +165,42 @@ Runner умеет выполнять задачи в различных окру
 <h3>Запуск<a class="headerlink" href="#id8" title="Ссылка на этот заголовок"></a></h3>
 <ol class="arabic">
 <li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/d72192e0e41c9a157a7f0cdcc4e7216d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">gitlab</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-ce:latest&#39;</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">hostname</span><span class="p">:</span> <span class="s">&#39;gitlab_test.com&#39;</span>
-    <span class="nt">environment</span><span class="p">:</span>
-      <span class="nt">GITLAB_OMNIBUS_CONFIG</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-        <span class="no">external_url &#39;http://gitlab_test.com/&#39;</span>
-    <span class="nt">ports</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;80:80&#39;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;443:443&#39;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;2022:22&#39;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab/data:/var/opt/gitlab&#39;</span>
-    <span class="nt">networks</span><span class="p">:</span>
-      <span class="nt">default</span><span class="p">:</span>
-        <span class="nt">aliases</span><span class="p">:</span>
-          <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab_test.com&#39;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span><span class="w"></span>
+<span class="nt">services</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">gitlab</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;gitlab/gitlab-ce:latest&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
+<span class="w">    </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;gitlab_test.com&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">GITLAB_OMNIBUS_CONFIG</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">external_url &#39;http://gitlab_test.com/&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;80:80&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;443:443&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;2022:22&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/srv/gitlab/config:/etc/gitlab&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/srv/gitlab/logs:/var/log/gitlab&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/srv/gitlab/data:/var/opt/gitlab&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">aliases</span><span class="p">:</span><span class="w"></span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;gitlab_test.com&#39;</span><span class="w"></span>
 
-  <span class="nt">gitlab-runner</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;gitlab/gitlab-runner:latest&#39;</span>
-    <span class="nt">depends_on</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;gitlab&#39;</span>
-    <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">always</span>
-    <span class="nt">volumes</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;/srv/gitlab-runner/config:/etc/gitlab-runner&#39;</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;/var/run/docker.sock:/var/run/docker.sock&#39;</span>
-    <span class="nt">networks</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&#39;default&#39;</span>
+<span class="w">  </span><span class="nt">gitlab-runner</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;gitlab/gitlab-runner:latest&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;gitlab&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span><span class="w"></span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/srv/gitlab-runner/config:/etc/gitlab-runner&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;/var/run/docker.sock:/var/run/docker.sock&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;default&#39;</span><span class="w"></span>
 
-<span class="nt">networks</span><span class="p">:</span>
-  <span class="nt">default</span><span class="p">:</span>
-    <span class="nt">driver</span><span class="p">:</span> <span class="s">&#39;bridge&#39;</span>
+<span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;bridge&#39;</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -223,33 +223,33 @@ Runner умеет выполнять задачи в различных окру
 править конфигурацию вручную) этот метод может сформировать каркас конфигурации, но для runner запущенноо в Docker этого не достаточно</p></li>
 <li><p><strong>Правка конфигурации</strong> <br />
 Пример рабочей конфигурации ( <a class="reference external" href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html">полное описание</a>  ) <a class="reference download internal" download="" href="../_downloads/a18cf2a398bb4b822d0115119c1d7320/config.toml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span>
-<span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">concurrent = 1</span><span class="w"></span>
+<span class="l l-Scalar l-Scalar-Plain">check_interval = 0</span><span class="w"></span>
 
-<span class="l l-Scalar l-Scalar-Plain">[session_server]</span>
-  <span class="l l-Scalar l-Scalar-Plain">session_timeout = 1800</span>
+<span class="l l-Scalar l-Scalar-Plain">[session_server]</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">session_timeout = 1800</span><span class="w"></span>
 
-<span class="l l-Scalar l-Scalar-Plain">[[runners]]</span>
-  <span class="l l-Scalar l-Scalar-Plain">name = &quot;stm32&quot;</span> <span class="c1">#Имя</span>
-  <span class="l l-Scalar l-Scalar-Plain">url = &quot;http://gitlab_test.com/&quot;</span> <span class="c1">#Адрес по которому доступен GitLab</span>
-  <span class="l l-Scalar l-Scalar-Plain">token = &quot;yKFH-aCHozA75XcYU-CU&quot;</span> <span class="c1">#Токен для регистрации (выдается GitLab)</span>
-  <span class="l l-Scalar l-Scalar-Plain">executor = &quot;docker&quot;</span>
-  <span class="l l-Scalar l-Scalar-Plain">[runners.custom_build_dir]</span>
-  <span class="l l-Scalar l-Scalar-Plain">[runners.cache]</span>
-    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.s3]</span>
-    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.gcs]</span>
-    <span class="l l-Scalar l-Scalar-Plain">[runners.cache.azure]</span>
-  <span class="l l-Scalar l-Scalar-Plain">[runners.docker]</span> <span class="c1">#Настройки если исполнителем выбран docker</span>
-    <span class="l l-Scalar l-Scalar-Plain">tls_verify = false</span>
-    <span class="l l-Scalar l-Scalar-Plain">image = &quot;ubuntu:latest&quot;</span> <span class="c1">#Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего</span>
-    <span class="l l-Scalar l-Scalar-Plain">privileged = true</span>
-    <span class="l l-Scalar l-Scalar-Plain">disable_entrypoint_overwrite = false</span>
-    <span class="l l-Scalar l-Scalar-Plain">oom_kill_disable = false</span>
-    <span class="l l-Scalar l-Scalar-Plain">network_mode = &quot;gitlab_default&quot;</span> <span class="c1">#Важный параметр для моста между контейнерами см. описание</span>
-    <span class="l l-Scalar l-Scalar-Plain">pull_policy = &quot;if-not-present&quot;</span> <span class="c1">#Если есть локальный image использовать его</span>
-    <span class="l l-Scalar l-Scalar-Plain">disable_cache = false</span>
-    <span class="l l-Scalar l-Scalar-Plain">volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]</span>
-    <span class="l l-Scalar l-Scalar-Plain">shm_size = 0</span>
+<span class="l l-Scalar l-Scalar-Plain">[[runners]]</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">name = &quot;stm32&quot;</span><span class="w"> </span><span class="c1">#Имя</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">url = &quot;http://gitlab_test.com/&quot;</span><span class="w"> </span><span class="c1">#Адрес по которому доступен GitLab</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">token = &quot;yKFH-aCHozA75XcYU-CU&quot;</span><span class="w"> </span><span class="c1">#Токен для регистрации (выдается GitLab)</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">executor = &quot;docker&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[runners.custom_build_dir]</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[runners.cache]</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">[runners.cache.s3]</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">[runners.cache.gcs]</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">[runners.cache.azure]</span><span class="w"></span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">[runners.docker]</span><span class="w"> </span><span class="c1">#Настройки если исполнителем выбран docker</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">tls_verify = false</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">image = &quot;ubuntu:latest&quot;</span><span class="w"> </span><span class="c1">#Образ по-умолчанию, если в .gitlab-ci.yml не указано ничего</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">privileged = true</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">disable_entrypoint_overwrite = false</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">oom_kill_disable = false</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">network_mode = &quot;gitlab_default&quot;</span><span class="w"> </span><span class="c1">#Важный параметр для моста между контейнерами см. описание</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pull_policy = &quot;if-not-present&quot;</span><span class="w"> </span><span class="c1">#Если есть локальный image использовать его</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">disable_cache = false</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes = [&quot;/var/run/docker.sock:/var/run/docker.sock&quot;, &quot;/cache&quot;]</span><span class="w"></span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">shm_size = 0</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="admonition note">

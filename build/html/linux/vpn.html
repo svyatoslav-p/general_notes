@@ -113,14 +113,14 @@
 <li><p>Остановим интерфейс <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wg-quick</span> <span class="pre">down</span> <span class="pre">wg0</span></code> и добавим правила маршрутизации</p>
 <ol class="arabic">
 <li><p>Открываем конфигурацию <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">nano</span> <span class="pre">/etc/wireguard/wg0.conf</span></code>. Редактируем поля <code class="docutils literal notranslate"><span class="pre">PostUp</span></code> и <code class="docutils literal notranslate"><span class="pre">PostDown</span></code></p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># ВНИМАНИЕ! замените адаптер enp0s3, wg0 и порт 52820 на свой</span>
-<span class="c1"># Для работы на Oracle Cloud</span>
-<span class="na">PostUp</span> <span class="o">=</span> <span class="s">iptables -I FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -I FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; iptables -I INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
-<span class="na">PostDown</span> <span class="o">=</span> <span class="s">iptables -D FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; sudo iptables -D INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># ВНИМАНИЕ! замените адаптер enp0s3, wg0 и порт 52820 на свой</span><span class="w"></span>
+<span class="c1"># Для работы на Oracle Cloud</span><span class="w"></span>
+<span class="na">PostUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -I FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -I FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE; iptables -I INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT</span><span class="w"></span>
+<span class="na">PostDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -D FORWARD -i enp0s3 -o wg0 -j ACCEPT; iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE; sudo iptables -D INPUT -i enp0s3 -p udp --dport 52820 -m state --state NEW,ESTABLISHED -j ACCEPT</span><span class="w"></span>
 
-<span class="c1"># В большенстве случаев достаточно этих правил</span>
-<span class="na">PostUp</span> <span class="o">=</span> <span class="s">iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE</span>
-<span class="na">PostDown</span> <span class="o">=</span> <span class="s">iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE</span>
+<span class="c1"># В большенстве случаев достаточно этих правил</span><span class="w"></span>
+<span class="na">PostUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE</span><span class="w"></span>
+<span class="na">PostDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o enp0s3 -j MASQUERADE</span><span class="w"></span>
 </pre></div>
 </div>
 </li>
