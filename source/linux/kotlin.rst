@@ -24,6 +24,7 @@ Kotlin
 
 #. Распакуем в любой каталог, но путь недолжен содержать пробелы и кириллицу. Например ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/`` 
 #. Выполним генерацию конфигурации ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/scripts/install.sh``
+#. Выйдем из системы и снова залогинимся
 #. Скопируем обновленную необходимую конфигурацию (в нашем случае для **Intellij Idea Ultimate**) из каталога
    ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/vmoptions/idea.vmoptions``  в каталог ``/home/svyatoslav/.config/JetBrains/IntelliJIdea2021.3/idea.vmoptions``
 #. Открываем файл ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/config-jetbrains/mymap.conf`` устанавливаем любой срок действия лицензии в поле ``EQUAL,paidUpTo->``
