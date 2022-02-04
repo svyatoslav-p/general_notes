@@ -20,7 +20,7 @@ Kotlin
 
 #. Переходим на `страницу <https://jetbra.in/s>`_ и скачиваем файл ``ja-netfilter-all.zip``
 
-   .. figure:: linux_image/kotlin/ja_netfilter_all.png
+   .. figure:: kotlin/ja_netfilter_all.png
 
 #. Распакуем в любой каталог, но путь недолжен содержать пробелы и кириллицу. Например ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/`` 
 #. Выполним генерацию конфигурации ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/scripts/install.sh``

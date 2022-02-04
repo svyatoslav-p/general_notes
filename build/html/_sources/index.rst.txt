@@ -10,5 +10,6 @@
    :maxdepth: 2
 
    linux/_list
+   programming/_list
 
 * :ref:`genindex`
