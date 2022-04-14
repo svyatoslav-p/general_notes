@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manjaro &mdash; документация Общие заметки 1</title>
+  <title>Backend &mdash; документация Общие заметки 1</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
@@ -19,8 +19,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
-    <link rel="next" title="GitLab" href="gitlab.html" />
-    <link rel="prev" title="CMD" href="cmd_general.html" /> 
+    <link rel="prev" title="UonMap" href="_list.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,18 +38,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Manjaro</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
-<li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kvm.html">KVM</a></li>
-<li class="toctree-l2"><a class="reference internal" href="redmine.html">Redmine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux/_list.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">UonMap</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Backend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#firebase">Обновление ключа firebase</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../uonmap/_list.html">UonMap</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -67,10 +63,10 @@
           <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="_list.html">Linux</a> &raquo;</li>
-      <li>Manjaro</li>
+          <li><a href="_list.html">UonMap</a> &raquo;</li>
+      <li>Backend</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/linux/manjaro.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+            <a href="../_sources/uonmap/backend.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
       </li>
   </ul>
   <hr/>
@@ -78,16 +74,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="manjaro">
-<h1>Manjaro<a class="headerlink" href="#manjaro" title="Ссылка на этот заголовок"></a></h1>
+  <div class="section" id="backend">
+<h1>Backend<a class="headerlink" href="#backend" title="Ссылка на этот заголовок"></a></h1>
+<p>Заметки по проекту <strong>Smart Safe School</strong> в части backend</p>
+<div class="section" id="firebase">
+<h2>Обновление ключа firebase<a class="headerlink" href="#firebase" title="Ссылка на этот заголовок"></a></h2>
+<p>Переходим по <a class="reference external" href="https://console.firebase.google.com/u/1/project/smart-safe-school-add85/settings/serviceaccounts/adminsdk">ссылке</a>
+получаем новый ключ нажатием на <span class="guilabel">Generate new private key</span></p>
+<blockquote>
+<div><div class="figure align-default">
+<img alt="../_images/firebase_key.png" src="../_images/firebase_key.png" />
+</div>
+</div></blockquote>
+<p>подменяем файл <code class="docutils literal notranslate"><span class="pre">smartdevice-server-credentials/gap-credentials.json</span></code></p>
+</div>
 </div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
-        <a href="cmd_general.html" class="btn btn-neutral float-left" title="CMD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
-        <a href="gitlab.html" class="btn btn-neutral float-right" title="GitLab" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_list.html" class="btn btn-neutral float-left" title="UonMap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
     </div>
 
   <hr/>

@@ -11,5 +11,6 @@
 
    linux/_list
    programming/_list
+   uonmap/_list
 
 * :ref:`genindex`
