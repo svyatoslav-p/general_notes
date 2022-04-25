@@ -47,6 +47,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">KVM</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Увеличить место на диске</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pci">Проброс PCI видеокарты</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="redmine.html">Redmine</a></li>
@@ -168,6 +169,131 @@
 </li>
 </ol>
 </div>
+<div class="section" id="pci">
+<h2>Проброс PCI видеокарты<a class="headerlink" href="#pci" title="Ссылка на этот заголовок"></a></h2>
+<p>Проще всего пробрасывать карты <strong>ATI Radeon</strong> на них меньше проблем. Инструкция построена на информации со страницы
+<a class="reference external" href="https://github.com/kholia/OSX-KVM/blob/master/notes.md#gpu-passthrough-notes/">GPU passthrough mac kvm</a>  Так же полезным может быть старница
+<a class="reference external" href="https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/home/">Single GPU Passthrough</a></p>
+<div class="section" id="id2">
+<h3>Подготовка ОС<a class="headerlink" href="#id2" title="Ссылка на этот заголовок"></a></h3>
+<ol class="arabic">
+<li><p>Включить в биос поддержку виртуализации <strong>Intel®Virtualization Technology</strong> и поддержку <strong>iommu VT-x</strong></p></li>
+<li><p>Запрещаем загрузку драйвера модуля ядра для видеокарты (для Nvidia другой модуль)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Добавить в файл /etc/modprobe.d/blacklist.conf строки</span>
+
+<span class="go">blacklist amdgpu</span>
+<span class="go">blacklist radeon</span>
+</pre></div>
+</div>
+</li>
+<li><p>Найдем id видеокарты на шине pci</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>lspci -nnk <span class="p">|</span> grep AMD
+<span class="go">01:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Ellesmere [Radeon RX 470/480/570/570X/580/580X/590] [1002:67df] (rev ef)</span>
+<span class="go">01:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Ellesmere HDMI Audio [Radeon RX 470/480 / 570/580/590] [1002:aaf0]</span>
+</pre></div>
+</div>
+<p>в примере выше это <code class="docutils literal notranslate"><span class="pre">1002:67df</span></code> и <code class="docutils literal notranslate"><span class="pre">1002:aaf0</span></code></p>
+</li>
+<li><p>Включаем поддержку IOMMU и конфигурируем VFIO</p>
+<p>Редактируем <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">nano</span> <span class="pre">/etc/default/grub</span></code> добавив в строку <code class="docutils literal notranslate"><span class="pre">GRUB_CMDLINE_LINUX_DEFAULT</span></code> параметры
+(для cpu intel) и заменив <strong>vfio-pci.ids</strong> на свои
+<code class="docutils literal notranslate"><span class="pre">iommu=pt</span> <span class="pre">intel_iommu=on</span> <span class="pre">vfio-pci.ids=1002:67df,1002:aaf0</span> <span class="pre">kvm.ignore_msrs=1</span> <span class="pre">video=vesafb:off,efifb:off</span></code></p>
+</li>
+<li><p>Настроим <strong>vfio</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">nano</span> <span class="pre">/etc/modprobe.d/vfio.conf</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">options vfio-pci ids=1002:67df,1002:aaf0 disable_vga=1</span>
+<span class="go">softdep radeon pre: vfio-pci</span>
+<span class="go">softdep amdgpu pre: vfio-pci</span>
+<span class="go">softdep nouveau pre: vfio-pci</span>
+<span class="go">softdep drm pre: vfio-pci</span>
+</pre></div>
+</div>
+</li>
+<li><p>Обновим конфигурацию загрузчика и initramfs <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">update-grub2</span></code> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">update-initramfs</span> <span class="pre">-k</span> <span class="pre">all</span> <span class="pre">-u</span></code></p></li>
+<li><p>Перезагружаемся и проверяем</p></li>
+<li><p>Проверка модуля <strong>iommu</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>dmesg <span class="p">|</span> grep -i iommu
+<span class="go">[    0.076879] DMAR: IOMMU enabled</span>
+<span class="go">[    0.183732] DMAR-IR: IOAPIC id 2 under DRHD base  0xfed91000 IOMMU 1</span>
+<span class="go">[    0.330654] iommu: Default domain type: Passthrough (set via kernel command line)</span>
+<span class="go">[    0.489615] pci 0000:00:00.0: Adding to iommu group 0</span>
+<span class="go">[    0.489627] pci 0000:00:01.0: Adding to iommu group 1</span>
+<span class="go">[    0.489634] pci 0000:00:02.0: Adding to iommu group 2</span>
+<span class="go">[    0.489643] pci 0000:00:14.0: Adding to iommu group 3</span>
+</pre></div>
+</div>
+</li>
+<li><p>Проверка <strong>vfio</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>dmesg <span class="p">|</span> grep vfio
+<span class="go">[    0.526198] vfio-pci 0000:01:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem</span>
+<span class="go">[    0.543768] vfio_pci: add [1002:67df[ffffffff:ffffffff]] class 0x000000/00000000</span>
+<span class="go">[    0.563765] vfio_pci: add [1002:aaf0[ffffffff:ffffffff]] class 0x000000/00000000</span>
+<span class="go">[    3.384597] vfio-pci 0000:01:00.0: vgaarb: changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem</span>
+</pre></div>
+</div>
+</li>
+<li><p>Проверка того что видеокарта использует драйвер <strong>vfio-pci</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>lspci -nkk -d <span class="m">1002</span>:67df
+<span class="go">01:00.0 0300: 1002:67df (rev ef)</span>
+<span class="go">        Subsystem: 1da2:e366</span>
+<span class="go">        Kernel driver in use: vfio-pci</span>
+<span class="go">        Kernel modules: amdgpu</span>
+</pre></div>
+</div>
+</li>
+<li><p>Исправим права для <code class="docutils literal notranslate"><span class="pre">/dev/vfio/1</span></code> <a class="reference download internal" download="" href="../_downloads/68bb8a30c965331fe24134d1c00ea66e/vfio-kvm.rules"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span> <span class="pre">vfio-kvm.rules</span></code></a></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo cp vfio-kvm.rules /etc/udev/rules.d/vfio-kvm.rules</span>
+
+<span class="go">sudo udevadm control --reload</span>
+<span class="go">sudo udevadm trigger</span>
+</pre></div>
+</div>
+</li>
+<li><p>Добавим в файл <code class="docutils literal notranslate"><span class="pre">/etc/security/limits.conf</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">@kvm            soft    memlock         unlimited</span>
+<span class="go">@kvm            hard    memlock         unlimited</span>
+<span class="go">@libvirt        soft    memlock         unlimited</span>
+<span class="go">@libvirt        hard    memlock         unlimited</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="bios">
+<h3>Работа с BIOS видеокарты<a class="headerlink" href="#bios" title="Ссылка на этот заголовок"></a></h3>
+<p>Карта может быть проброшена в виртуальную машину запущенную в режиме <strong>BIOS</strong> или в режиме <strong>UEFI</strong>
+Для виртуальных машин <strong>UEFI</strong> (такие как Windows, MacOS) видеокарта обязательно должна поддерживать <strong>UEFI GOP</strong> иначе при старте виртуалки
+на мониторе не будет никакого изображения. Для проверки можно использовать утилиту <strong>GPU-Z</strong> где должен быть отмечен
+чекбокс <strong>UEFI</strong>. Если поддержка отсутсвует можно попробовать пропатчить BIOS видеокарты</p>
+<ol class="arabic simple">
+<li><p>Сделать дамп текущего BIOS GPU (например так же через <strong>GPU-Z</strong>)</p></li>
+<li><p>Пропатчить с помощью  <a class="reference external" href="https://www.win-raid.com/t892f16-AMD-and-Nvidia-GOP-update-No-requests-DIY-69.html/">GOPUpd</a> дамп BIOS GPU</p></li>
+<li><p>Прошить новый BIOS через <a class="reference external" href="https://www.techpowerup.com/download/ati-atiflash//">ATI ATIFlash</a></p></li>
+<li><p>Проверить появилась ли поддержка (например так же через <strong>GPU-Z</strong>)</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h3>Создание виртуальной машины<a class="headerlink" href="#id3" title="Ссылка на этот заголовок"></a></h3>
+<ol class="arabic">
+<li><p>Создаем виртуальную машину как обычно (например через <strong>Virsh Manager</strong>).</p></li>
+<li><p>Удаляем все устройства <strong>Video</strong>, <strong>Graphics</strong></p></li>
+<li><p>Добавляем PCI устройство нашей видео карты (обычно 2 шт. <strong>VGA ATI RADEON</strong> и <strong>AUDIO ATI RADEON</strong>)</p></li>
+<li><p>Подсовываем BIOS GPU нашей видеокарты (может запуститься и без этого шага)</p>
+<ol class="arabic simple">
+<li><p>Копируем дамп BIOS GPU по пути <code class="docutils literal notranslate"><span class="pre">/usr/share/vgabios/vgpu.rom</span></code></p></li>
+<li><p>Прописываем в каждом выше добавленном PCI устройстве (для <strong>VGA ATI RADEON</strong> и <strong>AUDIO ATI RADEON</strong>) строку <code class="docutils literal notranslate"><span class="pre">&lt;rom</span> <span class="pre">file='/usr/share/vgabios/vgpu.rom'/&gt;</span></code></p></li>
+</ol>
+</li>
+<li><p>Если виртуальная машина запускается в режиме BIOS (не в UEFI), то так же необходимо указать параметры:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;qemu:commandline&gt;</span>
+<span class="go">  &lt;qemu:arg value=&#39;-set&#39;/&gt;</span>
+<span class="go">  &lt;qemu:arg value=&#39;device.hostdev0.x-vga=on&#39;/&gt;</span>
+<span class="go">&lt;/qemu:commandline&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 
 
@@ -181,7 +307,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021.</p>
+    <p>&#169; Copyright 2022.</p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Общие заметки'
-copyright = '2021'
+copyright = '2022'
 author = 'Попов Святослав'
 
 # The short X.Y version
@@ -48,7 +48,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # The master toctree document.
 master_doc = 'index'
