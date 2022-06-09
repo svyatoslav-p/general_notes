@@ -8,6 +8,7 @@ Linux
    gitlab
    vpn
    ldap
+   lvm_and_raid
    kvm
    redmine
 

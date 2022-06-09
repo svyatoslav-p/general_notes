@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LVM and RAID &mdash; документация Общие заметки 1</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="KVM" href="kvm.html" />
+    <link rel="prev" title="LDAP" href="ldap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Общие заметки
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">LVM and RAID</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raid1">Монтирование диска из RAID1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kvm.html">KVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="redmine.html">Redmine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uonmap/_list.html">UonMap</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Общие заметки</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Навигация по страницам">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="_list.html">Linux</a> &raquo;</li>
+      <li>LVM and RAID</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/linux/lvm_and_raid.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="lvm-and-raid">
+<h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Ссылка на этот заголовок"></a></h1>
+<div class="section" id="raid1">
+<h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Ссылка на этот заголовок"></a></h2>
+<p>Ниже пример когда из зеркального RAID1 извлечен один из дисков и его необходимо примонтировать
+как обычный диск. В примере ниже сам диск размечен через LVM</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Находим необходимый диск</span>
+&gt;lsblk
+sdb                          <span class="m">8</span>:16   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> disk
+└─sdb1                       <span class="m">8</span>:17   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> part
+  └─md127                    <span class="m">9</span>:127  <span class="m">0</span>     0B  <span class="m">0</span> md
+
+<span class="c1">#Останавливаем массив raid</span>
+&gt;sudo mdadm --stop /dev/md127
+<span class="c1">#Создаем новый raid</span>
+&gt;sudo mdadm -A -R /dev/md0 /dev/sdb1
+<span class="c1">#Теперь разделы должны быть доступны</span>
+&gt;lsblk
+sdb                                <span class="m">8</span>:16   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> disk
+└─sdb1                             <span class="m">8</span>:17   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> part
+  └─md0                            <span class="m">9</span>:0    <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> raid1
+    ├─Pandora--raid1-ubuntu10.04 <span class="m">254</span>:2    <span class="m">0</span>   100G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-nfs_share   <span class="m">254</span>:3    <span class="m">0</span>   450G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-backup      <span class="m">254</span>:4    <span class="m">0</span>   400G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-share       <span class="m">254</span>:5    <span class="m">0</span>   150G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-docker      <span class="m">254</span>:6    <span class="m">0</span>    60G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-docker_lib  <span class="m">254</span>:7    <span class="m">0</span>    70G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-var_www     <span class="m">254</span>:8    <span class="m">0</span>    20G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-mysql--lib  <span class="m">254</span>:9    <span class="m">0</span>   400G  <span class="m">0</span> lvm
+    ├─Pandora--raid1-var_log     <span class="m">254</span>:10   <span class="m">0</span>    30G  <span class="m">0</span> lvm
+    └─Pandora--raid1-centos7.0   <span class="m">254</span>:11   <span class="m">0</span>    30G  <span class="m">0</span> lvm
+<span class="c1">#Монтируем как обычно</span>
+&gt;mount /dev/Pandora-raid1/backup /mnt/raid/1
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
+        <a href="ldap.html" class="btn btn-neutral float-left" title="LDAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="kvm.html" class="btn btn-neutral float-right" title="KVM" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022.</p>
+  </div>
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
