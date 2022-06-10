@@ -5,6 +5,38 @@
 LVM and RAID
 ############
 
+Создание аппаратного RAID
+*************************
+
+Если материнская плата поддерживает создание аппаратного RAID, создаем такой средствами
+BIOS. В ОС Linux (например ubuntu) установим утилиту для работы с RAID ``sudo apt install mdadm``.
+Если после установки и перезагрузки системы RAID не опознался (в данном случае это ``sdd`` и ``sde``)
+
+.. code-block:: console
+
+   gratia@gratia-uonmap:~$ lsblk
+   NAME                MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+
+   sdd                   8:48   0   1,8T  0 disk 
+   sde                   8:64   0   1,8T  0 disk 
+
+то выполним ``sudo IMSM_NO_PLATFORM=1 mdadm --assemble --scan --verbose`` после проверим результат.
+
+.. code-block:: console
+
+   gratia@gratia-uonmap:~$ lsblk
+   NAME                MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+   
+   sdd                   8:48   0   1,8T  0 disk  
+   └─md126               9:126  0   1,7T  0 raid1 
+     └─md126p1         259:0    0   1,7T  0 part  
+   sde                   8:64   0   1,8T  0 disk  
+   └─md126               9:126  0   1,7T  0 raid1 
+     └─md126p1         259:0    0   1,7T  0 part 
+
+в выводе можно увидеть что диски ``sdd`` и ``sde`` находятся в массиве ``md126`` далее создаем файловую систему.
+к самому RAID можно обратиться через ``/dev/md126``
+
 Монтирование диска из RAID1
 ***************************
 

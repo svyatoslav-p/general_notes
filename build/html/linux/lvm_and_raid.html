@@ -46,6 +46,7 @@
 <li class="toctree-l2"><a class="reference internal" href="vpn.html">WireGuard</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ldap.html">LDAP</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LVM and RAID</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#raid">Создание аппаратного RAID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#raid1">Монтирование диска из RAID1</a></li>
 </ul>
 </li>
@@ -84,6 +85,33 @@
              
   <div class="section" id="lvm-and-raid">
 <h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Ссылка на этот заголовок"></a></h1>
+<div class="section" id="raid">
+<h2>Создание аппаратного RAID<a class="headerlink" href="#raid" title="Ссылка на этот заголовок"></a></h2>
+<p>Если материнская плата поддерживает создание аппаратного RAID, создаем такой средствами
+BIOS. В ОС Linux (например ubuntu) установим утилиту для работы с RAID <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">mdadm</span></code>.
+Если после установки и перезагрузки системы RAID не опознался (в данном случае это <code class="docutils literal notranslate"><span class="pre">sdd</span></code> и <code class="docutils literal notranslate"><span class="pre">sde</span></code>)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">gratia@gratia-uonmap:~$ </span>lsblk
+<span class="go">NAME                MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT</span>
+
+<span class="go">sdd                   8:48   0   1,8T  0 disk</span>
+<span class="go">sde                   8:64   0   1,8T  0 disk</span>
+</pre></div>
+</div>
+<p>то выполним <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">IMSM_NO_PLATFORM=1</span> <span class="pre">mdadm</span> <span class="pre">--assemble</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> после проверим результат.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">gratia@gratia-uonmap:~$ </span>lsblk
+<span class="go">NAME                MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT</span>
+
+<span class="go">sdd                   8:48   0   1,8T  0 disk</span>
+<span class="go">└─md126               9:126  0   1,7T  0 raid1</span>
+<span class="go">  └─md126p1         259:0    0   1,7T  0 part</span>
+<span class="go">sde                   8:64   0   1,8T  0 disk</span>
+<span class="go">└─md126               9:126  0   1,7T  0 raid1</span>
+<span class="go">  └─md126p1         259:0    0   1,7T  0 part</span>
+</pre></div>
+</div>
+<p>в выводе можно увидеть что диски <code class="docutils literal notranslate"><span class="pre">sdd</span></code> и <code class="docutils literal notranslate"><span class="pre">sde</span></code> находятся в массиве <code class="docutils literal notranslate"><span class="pre">md126</span></code> далее создаем файловую систему.
+к самому RAID можно обратиться через <code class="docutils literal notranslate"><span class="pre">/dev/md126</span></code></p>
+</div>
 <div class="section" id="raid1">
 <h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Ссылка на этот заголовок"></a></h2>
 <p>Ниже пример когда из зеркального RAID1 извлечен один из дисков и его необходимо примонтировать
