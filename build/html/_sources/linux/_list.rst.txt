@@ -5,6 +5,7 @@ Linux
 
    cmd_general
    manjaro
+   certs
    gitlab
    vpn
    ldap
