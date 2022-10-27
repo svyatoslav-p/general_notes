@@ -107,3 +107,9 @@ OpenVPN
    Тогда будет предложено задать пароль для этого клиента, после его необходимо подтвердить и в конце ввести мастер пароль который задавался на этапе выше
    командой ``ovpn_initpki``
 #. Выполним экспорт конфигурации клиента ``docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient <CLIENTNAME> > CLIENTNAME.ovpn``
+
+Примечаания
+===========
+
+#. Удалить клиента: ``docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_revokeclient <NAME> remove``
+#. Список клиентов: ``docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_listclients``

@@ -278,6 +278,13 @@ docker run -v <span class="nv">$OVPN_DATA</span>:/etc/openvpn --rm -it kylemanna
 <li><p>Выполним экспорт конфигурации клиента <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$OVPN_DATA:/etc/openvpn</span> <span class="pre">--rm</span> <span class="pre">kylemanna/openvpn</span> <span class="pre">ovpn_getclient</span> <span class="pre">&lt;CLIENTNAME&gt;</span> <span class="pre">&gt;</span> <span class="pre">CLIENTNAME.ovpn</span></code></p></li>
 </ol>
 </div>
+<div class="section" id="id5">
+<h3>Примечаания<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Удалить клиента: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$OVPN_DATA:/etc/openvpn</span> <span class="pre">--rm</span> <span class="pre">-it</span> <span class="pre">kylemanna/openvpn</span> <span class="pre">ovpn_revokeclient</span> <span class="pre">&lt;NAME&gt;</span> <span class="pre">remove</span></code></p></li>
+<li><p>Список клиентов: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$OVPN_DATA:/etc/openvpn</span> <span class="pre">--rm</span> <span class="pre">kylemanna/openvpn</span> <span class="pre">ovpn_listclients</span></code></p></li>
+</ol>
+</div>
 </div>
 </div>
 
