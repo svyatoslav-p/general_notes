@@ -72,3 +72,11 @@ BIOS. В ОС Linux (например ubuntu) установим утилиту 
        └─Pandora--raid1-centos7.0   254:11   0    30G  0 lvm 
    #Монтируем как обычно
    >mount /dev/Pandora-raid1/backup /mnt/raid/1
+
+Работа с разделами
+******************
+
+* Создать новый pool ``sudo vgcreate -s 256M <pool_name> /dev/<disk_name>`` например ``sudo vgcreate -s 256M kvm_pool /dev/sda1``
+* Создать новый раздел из пула <pool_name> ``sudo lvcreate -n <name_part> -L <size>G <pool_name>`` например ``sudo lvcreate -n vm1 -L 201G kvm_pool``
+* Удалить раздел из пула <pool_name> ``sudo lvremove /dev/mapper/<pool_name>-<name_part>`` например ``sudo lvremove /dev/mapper/kvm_pool-vm1``
+* Создать бэкап раздела ``sudo dd bs=4M if=/dev/mapper/<pool_name>-<name_part> of=<name_backep>.img status=progress`` например ``sudo dd bs=4M if=/dev/mapper/kvm_pool-vm1 of=vm1_backup.img status=progress``

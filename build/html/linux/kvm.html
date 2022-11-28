@@ -98,6 +98,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">KVM</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Увеличить место на диске</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pci">Проброс PCI видеокарты</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cpu">Конфигурирование CPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Сеть</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="redmine.html">Redmine</a></li>
@@ -376,14 +378,72 @@
 </ol>
 </li>
 <li><p>Если виртуальная машина запускается в режиме BIOS (не в UEFI), то так же необходимо указать параметры:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;qemu:commandline&gt;</span>
-<span class="go">  &lt;qemu:arg value=&#39;-set&#39;/&gt;</span>
-<span class="go">  &lt;qemu:arg value=&#39;device.hostdev0.x-vga=on&#39;/&gt;</span>
-<span class="go">&lt;/qemu:commandline&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;domain</span> <span class="na">type=</span><span class="s">&#39;kvm&#39;</span> <span class="na">xmlns:qemu=</span><span class="s">&#39;http://libvirt.org/schemas/domain/qemu/1.0&#39;</span><span class="nt">&gt;</span> <span class="c">&lt;!--Без этого конфигурация не применится!--&gt;</span>
+...
+  <span class="nt">&lt;qemu:commandline&gt;</span>
+    <span class="nt">&lt;qemu:arg</span> <span class="na">value=</span><span class="s">&#39;-set&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;qemu:arg</span> <span class="na">value=</span><span class="s">&#39;device.hostdev0.x-vga=on&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/qemu:commandline&gt;</span>
 </pre></div>
 </div>
 </li>
 </ol>
+</div>
+</div>
+<div class="section" id="cpu">
+<h2>Конфигурирование CPU<a class="headerlink" href="#cpu" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Информация взята из <a class="reference external" href="https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5/">Улучшение производительности гостя</a>
+Для масимальной производительности CPU в гостевой системе необходимо использовать режим <code class="docutils literal notranslate"><span class="pre">host-passthrough</span></code> (этот режим гооврит гостю использовать такую же
+модель процессора, что и хост), но при этом ухудшается переносимость виртуальных машин так как при переносе на другой хост cpu наверника будет иной.
+Кроме этого необходимо указать кофигурацию CPU (топологию). Например для одного процессора (<code class="docutils literal notranslate"><span class="pre">sockets</span></code>), с двумя потоками на ядро (<code class="docutils literal notranslate"><span class="pre">threads</span></code>) топология будет
+такой:</p>
+<blockquote>
+<div><div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;domain</span> <span class="na">type=</span><span class="s">&#39;kvm&#39;</span><span class="nt">&gt;</span>
+...
+  <span class="nt">&lt;cpu</span> <span class="na">mode=</span><span class="s">&#39;host-passthrough&#39;</span> <span class="na">check=</span><span class="s">&#39;none&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;topology</span> <span class="na">sockets=</span><span class="s">&#39;1&#39;</span> <span class="na">dies=</span><span class="s">&#39;1&#39;</span> <span class="na">cores=</span><span class="s">&#39;6&#39;</span> <span class="na">threads=</span><span class="s">&#39;2&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/cpu&gt;</span>
+...
+<span class="nt">&lt;/domain&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Параметр <code class="docutils literal notranslate"><span class="pre">cores</span></code> - кол-во ядер которое отдается гостевой машине (естественно больше чем есть на самом деле указывать нельзя). В примере выше гостевой
+машине выделен один шести ядерный процессор по 2 потока на ядро. Парметры <code class="docutils literal notranslate"><span class="pre">sockets</span></code> и <code class="docutils literal notranslate"><span class="pre">threads</span></code> должны соответсовать реальным характеристикам CPU
+а <code class="docutils literal notranslate"><span class="pre">cores</span></code> можно варьировать</p>
+</div>
+<div class="section" id="id5">
+<h2>Сеть<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="bridge">
+<h3>Создание bridge<a class="headerlink" href="#bridge" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Удобно проводить настройку моста через утилиту <code class="docutils literal notranslate"><span class="pre">netctl</span></code>. В примере конфигурация имеет имя <code class="docutils literal notranslate"><span class="pre">kvm_br</span></code></p>
+<ol class="arabic">
+<li><p>Создаем новую конфигурацию <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">nano</span> <span class="pre">/etc/netctl/kvm_br</span></code></p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">Address</span><span class="o">=</span><span class="s">(&#39;192.168.1.37/27&#39;)</span>
+<span class="na">BindsToInterfaces</span><span class="o">=</span><span class="s">(enp6s0)</span>
+<span class="na">Connection</span><span class="o">=</span><span class="s">bridge</span>
+<span class="na">DNS</span><span class="o">=</span><span class="s">(&#39;8.8.8.8&#39;)</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">&#39;Bridge Interface br1 : enp6s0&#39;</span>
+<span class="na">Gateway</span><span class="o">=</span><span class="s">&#39;192.168.1.33&#39;</span>
+<span class="na">IP</span><span class="o">=</span><span class="s">static</span>
+<span class="na">IP6</span><span class="o">=</span><span class="s">no</span>
+<span class="na">Interface</span><span class="o">=</span><span class="s">br1</span>
+<span class="na">SkipForwardingDelay</span><span class="o">=</span><span class="s">yes</span>
+</pre></div>
+</div>
+</li>
+<li><p>Добавляем в автозагрузку <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">netctl</span> <span class="pre">enable</span> <span class="pre">kvm_br</span></code> или просто разово запускаем <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">netctl</span> <span class="pre">start</span> <span class="pre">kvm_br</span></code></p></li>
+<li><p>Смотрим статус <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">netctl</span> <span class="pre">status</span> <span class="pre">kvm_br</span></code></p></li>
+</ol>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>Иногда имя интерфейся в системе который биндится к мосту может измениться (например добавили новое устройство на PCI шину, вектор прерывания смещается и
+имя интрефеса стало не enp2s0 а enp3s0). Тогда при перезагрузке системы сервис network может ожидать не существующее устройство enp2s0 n-времени (в ubuntu
+например это 90 секунду), что раздражает. Для исправления необходимо удалить/редактировать сервис сгенерированный netctl для интерфейса enp2s0 руками.</p>
+</div>
+<div class="figure align-default">
+<img alt="../_images/netctl_enp2s0_disable.png" src="../_images/netctl_enp2s0_disable.png" />
+</div>
 </div>
 </div>
 </div>

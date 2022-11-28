@@ -97,6 +97,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LVM and RAID</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#raid">Создание аппаратного RAID</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#raid1">Монтирование диска из RAID1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Работа с разделами</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="kvm.html">KVM</a></li>
@@ -236,6 +237,15 @@ sdb                                <span class="m">8</span>:16   <span class="m"
 &gt;mount /dev/Pandora-raid1/backup /mnt/raid/1
 </pre></div>
 </div>
+</div>
+<div class="section" id="id1">
+<h2>Работа с разделами<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p>Создать новый pool <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">&lt;pool_name&gt;</span> <span class="pre">/dev/&lt;disk_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">kvm_pool</span> <span class="pre">/dev/sda1</span></code></p></li>
+<li><p>Создать новый раздел из пула &lt;pool_name&gt; <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">&lt;name_part&gt;</span> <span class="pre">-L</span> <span class="pre">&lt;size&gt;G</span> <span class="pre">&lt;pool_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">vm1</span> <span class="pre">-L</span> <span class="pre">201G</span> <span class="pre">kvm_pool</span></code></p></li>
+<li><p>Удалить раздел из пула &lt;pool_name&gt; <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvremove</span> <span class="pre">/dev/mapper/&lt;pool_name&gt;-&lt;name_part&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvremove</span> <span class="pre">/dev/mapper/kvm_pool-vm1</span></code></p></li>
+<li><p>Создать бэкап раздела <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">bs=4M</span> <span class="pre">if=/dev/mapper/&lt;pool_name&gt;-&lt;name_part&gt;</span> <span class="pre">of=&lt;name_backep&gt;.img</span> <span class="pre">status=progress</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">bs=4M</span> <span class="pre">if=/dev/mapper/kvm_pool-vm1</span> <span class="pre">of=vm1_backup.img</span> <span class="pre">status=progress</span></code></p></li>
+</ul>
 </div>
 </div>
 
