@@ -286,5 +286,5 @@ KVM
 
 #. Перевести хост в производительный режим (отключить энергосбережение CPU). Проверим текущий режим ``cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor``
    и установим новый ``sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor``
-#. Отключим демон ondemand ``sudo systemctl disable ondemand``(актуально для ubuntu)
+#. Отключим демон ondemand ``sudo systemctl disable ondemand`` (актуально для ubuntu)
    
