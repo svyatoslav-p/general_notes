@@ -1,0 +1,6 @@
+Hardware
+########
+
+.. toctree::
+
+   pc

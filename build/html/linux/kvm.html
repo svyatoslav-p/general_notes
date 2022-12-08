@@ -100,6 +100,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#pci">Проброс PCI видеокарты</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cpu">Конфигурирование CPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">Сеть</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Оптимизация</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="redmine.html">Redmine</a></li>
@@ -445,6 +446,16 @@
 <img alt="../_images/netctl_enp2s0_disable.png" src="../_images/netctl_enp2s0_disable.png" />
 </div>
 </div>
+</div>
+<div class="section" id="id6">
+<h2>Оптимизация<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Информация взята <a class="reference external" href="https://m.vk.com/&#64;noostyche_llc-optimizaciya-virtualizacii-windows-10-na-qemu-kvm/">отсюда</a></p>
+<p><strong>Оптимизация режима энергопотребления</strong></p>
+<ol class="arabic simple">
+<li><p>Перевести хост в производительный режим (отключить энергосбережение CPU). Проверим текущий режим <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span></code>
+и установим новый <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">echo</span> <span class="pre">performance</span> <span class="pre">|</span> <span class="pre">sudo</span> <span class="pre">tee</span> <span class="pre">/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor</span></code></p></li>
+<li><p>Отключим демон ondemand <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">disable</span> <span class="pre">ondemand</span></code> (актуально для ubuntu)</p></li>
+</ol>
 </div>
 </div>
 
