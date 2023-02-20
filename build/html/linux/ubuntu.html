@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ubuntu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anydesk-22-04">Установка AnyDesk 22.04</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vnc">VNC Разрешить заблокированный рабочий стол</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="certs.html">Сертификаты</a></li>
@@ -104,6 +105,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware/_list.html">Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uonmap/_list.html">UonMap</a></li>
 </ul>
 
@@ -185,6 +187,21 @@
 <li><p>Установим необходимый пакет для anydesk <code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">http://ftp.us.debian.org/debian/pool/main/p/pangox-compat/libpangox-1.0-0_0.0.2-5.1_amd64.deb</span></code>
 <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./libpangox-1.0-0_0.0.2-5.1_amd64.deb</span></code></p></li>
 </ol>
+</div>
+<div class="section" id="vnc">
+<h2>VNC Разрешить заблокированный рабочий стол<a class="headerlink" href="#vnc" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Когда сессия заблокирована, то невозможно подключиться удаленно к ПК через VNC либо RDP.
+Можно <strong>частично</strong> обойти это ограничение выполнив следующее:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">gnome-shell-extension-manager</span></code></p></li>
+<li><p>Откройте только что установленное приложение под названием <strong>Extension</strong> в графическом интерфейсе.
+В этом приложении найдите и установите расширение <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">Locked</span> <span class="pre">Remote</span> <span class="pre">Desktop</span></code></p></li>
+</ol>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>При этом все равно остается ограничение, когда необходимо <strong>один раз залогинится в систему</strong>, но после
+блокировки сессии рабочий стол будет доступен</p>
+</div>
 </div>
 </div>
 
