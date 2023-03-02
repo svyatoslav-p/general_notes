@@ -44,7 +44,7 @@
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
     <link rel="next" title="GitLab" href="gitlab.html" />
-    <link rel="prev" title="Manjaro" href="manjaro.html" /> 
+    <link rel="prev" title="Ubuntu" href="ubuntu.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,6 +90,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manjaro.html">Manjaro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ubuntu.html">Ubuntu</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Сертификаты</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#wildcard-certbot">Получение Wildcard certbot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jks">Конвертирование в jks</a></li>
@@ -104,6 +105,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware/_list.html">Hardware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uonmap/_list.html">UonMap</a></li>
 </ul>
 
@@ -230,6 +232,16 @@
 Enter.</p>
 </div></blockquote>
 </div></blockquote>
+<div class="admonition attention">
+<p class="admonition-title">Внимание</p>
+<p>Сертификат из примера выше подходит только для доменов 3-го уровня. Для работы
+с доменами 4-го и далее нужно выпускать другой сертификат либо добавить альтернативные dns в текущий</p>
+</div>
+<p>Для домена 4-го уровня <code class="docutils literal notranslate"><span class="pre">*.sub.uonmap.com</span></code> команда может выглядеть так:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[root@prod archive]# </span><span class="nv">DOMAIN</span><span class="o">=</span>uonmap.com
+<span class="gp">[root@prod archive]# </span>certbot certonly --manual -d *.<span class="nv">$DOMAIN</span> -d <span class="nv">$DOMAIN</span> -d *.sub.<span class="nv">$DOMAIN</span> -d sub.<span class="nv">$DOMAIN</span> --agree-tos --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory --register-unsafely-without-email --rsa-key-size <span class="m">4096</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="jks">
 <h2>Конвертирование в jks<a class="headerlink" href="#jks" title="Ссылка на этот заголовок">¶</a></h2>
@@ -263,7 +275,7 @@ rm keystore.pkcs12
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="gitlab.html" class="btn btn-neutral float-right" title="GitLab" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="manjaro.html" class="btn btn-neutral float-left" title="Manjaro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="ubuntu.html" class="btn btn-neutral float-left" title="Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
     </div>
 
   <hr/>

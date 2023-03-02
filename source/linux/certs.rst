@@ -60,6 +60,18 @@
    При удачном ответе можно снова вернуться на предыдущую сессию и нажать
    Enter.
 
+.. attention::
+
+   Сертификат из примера выше подходит только для доменов 3-го уровня. Для работы 
+   с доменами 4-го и далее нужно выпускать другой сертификат либо добавить альтернативные dns в текущий
+
+Для домена 4-го уровня ``*.sub.uonmap.com`` команда может выглядеть так: 
+
+.. code-block:: console
+
+   [root@prod archive]# DOMAIN=uonmap.com
+   [root@prod archive]# certbot certonly --manual -d *.$DOMAIN -d $DOMAIN -d *.sub.$DOMAIN -d sub.$DOMAIN --agree-tos --manual-public-ip-logging-ok --preferred-challenges dns-01 --server https://acme-v02.api.letsencrypt.org/directory --register-unsafely-without-email --rsa-key-size 4096
+
 Конвертирование в jks
 *********************
 
