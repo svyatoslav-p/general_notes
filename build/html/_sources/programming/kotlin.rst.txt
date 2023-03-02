@@ -27,6 +27,7 @@ Kotlin
 #. Выйдем из системы и снова залогинимся
 #. Скопируем обновленную необходимую конфигурацию (в нашем случае для **Intellij Idea Ultimate**) из каталога
    ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/vmoptions/idea.vmoptions``  в каталог ``/home/svyatoslav/.config/JetBrains/IntelliJIdea2021.3/idea.vmoptions``
+#. Скопировать из каталога ``/home/svyatoslav/.config/JetBrains/IntelliJIdea2021.3/idea.vmoptions`` в этот же каталог, но с именем ``idea64.vmoptions``
 #. Открываем файл ``/home/svyatoslav/system/jetbrains/ja-netfilter-all/config-jetbrains/mymap.conf`` устанавливаем любой срок действия лицензии в поле ``EQUAL,paidUpTo->``
 #. Снова открываем `страницу <https://jetbra.in/s>`_ и копируем ключь продукта (кликнуть на нужной карточке)
 #. Открываем **Intellij Idea Ultimate** и вставляем ключ в поле **Active Code**
