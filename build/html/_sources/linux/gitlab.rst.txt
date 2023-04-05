@@ -210,6 +210,14 @@ Registry
    По идеи эта команда должна удалить все лишнее из Registry, но почему то образы без тегов (временные слои видимо) остаются,
    можно выполнить еще ``docker rmi $(docker images -f "dangling=true" -q) --force`` это наверника удалит все образы без тегов
 
+Кроме этого при попытке запушить образ в GitLab Registry (docker push) может возникнуть ошибка ``bashblob upload unknown`` для ее устранения
+в файле ``/srv/gitlab/config/gitlab.rb`` задать параметр 
+
+.. code-block:: bash
+
+   registry_nginx['proxy_set_headers'] = { "Host" => "git2.uonmap.com:5555" } 
+
+
 LDAP
 ****
 

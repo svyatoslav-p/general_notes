@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>UonMap &mdash; документация Общие заметки 1</title>
+  <title>CI/CD &mdash; документация Общие заметки 1</title>
   
 
   
@@ -43,8 +43,7 @@
     
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
-    <link rel="next" title="Backend" href="backend.html" />
-    <link rel="prev" title="ПК" href="../hardware/pc.html" /> 
+    <link rel="prev" title="Backend" href="backend.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,9 +89,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../linux/_list.html">Linux</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../programming/_list.html">Программирование</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../hardware/_list.html">Hardware</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">UonMap</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="_list.html">UonMap</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cicd.html">CI/CD</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CI/CD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ios">iOS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -143,13 +145,15 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>UonMap</li>
+          <li><a href="_list.html">UonMap</a> &raquo;</li>
+        
+      <li>CI/CD</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/uonmap/_list.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+            <a href="../_sources/uonmap/cicd.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
           
         
       </li>
@@ -162,22 +166,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="uonmap">
-<h1>UonMap<a class="headerlink" href="#uonmap" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="backend.html">Backend</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="backend.html#firebase">Обновление ключа firebase</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cicd.html">CI/CD</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cicd.html#ios">iOS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cicd.html#fastlane">Установка/настройка Fastlane</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="ci-cd">
+<h1>CI/CD<a class="headerlink" href="#ci-cd" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="ios">
+<h2>iOS<a class="headerlink" href="#ios" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сборка проекта проводится на  <a class="reference external" href="https://github.com/kholia/OSX-KVM">виртуальной машине MacOS</a> с помощью:</p>
+<ol class="arabic simple">
+<li><p>Fastlane</p></li>
+<li><p>Gitlab Runner (развернут на хосте виртуалки MacOS)</p></li>
+</ol>
+<div class="section" id="fastlane">
+<h3>Установка/настройка Fastlane<a class="headerlink" href="#fastlane" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Необходимо обновить ruby до последней версии. Для этого есть несколько методов. Выбран <a class="reference external" href="https://github.com/rvm/rvm">RVM</a></p>
+<ol class="arabic simple">
+<li><p>Выполнить <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-sSL</span> <span class="pre">https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer</span> <span class="pre">|</span> <span class="pre">bash</span> <span class="pre">-s</span> <span class="pre">stable</span></code></p></li>
+<li><p>Установим последную версию <code class="docutils literal notranslate"><span class="pre">ruby</span> <span class="pre">rvm</span> <span class="pre">install</span> <span class="pre">ruby&#64;latest</span></code> либо <code class="docutils literal notranslate"><span class="pre">rvm</span> <span class="pre">install</span> <span class="pre">ruby-X.X.X</span></code> (первая команда выдавала ошибку поэтому лучше использовать вторую)</p></li>
+<li><p>Установить версию по умолчанию <code class="docutils literal notranslate"><span class="pre">rvm</span> <span class="pre">use</span> <span class="pre">ruby-X.X.X</span> <span class="pre">--default</span></code></p></li>
+<li><p>Проверить текущую версию <code class="docutils literal notranslate"><span class="pre">ruby</span> <span class="pre">-v</span></code></p></li>
+</ol>
+<p>Установим <strong>Fastlane</strong>. Есть <a class="reference external" href="https://docs.fastlane.tools/getting-started/ios/setup/">несколько методов</a>  - используем brew как самый простой:</p>
+<ol class="arabic simple">
+<li><p>Установим Fastlane <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">fastlane</span></code></p></li>
+</ol>
+</div>
 </div>
 </div>
 
@@ -187,8 +198,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="backend.html" class="btn btn-neutral float-right" title="Backend" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../hardware/pc.html" class="btn btn-neutral float-left" title="ПК" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="backend.html" class="btn btn-neutral float-left" title="Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
     </div>
 
   <hr/>

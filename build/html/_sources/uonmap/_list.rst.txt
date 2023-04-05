@@ -4,6 +4,7 @@ UonMap
 .. toctree::
 
    backend
+   cicd
 
    
 
