@@ -290,3 +290,43 @@ KVM
    и установим новый ``sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor``
 #. Отключим демон ondemand ``sudo systemctl disable ondemand`` (актуально для ubuntu)
    
+Особенности виртуальных машин
+*****************************
+
+MacOS
+=====
+
+При разворачивании MacOS Ventura нужно учесть:
+
+1. Для старта через VNC изменить конфигурацию следующим образом
+
+   .. code-block:: xml
+
+    <video>
+      <model type="vmvga" vram="131072" heads="1" primary="yes"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0"/>
+    </video>
+
+1. Бывает что при прокидывании через видеокарту при попытке загрузить систему она висит с черным экраном (хотя пинг к ней может проходить).
+   Для устарнения нужно заменить строку в конфиге `источник <https://www.reddit.com/r/VFIO/comments/11c1sj7/single_gpu_passthrough_to_macos_ventura_on_qemu/>`_
+
+   .. code-block:: xml
+
+    --Было  
+    <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"/>
+    --Стало
+    <qemu:arg value="Haswell-noTSX,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"/>
+
+   Приэтом после презагрузки системы OS может выдать сообщение о том что необходимо переустановить систему (думаю это из-за того что изменился тип процессар)
+   После этого все должно быть хорошо. Так же что бы не переустанавливать можно попробовать проводить первоначальную установку OS сразу с измененными параметрами
+   и через видеокарту
+
+   Кроме этого есть рекомендация добавить в файл ``config.plist``, но на практике было достаточно правки только ``<qemu:arg value="Haswell-noTSX...``
+
+   .. code-block:: xml
+
+      <key>NVRAM</key>
+         <key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
+            <dict>
+               <key>boot-args</key>
+               <string>tlbto_us=0 vti=9 agdpmod=pikera</string>
