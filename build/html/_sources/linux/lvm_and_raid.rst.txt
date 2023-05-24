@@ -80,3 +80,14 @@ BIOS. В ОС Linux (например ubuntu) установим утилиту 
 * Создать новый раздел из пула <pool_name> ``sudo lvcreate -n <name_part> -L <size>G <pool_name>`` например ``sudo lvcreate -n vm1 -L 201G kvm_pool``
 * Удалить раздел из пула <pool_name> ``sudo lvremove /dev/mapper/<pool_name>-<name_part>`` например ``sudo lvremove /dev/mapper/kvm_pool-vm1``
 * Создать бэкап раздела ``sudo dd bs=4M if=/dev/mapper/<pool_name>-<name_part> of=<name_backep>.img status=progress`` например ``sudo dd bs=4M if=/dev/mapper/kvm_pool-vm1 of=vm1_backup.img status=progress``
+
+Snapshot
+********
+
+**Создать Snapshot** ``lvcreate --size 1G --snapshot --name <NAME_SNAPSHOT> /dev/vg_ds00/log``, где
+
+1. ``--size 1G`` - Размер раздела snapshot. Воизбежании проблем с переполнением желательно задавать размер равный исходному логическому тому (тот из которого делаем snapshot)
+2. ``/dev/vg_ds00/log`` - Путь к логическому тому для которого делается snapshot
+
+**Восстановиться из Snapshot** ``lvconvert --merge /dev/vg_ds00/log_snap``. После этого логический том вернется в исходное состояние, а snapshot будет удален
+

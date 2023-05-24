@@ -93,6 +93,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ubuntu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anydesk-22-04">Установка AnyDesk 22.04</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vnc">VNC Разрешить заблокированный рабочий стол</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Заморозить обновление пакетов</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="certs.html">Сертификаты</a></li>
@@ -202,6 +203,11 @@
 <p>При этом все равно остается ограничение, когда необходимо <strong>один раз залогинится в систему</strong>, но после
 блокировки сессии рабочий стол будет доступен</p>
 </div>
+</div>
+<div class="section" id="id1">
+<h2>Заморозить обновление пакетов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Что бы при обновлении системы автоматически не обновлялись некоторые пакеты можно использовать <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">hold</span> <span class="pre">&lt;NAME_PACK&gt;</span></code>
+Для просмотра списка таких пакетов <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">showhold</span></code></p>
 </div>
 </div>
 
