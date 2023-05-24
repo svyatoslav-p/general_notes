@@ -84,10 +84,11 @@ BIOS. В ОС Linux (например ubuntu) установим утилиту 
 Snapshot
 ********
 
-**Создать Snapshot** ``lvcreate --size 1G --snapshot --name <NAME_SNAPSHOT> /dev/vg_ds00/log``, где
+**Создать Snapshot** ``sudo lvcreate --size 1G --snapshot --name <NAME_SNAPSHOT> /dev/mapper/vgmd0-lvol0``, где
 
 1. ``--size 1G`` - Размер раздела snapshot. Воизбежании проблем с переполнением желательно задавать размер равный исходному логическому тому (тот из которого делаем snapshot)
-2. ``/dev/vg_ds00/log`` - Путь к логическому тому для которого делается snapshot
+2. ``/dev/mapper/vgmd0-lvol0`` - Путь к логическому тому для которого делается snapshot
 
-**Восстановиться из Snapshot** ``lvconvert --merge /dev/vg_ds00/log_snap``. После этого логический том вернется в исходное состояние, а snapshot будет удален
+**Восстановиться из Snapshot** ``sudo lvconvert --merge /dev/mapper/vgmd0-lvol0_snap``. После этого логический том вернется в исходное состояние, а snapshot будет удален
+Можно в этом убедиться посмотрев подробную информацию о томах ``sudo lvs``
 

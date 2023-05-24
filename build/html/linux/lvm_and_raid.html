@@ -252,12 +252,13 @@ sdb                                <span class="m">8</span>:16   <span class="m"
 </div>
 <div class="section" id="snapshot">
 <h2>Snapshot<a class="headerlink" href="#snapshot" title="Ссылка на этот заголовок">¶</a></h2>
-<p><strong>Создать Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">lvcreate</span> <span class="pre">--size</span> <span class="pre">1G</span> <span class="pre">--snapshot</span> <span class="pre">--name</span> <span class="pre">&lt;NAME_SNAPSHOT&gt;</span> <span class="pre">/dev/vg_ds00/log</span></code>, где</p>
+<p><strong>Создать Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">--size</span> <span class="pre">1G</span> <span class="pre">--snapshot</span> <span class="pre">--name</span> <span class="pre">&lt;NAME_SNAPSHOT&gt;</span> <span class="pre">/dev/mapper/vgmd0-lvol0</span></code>, где</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--size</span> <span class="pre">1G</span></code> - Размер раздела snapshot. Воизбежании проблем с переполнением желательно задавать размер равный исходному логическому тому (тот из которого делаем snapshot)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/dev/vg_ds00/log</span></code> - Путь к логическому тому для которого делается snapshot</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/dev/mapper/vgmd0-lvol0</span></code> - Путь к логическому тому для которого делается snapshot</p></li>
 </ol>
-<p><strong>Восстановиться из Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">lvconvert</span> <span class="pre">--merge</span> <span class="pre">/dev/vg_ds00/log_snap</span></code>. После этого логический том вернется в исходное состояние, а snapshot будет удален</p>
+<p><strong>Восстановиться из Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvconvert</span> <span class="pre">--merge</span> <span class="pre">/dev/mapper/vgmd0-lvol0_snap</span></code>. После этого логический том вернется в исходное состояние, а snapshot будет удален
+Можно в этом убедиться посмотрев подробную информацию о томах <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvs</span></code></p>
 </div>
 </div>
 
