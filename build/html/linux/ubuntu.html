@@ -93,7 +93,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ubuntu</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#anydesk-22-04">Установка AnyDesk 22.04</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vnc">VNC Разрешить заблокированный рабочий стол</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Заморозить обновление пакетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Таблица команд</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="certs.html">Сертификаты</a></li>
@@ -205,9 +205,29 @@
 </div>
 </div>
 <div class="section" id="id1">
-<h2>Заморозить обновление пакетов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Что бы при обновлении системы автоматически не обновлялись некоторые пакеты можно использовать <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">hold</span> <span class="pre">&lt;NAME_PACK&gt;</span></code>
-Для просмотра списка таких пакетов <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">showhold</span></code></p>
+<h2>Таблица команд<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Команда</p></th>
+<th class="head"><p>Описание</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">hold</span> <span class="pre">&lt;NAME_PACK&gt;</span></code></p></td>
+<td><p>заблокировать автообновление пакета</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-mark</span> <span class="pre">showhold</span></code></p></td>
+<td><p>список заблокированных пакетов к автообновлению</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">restart</span> <span class="pre">display-manager</span></code></p></td>
+<td><p>перезагрузить X11 сервер</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
