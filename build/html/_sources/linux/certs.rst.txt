@@ -79,3 +79,22 @@
 
    .. literalinclude:: linux_files/cert/pem2jks.sh
      :language: bash
+
+Покупка сертификата
+*******************
+
+Получить fullchain сертификат
+=============================
+
+После покупки сертификата, продавец может прислать архив в котором будут файлы вида:
+
+1. Server Certificate - ``example.com.crt``
+2. Intermediate CA Certificate - ``SectigoRSADomainValidationSecureServerCA.crt``
+3. Intermediate CA Certificate - ``USERTrustRSAAAACA.crt``
+4. Root CA Certificate - ``AAACertificateServices.crt``
+
+Для получения полноценного сертификата не достаточно использовать ``example.com.crt``
+Нужно их объединить в один:
+``cat example.com.crt SectigoRSADomainValidationSecureServerCA.crt USERTrustRSAAAACA.crt AAACertificateServices.crt > ca-bundle.crt``
+
+

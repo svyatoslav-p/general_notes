@@ -94,6 +94,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Сертификаты</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#wildcard-certbot">Получение Wildcard certbot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#jks">Конвертирование в jks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Покупка сертификата</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="gitlab.html">GitLab</a></li>
@@ -265,6 +266,22 @@ rm keystore.pkcs12
 </div>
 </li>
 </ol>
+</div>
+<div class="section" id="id3">
+<h2>Покупка сертификата<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="fullchain">
+<h3>Получить fullchain сертификат<a class="headerlink" href="#fullchain" title="Ссылка на этот заголовок">¶</a></h3>
+<p>После покупки сертификата, продавец может прислать архив в котором будут файлы вида:</p>
+<ol class="arabic simple">
+<li><p>Server Certificate - <code class="docutils literal notranslate"><span class="pre">example.com.crt</span></code></p></li>
+<li><p>Intermediate CA Certificate - <code class="docutils literal notranslate"><span class="pre">SectigoRSADomainValidationSecureServerCA.crt</span></code></p></li>
+<li><p>Intermediate CA Certificate - <code class="docutils literal notranslate"><span class="pre">USERTrustRSAAAACA.crt</span></code></p></li>
+<li><p>Root CA Certificate - <code class="docutils literal notranslate"><span class="pre">AAACertificateServices.crt</span></code></p></li>
+</ol>
+<p>Для получения полноценного сертификата не достаточно использовать <code class="docutils literal notranslate"><span class="pre">example.com.crt</span></code>
+Нужно их объединить в один:
+<code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">example.com.crt</span> <span class="pre">SectigoRSADomainValidationSecureServerCA.crt</span> <span class="pre">USERTrustRSAAAACA.crt</span> <span class="pre">AAACertificateServices.crt</span> <span class="pre">&gt;</span> <span class="pre">ca-bundle.crt</span></code></p>
+</div>
 </div>
 </div>
 
