@@ -16,3 +16,10 @@ Backend
    .. figure:: backend/firebase_key.png
 
 подменяем файл ``smartdevice-server-credentials/gap-credentials.json``
+
+.. attention::
+
+   В файле ``gap-credentials.json`` содержится строка вида ``"universe_domain": "googleapis.com"`` и с этой строкой почему то
+   бэкенд не хочет принимать этот ключ - поэтому эту строку удаляем из файла ключа. В логах ошибок может не быть, но пуши могут не приходить
+   из-за этой строки
+

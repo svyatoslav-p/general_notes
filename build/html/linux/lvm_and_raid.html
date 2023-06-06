@@ -1,91 +1,49 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="ru" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>LVM and RAID &mdash; документация Общие заметки 1</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/translations.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
     <link rel="next" title="KVM" href="kvm.html" />
     <link rel="prev" title="LDAP" href="ldap.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../index.html" class="icon icon-home"> Общие заметки
           
-
-          
+          <a href="../index.html">
+            
           </a>
-
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="text" name="q" placeholder="Поиск в документации" aria-label="Поиск в документации" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Меню навигации">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="_list.html">Linux</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cmd_general.html">CMD</a></li>
@@ -111,77 +69,35 @@
 <li class="toctree-l1"><a class="reference internal" href="../uonmap/_list.html">UonMap</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Меню навигации для мобильных устройств" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">Общие заметки</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content style-external-links">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Навигация по страницам">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="_list.html">Linux</a> &raquo;</li>
-        
-      <li>LVM and RAID</li>
-    
-    
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="_list.html">Linux</a></li>
+      <li class="breadcrumb-item active">LVM and RAID</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/linux/lvm_and_raid.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="lvm-and-raid">
-<h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Ссылка на этот заголовок">¶</a></h1>
-<div class="section" id="raid">
-<h2>Создание аппаратного RAID<a class="headerlink" href="#raid" title="Ссылка на этот заголовок">¶</a></h2>
+             
+  <section id="lvm-and-raid">
+<h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Permalink to this heading"></a></h1>
+<section id="raid">
+<h2>Создание аппаратного RAID<a class="headerlink" href="#raid" title="Permalink to this heading"></a></h2>
 <p>Если материнская плата поддерживает создание аппаратного RAID, создаем такой средствами
 BIOS. В ОС Linux (например ubuntu) установим утилиту для работы с RAID <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">mdadm</span></code>.
 Если после установки и перезагрузки системы RAID не опознался (в данном случае это <code class="docutils literal notranslate"><span class="pre">sdd</span></code> и <code class="docutils literal notranslate"><span class="pre">sde</span></code>)</p>
@@ -206,52 +122,52 @@ BIOS. В ОС Linux (например ubuntu) установим утилиту 
 </div>
 <p>в выводе можно увидеть что диски <code class="docutils literal notranslate"><span class="pre">sdd</span></code> и <code class="docutils literal notranslate"><span class="pre">sde</span></code> находятся в массиве <code class="docutils literal notranslate"><span class="pre">md126</span></code> далее создаем файловую систему.
 к самому RAID можно обратиться через <code class="docutils literal notranslate"><span class="pre">/dev/md126</span></code></p>
-</div>
-<div class="section" id="raid1">
-<h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="raid1">
+<h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Permalink to this heading"></a></h2>
 <p>Ниже пример когда из зеркального RAID1 извлечен один из дисков и его необходимо примонтировать
 как обычный диск. В примере ниже сам диск размечен через LVM</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Находим необходимый диск</span>
 &gt;lsblk
-sdb                          <span class="m">8</span>:16   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> disk
-└─sdb1                       <span class="m">8</span>:17   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> part
-  └─md127                    <span class="m">9</span>:127  <span class="m">0</span>     0B  <span class="m">0</span> md
+sdb<span class="w">                          </span><span class="m">8</span>:16<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">1</span>,8T<span class="w">  </span><span class="m">0</span><span class="w"> </span>disk
+└─sdb1<span class="w">                       </span><span class="m">8</span>:17<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">1</span>,8T<span class="w">  </span><span class="m">0</span><span class="w"> </span>part
+<span class="w">  </span>└─md127<span class="w">                    </span><span class="m">9</span>:127<span class="w">  </span><span class="m">0</span><span class="w">     </span>0B<span class="w">  </span><span class="m">0</span><span class="w"> </span>md
 
 <span class="c1">#Останавливаем массив raid</span>
-&gt;sudo mdadm --stop /dev/md127
+&gt;sudo<span class="w"> </span>mdadm<span class="w"> </span>--stop<span class="w"> </span>/dev/md127
 <span class="c1">#Создаем новый raid</span>
-&gt;sudo mdadm -A -R /dev/md0 /dev/sdb1
+&gt;sudo<span class="w"> </span>mdadm<span class="w"> </span>-A<span class="w"> </span>-R<span class="w"> </span>/dev/md0<span class="w"> </span>/dev/sdb1
 <span class="c1">#Теперь разделы должны быть доступны</span>
 &gt;lsblk
-sdb                                <span class="m">8</span>:16   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> disk
-└─sdb1                             <span class="m">8</span>:17   <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> part
-  └─md0                            <span class="m">9</span>:0    <span class="m">0</span>   <span class="m">1</span>,8T  <span class="m">0</span> raid1
-    ├─Pandora--raid1-ubuntu10.04 <span class="m">254</span>:2    <span class="m">0</span>   100G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-nfs_share   <span class="m">254</span>:3    <span class="m">0</span>   450G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-backup      <span class="m">254</span>:4    <span class="m">0</span>   400G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-share       <span class="m">254</span>:5    <span class="m">0</span>   150G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-docker      <span class="m">254</span>:6    <span class="m">0</span>    60G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-docker_lib  <span class="m">254</span>:7    <span class="m">0</span>    70G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-var_www     <span class="m">254</span>:8    <span class="m">0</span>    20G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-mysql--lib  <span class="m">254</span>:9    <span class="m">0</span>   400G  <span class="m">0</span> lvm
-    ├─Pandora--raid1-var_log     <span class="m">254</span>:10   <span class="m">0</span>    30G  <span class="m">0</span> lvm
-    └─Pandora--raid1-centos7.0   <span class="m">254</span>:11   <span class="m">0</span>    30G  <span class="m">0</span> lvm
+sdb<span class="w">                                </span><span class="m">8</span>:16<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">1</span>,8T<span class="w">  </span><span class="m">0</span><span class="w"> </span>disk
+└─sdb1<span class="w">                             </span><span class="m">8</span>:17<span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">1</span>,8T<span class="w">  </span><span class="m">0</span><span class="w"> </span>part
+<span class="w">  </span>└─md0<span class="w">                            </span><span class="m">9</span>:0<span class="w">    </span><span class="m">0</span><span class="w">   </span><span class="m">1</span>,8T<span class="w">  </span><span class="m">0</span><span class="w"> </span>raid1
+<span class="w">    </span>├─Pandora--raid1-ubuntu10.04<span class="w"> </span><span class="m">254</span>:2<span class="w">    </span><span class="m">0</span><span class="w">   </span>100G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-nfs_share<span class="w">   </span><span class="m">254</span>:3<span class="w">    </span><span class="m">0</span><span class="w">   </span>450G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-backup<span class="w">      </span><span class="m">254</span>:4<span class="w">    </span><span class="m">0</span><span class="w">   </span>400G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-share<span class="w">       </span><span class="m">254</span>:5<span class="w">    </span><span class="m">0</span><span class="w">   </span>150G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-docker<span class="w">      </span><span class="m">254</span>:6<span class="w">    </span><span class="m">0</span><span class="w">    </span>60G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-docker_lib<span class="w">  </span><span class="m">254</span>:7<span class="w">    </span><span class="m">0</span><span class="w">    </span>70G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-var_www<span class="w">     </span><span class="m">254</span>:8<span class="w">    </span><span class="m">0</span><span class="w">    </span>20G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-mysql--lib<span class="w">  </span><span class="m">254</span>:9<span class="w">    </span><span class="m">0</span><span class="w">   </span>400G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>├─Pandora--raid1-var_log<span class="w">     </span><span class="m">254</span>:10<span class="w">   </span><span class="m">0</span><span class="w">    </span>30G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
+<span class="w">    </span>└─Pandora--raid1-centos7.0<span class="w">   </span><span class="m">254</span>:11<span class="w">   </span><span class="m">0</span><span class="w">    </span>30G<span class="w">  </span><span class="m">0</span><span class="w"> </span>lvm
 <span class="c1">#Монтируем как обычно</span>
-&gt;mount /dev/Pandora-raid1/backup /mnt/raid/1
+&gt;mount<span class="w"> </span>/dev/Pandora-raid1/backup<span class="w"> </span>/mnt/raid/1
 </pre></div>
 </div>
-</div>
-<div class="section" id="id1">
-<h2>Работа с разделами<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Работа с разделами<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Создать новый pool <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">&lt;pool_name&gt;</span> <span class="pre">/dev/&lt;disk_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">kvm_pool</span> <span class="pre">/dev/sda1</span></code></p></li>
 <li><p>Создать новый раздел из пула &lt;pool_name&gt; <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">&lt;name_part&gt;</span> <span class="pre">-L</span> <span class="pre">&lt;size&gt;G</span> <span class="pre">&lt;pool_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">vm1</span> <span class="pre">-L</span> <span class="pre">201G</span> <span class="pre">kvm_pool</span></code></p></li>
 <li><p>Удалить раздел из пула &lt;pool_name&gt; <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvremove</span> <span class="pre">/dev/mapper/&lt;pool_name&gt;-&lt;name_part&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvremove</span> <span class="pre">/dev/mapper/kvm_pool-vm1</span></code></p></li>
 <li><p>Создать бэкап раздела <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">bs=4M</span> <span class="pre">if=/dev/mapper/&lt;pool_name&gt;-&lt;name_part&gt;</span> <span class="pre">of=&lt;name_backep&gt;.img</span> <span class="pre">status=progress</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dd</span> <span class="pre">bs=4M</span> <span class="pre">if=/dev/mapper/kvm_pool-vm1</span> <span class="pre">of=vm1_backup.img</span> <span class="pre">status=progress</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="snapshot">
-<h2>Snapshot<a class="headerlink" href="#snapshot" title="Ссылка на этот заголовок">¶</a></h2>
+</section>
+<section id="snapshot">
+<h2>Snapshot<a class="headerlink" href="#snapshot" title="Permalink to this heading"></a></h2>
 <p><strong>Создать Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">--size</span> <span class="pre">1G</span> <span class="pre">--snapshot</span> <span class="pre">--name</span> <span class="pre">&lt;NAME_SNAPSHOT&gt;</span> <span class="pre">/dev/mapper/vgmd0-lvol0</span></code>, где</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--size</span> <span class="pre">1G</span></code> - Размер раздела snapshot. Воизбежании проблем с переполнением желательно задавать размер равный исходному логическому тому (тот из которого делаем snapshot)</p></li>
@@ -259,55 +175,38 @@ sdb                                <span class="m">8</span>:16   <span class="m"
 </ol>
 <p><strong>Восстановиться из Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvconvert</span> <span class="pre">--merge</span> <span class="pre">/dev/mapper/vgmd0-lvol0_snap</span></code>. После этого логический том вернется в исходное состояние, а snapshot будет удален
 Можно в этом убедиться посмотрев подробную информацию о томах <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvs</span></code></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="kvm.html" class="btn btn-neutral float-right" title="KVM" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Нижняя область">
         <a href="ldap.html" class="btn btn-neutral float-left" title="LDAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+        <a href="kvm.html" class="btn btn-neutral float-right" title="KVM" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022.
-
-    </p>
+    <p>&#169; Copyright 2022.</p>
   </div>
-    
-    
-    
-    Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
-    
+
+  Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">темы,</a>
-    
-    предоставленной <a href="https://readthedocs.org">Read the Docs</a>. 
+    предоставленной <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
