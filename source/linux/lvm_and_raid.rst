@@ -92,3 +92,11 @@ Snapshot
 **Восстановиться из Snapshot** ``sudo lvconvert --merge /dev/mapper/vgmd0-lvol0_snap``. После этого логический том вернется в исходное состояние, а snapshot будет удален
 Можно в этом убедиться посмотрев подробную информацию о томах ``sudo lvs``
 
+
+Шифрование диска
+****************
+
+1. **Неверный пароль при меньшем ОЗУ** Если диск с системой был зашифрован а после этого уменьшено кол-во ОЗУ, то при вводе пароля от диска может возникнуть ошибка валидации пароля от диска
+   хотя пароль точно корректен.  `Подробно проблема описана тут <https://unix.stackexchange.com/questions/675978/linux-hard-drive-encryption-password-invalid-after-memory-size-change>`_
+   Если кратко то необходимо изменть лимит памяти командой ``cryptsetup luksChangeKey <device> --pbkdf-memory <RAM in kilobytes>`` 
+   например ``cryptsetup luksChangeKey /dev/vda3 --pbkdf-memory 768000`` При таких параметрах система спокойно загружается с 1Гб ОЗУ

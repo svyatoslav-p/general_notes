@@ -58,6 +58,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#raid1">Монтирование диска из RAID1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Работа с разделами</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#snapshot">Snapshot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Шифрование диска</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="kvm.html">KVM</a></li>
@@ -175,6 +176,15 @@ sdb<span class="w">                                </span><span class="m">8</spa
 </ol>
 <p><strong>Восстановиться из Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvconvert</span> <span class="pre">--merge</span> <span class="pre">/dev/mapper/vgmd0-lvol0_snap</span></code>. После этого логический том вернется в исходное состояние, а snapshot будет удален
 Можно в этом убедиться посмотрев подробную информацию о томах <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvs</span></code></p>
+</section>
+<section id="id2">
+<h2>Шифрование диска<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Неверный пароль при меньшем ОЗУ</strong> Если диск с системой был зашифрован а после этого уменьшено кол-во ОЗУ, то при вводе пароля от диска может возникнуть ошибка валидации пароля от диска
+хотя пароль точно корректен.  <a class="reference external" href="https://unix.stackexchange.com/questions/675978/linux-hard-drive-encryption-password-invalid-after-memory-size-change">Подробно проблема описана тут</a>
+Если кратко то необходимо изменть лимит памяти командой <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">luksChangeKey</span> <span class="pre">&lt;device&gt;</span> <span class="pre">--pbkdf-memory</span> <span class="pre">&lt;RAM</span> <span class="pre">in</span> <span class="pre">kilobytes&gt;</span></code>
+например <code class="docutils literal notranslate"><span class="pre">cryptsetup</span> <span class="pre">luksChangeKey</span> <span class="pre">/dev/vda3</span> <span class="pre">--pbkdf-memory</span> <span class="pre">768000</span></code> При таких параметрах система спокойно загружается с 1Гб ОЗУ</p></li>
+</ol>
 </section>
 </section>
 
