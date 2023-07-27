@@ -330,3 +330,11 @@ MacOS
             <dict>
                <key>boot-args</key>
                <string>tlbto_us=0 vti=9 agdpmod=pikera</string>
+
+FAQ
+****
+
+Изменить диапазон VNC портов в авторежиме
+=========================================
+
+Отредактировать файл ``/etc/libvirt/qemu.conf`` параметр ``remote_display_port_*``
