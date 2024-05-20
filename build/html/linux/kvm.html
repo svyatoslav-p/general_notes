@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KVM &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -98,9 +100,9 @@
            <div itemprop="articleBody">
              
   <section id="kvm">
-<h1>KVM<a class="headerlink" href="#kvm" title="Permalink to this heading"></a></h1>
+<h1>KVM<a class="headerlink" href="#kvm" title="Link to this heading"></a></h1>
 <section id="id1">
-<h2>Увеличить место на диске<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Увеличить место на диске<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Отключаем виртуальную машину <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">virsh</span> <span class="pre">shutdown</span> <span class="pre">NAME</span></code> (желательно если есть Docker
 внутри машины остановить контейнеры до выключения).</p></li>
@@ -185,12 +187,12 @@
 </ol>
 </section>
 <section id="pci">
-<h2>Проброс PCI видеокарты<a class="headerlink" href="#pci" title="Permalink to this heading"></a></h2>
+<h2>Проброс PCI видеокарты<a class="headerlink" href="#pci" title="Link to this heading"></a></h2>
 <p>Проще всего пробрасывать карты <strong>ATI Radeon</strong> на них меньше проблем. Инструкция построена на информации со страницы
 <a class="reference external" href="https://github.com/kholia/OSX-KVM/blob/master/notes.md#gpu-passthrough-notes/">GPU passthrough mac kvm</a>  Так же полезным может быть старница
 <a class="reference external" href="https://gitlab.com/risingprismtv/single-gpu-passthrough/-/wikis/home/">Single GPU Passthrough</a></p>
 <section id="id2">
-<h3>Подготовка ОС<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Подготовка ОС<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Включить в биос поддержку виртуализации <strong>Intel®Virtualization Technology</strong> и поддержку <strong>iommu VT-x</strong></p></li>
 <li><p>Запрещаем загрузку драйвера модуля ядра для видеокарты (для Nvidia другой модуль)</p>
@@ -274,7 +276,7 @@
 </ol>
 </section>
 <section id="bios">
-<h3>Работа с BIOS видеокарты<a class="headerlink" href="#bios" title="Permalink to this heading"></a></h3>
+<h3>Работа с BIOS видеокарты<a class="headerlink" href="#bios" title="Link to this heading"></a></h3>
 <p>Карта может быть проброшена в виртуальную машину запущенную в режиме <strong>BIOS</strong> или в режиме <strong>UEFI</strong>
 Для виртуальных машин <strong>UEFI</strong> (такие как Windows, MacOS) видеокарта обязательно должна поддерживать <strong>UEFI GOP</strong> иначе при старте виртуалки
 на мониторе не будет никакого изображения. Для проверки можно использовать утилиту <strong>GPU-Z</strong> где должен быть отмечен
@@ -287,7 +289,7 @@
 </ol>
 </section>
 <section id="id3">
-<h3>Создание виртуальной машины<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Создание виртуальной машины<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Создаем виртуальную машину как обычно (например через <strong>Virsh Manager</strong>).</p></li>
 <li><p>Удаляем все устройства <strong>Video</strong>, <strong>Graphics</strong></p></li>
@@ -312,7 +314,7 @@
 </section>
 </section>
 <section id="cpu">
-<h2>Конфигурирование CPU<a class="headerlink" href="#cpu" title="Permalink to this heading"></a></h2>
+<h2>Конфигурирование CPU<a class="headerlink" href="#cpu" title="Link to this heading"></a></h2>
 <p>Информация взята из <a class="reference external" href="https://leduccc.medium.com/improving-the-performance-of-a-windows-10-guest-on-qemu-a5b3f54d9cf5/">Улучшение производительности гостя</a>
 Для масимальной производительности CPU в гостевой системе необходимо использовать режим <code class="docutils literal notranslate"><span class="pre">host-passthrough</span></code> (этот режим гооврит гостю использовать такую же
 модель процессора, что и хост), но при этом ухудшается переносимость виртуальных машин так как при переносе на другой хост cpu наверника будет иной.
@@ -334,9 +336,9 @@
 а <code class="docutils literal notranslate"><span class="pre">cores</span></code> можно варьировать</p>
 </section>
 <section id="id5">
-<h2>Сеть<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2>Сеть<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <section id="bridge">
-<h3>Создание bridge<a class="headerlink" href="#bridge" title="Permalink to this heading"></a></h3>
+<h3>Создание bridge<a class="headerlink" href="#bridge" title="Link to this heading"></a></h3>
 <p>Удобно проводить настройку моста через утилиту <code class="docutils literal notranslate"><span class="pre">netctl</span></code>. В примере конфигурация имеет имя <code class="docutils literal notranslate"><span class="pre">kvm_br</span></code></p>
 <ol class="arabic">
 <li><p>Создаем новую конфигурацию <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">nano</span> <span class="pre">/etc/netctl/kvm_br</span></code></p>
@@ -368,7 +370,7 @@
 </section>
 </section>
 <section id="id6">
-<h2>Оптимизация<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<h2>Оптимизация<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <p>Информация взята <a class="reference external" href="https://m.vk.com/&#64;noostyche_llc-optimizaciya-virtualizacii-windows-10-na-qemu-kvm/">отсюда</a></p>
 <p><strong>Оптимизация режима энергопотребления</strong></p>
 <ol class="arabic simple">
@@ -378,9 +380,9 @@
 </ol>
 </section>
 <section id="id8">
-<h2>Особенности виртуальных машин<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<h2>Особенности виртуальных машин<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
 <section id="macos">
-<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this heading"></a></h3>
+<h3>MacOS<a class="headerlink" href="#macos" title="Link to this heading"></a></h3>
 <p>При разворачивании MacOS Ventura нужно учесть:</p>
 <ol class="arabic">
 <li><p>Для старта через VNC изменить конфигурацию следующим образом</p>
@@ -417,9 +419,9 @@
 </section>
 </section>
 <section id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h2>
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
 <section id="vnc">
-<h3>Изменить диапазон VNC портов в авторежиме<a class="headerlink" href="#vnc" title="Permalink to this heading"></a></h3>
+<h3>Изменить диапазон VNC портов в авторежиме<a class="headerlink" href="#vnc" title="Link to this heading"></a></h3>
 <p>Отредактировать файл <code class="docutils literal notranslate"><span class="pre">/etc/libvirt/qemu.conf</span></code> параметр <code class="docutils literal notranslate"><span class="pre">remote_display_port_*</span></code></p>
 </section>
 </section>
@@ -436,7 +438,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

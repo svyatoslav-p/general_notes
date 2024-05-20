@@ -259,3 +259,15 @@ Submodule ошибка сборки при CI/CD
       path = proto_contracts
       url = https://gitlab.com/areller/proto_contracts.git # Эту строку заменить на строку ниже
       url = ../../areller/proto_contracts.git
+
+Бесплатная лицензия
+===================
+
+#. Скачать последний `архив тут <https://github.com/Lakr233/GitLab-License-Generator/actions/>`_
+#. Из архива взять файл ``public.key`` заменить его ``/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub``
+#. Сам файл лицензии в архиве ``result.gitlab-license`` этот файл лицензии добавить в админ панели gitlab
+#. **Важно отключить метрики** которые отсылаются на сервера GitLab. В конфиге установить 
+   ``gitlab_rails['include_optional_metrics_in_service_ping'] = false`` затем перечитать конфиг ``sudo gitlab-ctl reconfigure``
+
+Примечание: С каждой новой фишкой для ultimate версии т.е. с обновлением git до новой версии нужно обновлять файл лицензии и публичный ключ т.к.
+доступные фишки это лишь закодированный перечень json подписанный приватным ключем и декодирующийся публичным

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CI/CD &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -83,16 +85,16 @@
            <div itemprop="articleBody">
              
   <section id="ci-cd">
-<h1>CI/CD<a class="headerlink" href="#ci-cd" title="Permalink to this heading"></a></h1>
+<h1>CI/CD<a class="headerlink" href="#ci-cd" title="Link to this heading"></a></h1>
 <section id="ios">
-<h2>iOS<a class="headerlink" href="#ios" title="Permalink to this heading"></a></h2>
+<h2>iOS<a class="headerlink" href="#ios" title="Link to this heading"></a></h2>
 <p>Сборка проекта проводится на  <a class="reference external" href="https://github.com/kholia/OSX-KVM">виртуальной машине MacOS</a> с помощью:</p>
 <ol class="arabic simple">
 <li><p>Fastlane</p></li>
 <li><p>Gitlab Runner (развернут на хосте виртуалки MacOS)</p></li>
 </ol>
 <section id="fastlane">
-<h3>Установка/настройка Fastlane<a class="headerlink" href="#fastlane" title="Permalink to this heading"></a></h3>
+<h3>Установка/настройка Fastlane<a class="headerlink" href="#fastlane" title="Link to this heading"></a></h3>
 <p>Необходимо обновить ruby до последней версии. Для этого есть несколько методов. Выбран <a class="reference external" href="https://github.com/rvm/rvm">RVM</a></p>
 <ol class="arabic simple">
 <li><p>Выполнить <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-sSL</span> <span class="pre">https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer</span> <span class="pre">|</span> <span class="pre">bash</span> <span class="pre">-s</span> <span class="pre">stable</span></code></p></li>
@@ -118,7 +120,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LVM and RAID &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -96,9 +98,9 @@
            <div itemprop="articleBody">
              
   <section id="lvm-and-raid">
-<h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Permalink to this heading"></a></h1>
+<h1>LVM and RAID<a class="headerlink" href="#lvm-and-raid" title="Link to this heading"></a></h1>
 <section id="raid">
-<h2>Создание аппаратного RAID<a class="headerlink" href="#raid" title="Permalink to this heading"></a></h2>
+<h2>Создание аппаратного RAID<a class="headerlink" href="#raid" title="Link to this heading"></a></h2>
 <p>Если материнская плата поддерживает создание аппаратного RAID, создаем такой средствами
 BIOS. В ОС Linux (например ubuntu) установим утилиту для работы с RAID <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">mdadm</span></code>.
 Если после установки и перезагрузки системы RAID не опознался (в данном случае это <code class="docutils literal notranslate"><span class="pre">sdd</span></code> и <code class="docutils literal notranslate"><span class="pre">sde</span></code>)</p>
@@ -125,7 +127,7 @@ BIOS. В ОС Linux (например ubuntu) установим утилиту 
 к самому RAID можно обратиться через <code class="docutils literal notranslate"><span class="pre">/dev/md126</span></code></p>
 </section>
 <section id="raid1">
-<h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Permalink to this heading"></a></h2>
+<h2>Монтирование диска из RAID1<a class="headerlink" href="#raid1" title="Link to this heading"></a></h2>
 <p>Ниже пример когда из зеркального RAID1 извлечен один из дисков и его необходимо примонтировать
 как обычный диск. В примере ниже сам диск размечен через LVM</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Находим необходимый диск</span>
@@ -159,7 +161,7 @@ sdb<span class="w">                                </span><span class="m">8</spa
 </div>
 </section>
 <section id="id1">
-<h2>Работа с разделами<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Работа с разделами<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Создать новый pool <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">&lt;pool_name&gt;</span> <span class="pre">/dev/&lt;disk_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vgcreate</span> <span class="pre">-s</span> <span class="pre">256M</span> <span class="pre">kvm_pool</span> <span class="pre">/dev/sda1</span></code></p></li>
 <li><p>Создать новый раздел из пула &lt;pool_name&gt; <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">&lt;name_part&gt;</span> <span class="pre">-L</span> <span class="pre">&lt;size&gt;G</span> <span class="pre">&lt;pool_name&gt;</span></code> например <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">-n</span> <span class="pre">vm1</span> <span class="pre">-L</span> <span class="pre">201G</span> <span class="pre">kvm_pool</span></code></p></li>
@@ -168,7 +170,7 @@ sdb<span class="w">                                </span><span class="m">8</spa
 </ul>
 </section>
 <section id="snapshot">
-<h2>Snapshot<a class="headerlink" href="#snapshot" title="Permalink to this heading"></a></h2>
+<h2>Snapshot<a class="headerlink" href="#snapshot" title="Link to this heading"></a></h2>
 <p><strong>Создать Snapshot</strong> <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvcreate</span> <span class="pre">--size</span> <span class="pre">1G</span> <span class="pre">--snapshot</span> <span class="pre">--name</span> <span class="pre">&lt;NAME_SNAPSHOT&gt;</span> <span class="pre">/dev/mapper/vgmd0-lvol0</span></code>, где</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--size</span> <span class="pre">1G</span></code> - Размер раздела snapshot. Воизбежании проблем с переполнением желательно задавать размер равный исходному логическому тому (тот из которого делаем snapshot)</p></li>
@@ -178,7 +180,7 @@ sdb<span class="w">                                </span><span class="m">8</spa
 Можно в этом убедиться посмотрев подробную информацию о томах <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lvs</span></code></p>
 </section>
 <section id="id2">
-<h2>Шифрование диска<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2>Шифрование диска<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p><strong>Неверный пароль при меньшем ОЗУ</strong> Если диск с системой был зашифрован а после этого уменьшено кол-во ОЗУ, то при вводе пароля от диска может возникнуть ошибка валидации пароля от диска
 хотя пароль точно корректен.  <a class="reference external" href="https://unix.stackexchange.com/questions/675978/linux-hard-drive-encryption-password-invalid-after-memory-size-change">Подробно проблема описана тут</a>
@@ -199,7 +201,7 @@ sdb<span class="w">                                </span><span class="m">8</spa
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LDAP &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -97,7 +99,7 @@
            <div itemprop="articleBody">
              
   <section id="ldap">
-<h1>LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading"></a></h1>
+<h1>LDAP<a class="headerlink" href="#ldap" title="Link to this heading"></a></h1>
 <p>Глава посвящена настройке LDAP сервера на основе Samba4 (с поддержкой Active Directory и Domain Controller).
 Система на которой разворачивается сервер CentOS 8 (на CentOS 7 проблемы из-за старых версий компонентов)
 Во время установки желательно сразу прописать статический настройки сети и имя ПК <strong>Hostname</strong>
@@ -109,7 +111,7 @@
 </div>
 <p><strong>Входные данные</strong> IP по которому доступен хост <code class="docutils literal notranslate"><span class="pre">192.168.1.108</span></code> Имя домена <code class="docutils literal notranslate"><span class="pre">samba.uonmap.com</span></code></p>
 <section id="id2">
-<h2>Подготовка системы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h2>Подготовка системы<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Отключение <strong>SELinux</strong> <code class="docutils literal notranslate"><span class="pre">setenforce</span> <span class="pre">0</span></code> <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/etc/selinux/config</span></code> установить параметр <code class="docutils literal notranslate"><span class="pre">SELINUX=disabled</span></code></p></li>
 <li><p>Отключение <strong>Firewalld</strong> <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">stop</span> <span class="pre">firewalld</span></code> <code class="docutils literal notranslate"><span class="pre">systemctl</span> <span class="pre">disable</span> <span class="pre">firewalld</span></code></p></li>
@@ -127,7 +129,7 @@
 </ol>
 </section>
 <section id="samba4">
-<h2>Установка и запуск Samba4<a class="headerlink" href="#samba4" title="Permalink to this heading"></a></h2>
+<h2>Установка и запуск Samba4<a class="headerlink" href="#samba4" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Установка <strong>Samba4</strong></p>
 <ul class="simple">
@@ -181,7 +183,7 @@
 </ol>
 </section>
 <section id="id3">
-<h2>Пример конфигураций<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2>Пример конфигураций<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Файл <code class="docutils literal notranslate"><span class="pre">/usr/local/samba/etc/smb.conf</span></code></p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1"># Global parameters</span>
@@ -230,7 +232,7 @@
 </ol>
 </section>
 <section id="id4">
-<h2>Опциональные действия<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2>Опциональные действия<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Бессрочные пароли. По умолчанию для нового пользователя устанавливается срок действия пароля (около 30-40 дней) что бы отключить необходимо выполнить
 <code class="docutils literal notranslate"><span class="pre">samba-tool</span> <span class="pre">user</span> <span class="pre">setexpiry</span> <span class="pre">USER_NAME</span> <span class="pre">--noexpiry</span></code></p></li>
@@ -262,9 +264,9 @@
 </ol>
 </section>
 <section id="id5">
-<h2>Решение проблем<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<h2>Решение проблем<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <section id="id6">
-<h3>Упрощенная авторизация<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>Упрощенная авторизация<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <p>По умолчанию samba устанавливает максимальный уровень безопасности поэтому возникают сложности с авторизацией
 клиентов, можно активировать упрощенный режим (без сертификатов и прочего) добавив в <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">/usr/local/samba/etc/smb.conf</span></code>
 в раздел <code class="docutils literal notranslate"><span class="pre">[global]</span></code> параметры <code class="docutils literal notranslate"><span class="pre">ldap</span> <span class="pre">server</span> <span class="pre">require</span> <span class="pre">strong</span> <span class="pre">auth</span> <span class="pre">=</span> <span class="pre">no</span></code> и <code class="docutils literal notranslate"><span class="pre">client</span> <span class="pre">ldap</span> <span class="pre">sasl</span> <span class="pre">wrapping</span> <span class="pre">=</span> <span class="pre">plain</span></code> в таком режиме при авторизации может возникнуть ошибка <code class="docutils literal notranslate"><span class="pre">AcceptSecurityContext</span> <span class="pre">error,</span> <span class="pre">data</span> <span class="pre">52e,</span> <span class="pre">v1db1</span></code>
@@ -272,13 +274,13 @@
 </section>
 </section>
 <section id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h2>
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
 <section id="active-directory">
-<h3>Где посмотреть атрибуты Active Directory<a class="headerlink" href="#active-directory" title="Permalink to this heading"></a></h3>
+<h3>Где посмотреть атрибуты Active Directory<a class="headerlink" href="#active-directory" title="Link to this heading"></a></h3>
 <p>Один из источников <a class="reference external" href="http://www.selfadsi.org/user-attributes.htm/">атрибуты</a></p>
 </section>
 <section id="id8">
-<h3>Как проверить доступность сервера<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>Как проверить доступность сервера<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <p>Выполнить команду на клиенте вида <code class="docutils literal notranslate"><span class="pre">ldapsearch</span>&#160; <span class="pre">-b</span> <span class="pre">&quot;DC=uonmap,DC=com&quot;</span> <span class="pre">-s</span> <span class="pre">sub</span> <span class="pre">-D</span></code>
 <code class="docutils literal notranslate"><span class="pre">&quot;CN=Administrator,CN=Users,DC=uonmap,DC=com&quot;</span> <span class="pre">-H</span> <span class="pre">ldap://192.168.1.108:389</span> <span class="pre">-w</span> <span class="pre">&quot;Pass&quot;</span> <span class="pre">-x</span> <span class="pre">&quot;(uid=git_test&#64;test.com)&quot;</span></code></p>
 </section>
@@ -296,7 +298,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

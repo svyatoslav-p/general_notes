@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GitLab &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -98,7 +100,7 @@
            <div itemprop="articleBody">
              
   <section id="gitlab">
-<h1>GitLab<a class="headerlink" href="#gitlab" title="Permalink to this heading"></a></h1>
+<h1>GitLab<a class="headerlink" href="#gitlab" title="Link to this heading"></a></h1>
 <p>Рассматривается вариант развернутый с помощью Docker. Ниже будут представлены ссылки на официальные
 инструкции и указаны особенности. Так же в разделе <a class="reference internal" href="#gitlab-runner"><span class="std std-ref">Runner</span></a> указано как запустить GitLab вместе с CI/CD.
 При развертывании системы где имеется <strong>SELinux</strong> необходимо дополнительно выполнить действия по ссылке</p>
@@ -109,7 +111,7 @@
 иначе получите ошибку о недоступном <code class="docutils literal notranslate"><span class="pre">docker.sock</span></code></p>
 </div>
 <section id="id1">
-<h2>Первичная настройка<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Первичная настройка<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>Официальная инструкция расположена в разделе <a class="reference external" href="https://docs.gitlab.com/ee/install/docker.html">docker</a>. Запустить
 GitLab в Docker можно несколькими способами самый оптимальный с помощью <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (можно обойтись без compose
 если нужно запустить GitLab без Runner и прочего, но лучше сразу написать файл <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>)
@@ -126,11 +128,11 @@ GitLab в Docker можно несколькими способами самый
 </ol>
 </section>
 <section id="id3">
-<h2>Резервное копирование<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2>Резервное копирование<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <p>GitLab имеет встроенные средства позволяющие создавать и восстанавливать резервные копии настроек, репозиториев и т.д.
 Можно перенести всю информацию с одной машины на другую <a class="reference external" href="https://docs.gitlab.com/ee/raketasks/backup_restore.html">подробнее</a></p>
 <section id="id5">
-<h3>Создание копии<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>Создание копии<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Резервирование образа <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span> <span class="pre">-o</span> <span class="pre">/путь/до/места/хранения/image_gitlab.tar</span> <span class="pre">[имя</span> <span class="pre">контейнера</span> <span class="pre">или</span> <span class="pre">ID]</span></code></p></li>
 <li><p>Резервирование данных <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">gitlab</span> <span class="pre">gitlab-backup</span> <span class="pre">create</span></code></p></li>
@@ -142,7 +144,7 @@ GitLab в Docker можно несколькими способами самый
 </div>
 </section>
 <section id="id6">
-<h3>Восстановление копии<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>Восстановление копии<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <p>Если цель перенести конфигурацию с одной машины на другую необходимо:</p>
 <ol class="arabic simple">
 <li><p>Положить файл с данными вида <code class="docutils literal notranslate"><span class="pre">1548856817_2021_08_30_14.2.1_gitlab_backup.tar</span></code> по пути <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/data/backups</span></code></p></li>
@@ -162,7 +164,7 @@ GitLab в Docker можно несколькими способами самый
 </section>
 </section>
 <section id="runner">
-<span id="gitlab-runner"></span><h2>Runner<a class="headerlink" href="#runner" title="Permalink to this heading"></a></h2>
+<span id="gitlab-runner"></span><h2>Runner<a class="headerlink" href="#runner" title="Link to this heading"></a></h2>
 <p>Агент выполняющий задания CI/CD. Не входит в образ GitLab и устанавливается и настраивается отдельно. Есть два основных способа (запуск
 в контейнере или отдельным приложением на хостовой машине). Предпочтительный способом через Docker, но и он же сложнее в организации.
 Runner умеет выполнять задачи в различных окружениях. Основные это <code class="docutils literal notranslate"><span class="pre">shell</span></code> (выполняет задачу непосредственно на хостовой машине где установлен),
@@ -175,7 +177,7 @@ Runner умеет выполнять задачи в различных окру
 Можно скопировать его и выполнять раз в какое то время (для справки запустить <code class="docutils literal notranslate"><span class="pre">./clear-docker-cache</span> <span class="pre">help</span></code>)</p>
 </div>
 <section id="id8">
-<h3>Запуск<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>Запуск<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Необходимо написать файл запуска и настройки <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>. Рабочий пример представлен ниже <a class="reference download internal" download="" href="../_downloads/d72192e0e41c9a157a7f0cdcc4e7216d/docker-compose.yml"><code class="xref download docutils literal notranslate"><span class="pre">Скачать</span></code></a></p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
@@ -227,7 +229,7 @@ Runner умеет выполнять задачи в различных окру
 </ol>
 </section>
 <section id="gitlab-runner-settings">
-<span id="id10"></span><h3>Настройка<a class="headerlink" href="#gitlab-runner-settings" title="Permalink to this heading"></a></h3>
+<span id="id10"></span><h3>Настройка<a class="headerlink" href="#gitlab-runner-settings" title="Link to this heading"></a></h3>
 <p>Конфигурация runner храниться в файле <code class="docutils literal notranslate"><span class="pre">/srv/gitlab-runner/config/config.toml</span></code> (либо иное место если указан другой путь монтирования).
 Процесс конфигурации подразумевает регистрацию runner в Gitlab. Отредактировать конфигурацию (зарегистрировать) можно двумя способами <a class="reference external" href="https://docs.gitlab.com/runner/register/">подробнее</a> :</p>
 <ol class="arabic">
@@ -288,7 +290,7 @@ Runner расширенные права доступа. Устанавлива�
 </section>
 </section>
 <section id="ssl">
-<h2>Настройка SSL<a class="headerlink" href="#ssl" title="Permalink to this heading"></a></h2>
+<h2>Настройка SSL<a class="headerlink" href="#ssl" title="Link to this heading"></a></h2>
 <p>Для работы GitLab через протокол <strong>https</strong> необходимо:</p>
 <ol class="arabic">
 <li><p>Получить сертификат, его можно сгенерировать с помощью <code class="docutils literal notranslate"><span class="pre">openssl</span></code></p>
@@ -338,7 +340,7 @@ nginx<span class="o">[</span><span class="s1">&#39;ssl_protocols&#39;</span><spa
 </ol>
 </section>
 <section id="registry">
-<h2>Registry<a class="headerlink" href="#registry" title="Permalink to this heading"></a></h2>
+<h2>Registry<a class="headerlink" href="#registry" title="Link to this heading"></a></h2>
 <p>Для активации встроенного в GitLab движка <strong>Registry</strong> необходимо отредактировать конфигурацию GitLab <code class="docutils literal notranslate"><span class="pre">/srv/gitlab/config/gitlab.rb</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>registry_external_url<span class="w"> </span><span class="s1">&#39;такой_же_как_и_external_url:5555&#39;</span><span class="w"> </span><span class="c1">#например https://gitlab_test.com:5555</span>
 registry_nginx<span class="o">[</span><span class="s1">&#39;enable&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
@@ -366,13 +368,13 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 </div>
 </section>
 <section id="ldap">
-<h2>LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading"></a></h2>
+<h2>LDAP<a class="headerlink" href="#ldap" title="Link to this heading"></a></h2>
 <p>ПОКА ТУТ ПУСТО</p>
 </section>
 <section id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h2>
+<h2>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h2>
 <section id="runner-gitlab">
-<h3>Что делать если runner настроен, но GitLab все равно говорит об ожидании<a class="headerlink" href="#runner-gitlab" title="Permalink to this heading"></a></h3>
+<h3>Что делать если runner настроен, но GitLab все равно говорит об ожидании<a class="headerlink" href="#runner-gitlab" title="Link to this heading"></a></h3>
 <p>По умолчанию параметр <span class="guilabel">Run untagged jobs</span>  по пути <span class="menuselection">Settings ‣ CI/CD ‣ Runner</span> (на выбранном runner кликнуть иконку карандаша)
 отключен. Это значит если тег runner не совпадает с тегом репозитория, то runner не будет использован в этом репозитории. Можно
 отметить галочку, тогда теги будут игнорироваться</p>
@@ -381,13 +383,13 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 </figure>
 </section>
 <section id="readonly">
-<h3>Как перевести в режим ReadOnly<a class="headerlink" href="#readonly" title="Permalink to this heading"></a></h3>
+<h3>Как перевести в режим ReadOnly<a class="headerlink" href="#readonly" title="Link to this heading"></a></h3>
 <p>Для перевода всего экземпляра GitLab необходимо отредактировать файл (путь указан внутри контейнера)
 <code class="docutils literal notranslate"><span class="pre">/opt/gitlab/embedded/service/gitlab-rails/lib/gitlab/database.rb</span></code> параметр <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">self.read_only</span></code>
 выставить значение <code class="docutils literal notranslate"><span class="pre">true</span></code>. Выполнить реконфигурацию <code class="docutils literal notranslate"><span class="pre">gitlab-ctl</span> <span class="pre">reconfigure</span></code> и перезапуск контейнера</p>
 </section>
 <section id="submodule-ci-cd">
-<h3>Submodule ошибка сборки при CI/CD<a class="headerlink" href="#submodule-ci-cd" title="Permalink to this heading"></a></h3>
+<h3>Submodule ошибка сборки при CI/CD<a class="headerlink" href="#submodule-ci-cd" title="Link to this heading"></a></h3>
 <p>Если необходимо подключить submodule для репозитория, который храниться на этом же сервере, то необходимо в файле <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> текущего проекта
 прописывать относительный путь на ссылаемый репозиторий иначе при сборке проекта через CI/CD будет появляться ошибка вида <code class="docutils literal notranslate"><span class="pre">fatal:</span> <span class="pre">could</span> <span class="pre">not</span> <span class="pre">read</span> <span class="pre">Username</span> <span class="pre">for</span> <span class="pre">'https://gitlab.com':</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">device</span> <span class="pre">or</span> <span class="pre">address</span></code>
 <a class="reference external" href="https://docs.gitlab.com/ee/ci/git_submodules.html#configure-the-gitmodules-file">подробнее тут</a></p>
@@ -398,6 +400,18 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
 <span class="w">    </span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>../../areller/proto_contracts.git
 </pre></div>
 </div>
+</section>
+<section id="id15">
+<h3>Бесплатная лицензия<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Скачать последний <a class="reference external" href="https://github.com/Lakr233/GitLab-License-Generator/actions/">архив тут</a></p></li>
+<li><p>Из архива взять файл <code class="docutils literal notranslate"><span class="pre">public.key</span></code> заменить его <code class="docutils literal notranslate"><span class="pre">/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub</span></code></p></li>
+<li><p>Сам файл лицензии в архиве <code class="docutils literal notranslate"><span class="pre">result.gitlab-license</span></code> этот файл лицензии добавить в админ панели gitlab</p></li>
+<li><p><strong>Важно отключить метрики</strong> которые отсылаются на сервера GitLab. В конфиге установить
+<code class="docutils literal notranslate"><span class="pre">gitlab_rails['include_optional_metrics_in_service_ping']</span> <span class="pre">=</span> <span class="pre">false</span></code> затем перечитать конфиг <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">gitlab-ctl</span> <span class="pre">reconfigure</span></code></p></li>
+</ol>
+<p>Примечание: С каждой новой фишкой для ultimate версии т.е. с обновлением git до новой версии нужно обновлять файл лицензии и публичный ключ т.к.
+доступные фишки это лишь закодированный перечень json подписанный приватным ключем и декодирующийся публичным</p>
 </section>
 </section>
 </section>
@@ -413,7 +427,7 @@ registry_nginx<span class="o">[</span><span class="s1">&#39;listen_port&#39;</sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="ru" >
+<html class="writer-html5" lang="ru" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VPN &mdash; документация Общие заметки 1</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/read_the_docs_conf.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/read_the_docs_conf.css?v=ec38ee01" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
-        <script src="../_static/translations.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=47a0e12c"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/translations.js?v=29b1f277"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
     <link rel="search" title="Поиск" href="../search.html" />
@@ -93,13 +95,13 @@
            <div itemprop="articleBody">
              
   <section id="vpn">
-<h1>VPN<a class="headerlink" href="#vpn" title="Permalink to this heading"></a></h1>
+<h1>VPN<a class="headerlink" href="#vpn" title="Link to this heading"></a></h1>
 <section id="wireguard">
-<h2>WireGuard<a class="headerlink" href="#wireguard" title="Permalink to this heading"></a></h2>
+<h2>WireGuard<a class="headerlink" href="#wireguard" title="Link to this heading"></a></h2>
 <p>Ниже описаны особенности настройки VPN сервера <strong>WireGuard</strong>. Так как в открытых источниках довольно
 много информации, описаны только особенности.</p>
 <section id="id1">
-<h3>Настройка сервера<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Настройка сервера<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>Рассмотрим настройку на примере Ubuntu запущенной на VPS машине сервиса <strong>Oracle Cloud</strong>.</p>
 <ol class="arabic">
 <li><p>Добавим правило для <strong>Firewall</strong>. В настройках облачной машины переходим  <span class="guilabel">Networking</span> -&gt; <span class="guilabel">Virtual Cloud Networks</span>  -&gt; <span class="guilabel">NAME_VCN</span>
@@ -147,14 +149,14 @@
 <p>Далее если повторно вызвать скрипт <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">./wireguard-install.sh</span></code> можно добавить клиента.</p>
 </section>
 <section id="faq">
-<h3>FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h3>
+<h3>FAQ<a class="headerlink" href="#faq" title="Link to this heading"></a></h3>
 <section id="id2">
-<h4>Перенапрявлять весь трафик через VPN<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<h4>Перенапрявлять весь трафик через VPN<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <p>Если нужно отправлять весь трафик через туннел (нетолько трафик хоста), то в конфигурации клиента заменить строку
 <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/0,</span> <span class="pre">::/0</span></code> на <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/1,</span> <span class="pre">128.0.0.0/1,</span> <span class="pre">::/1,</span> <span class="pre">8000::/1</span></code></p>
 </section>
 <section id="wg">
-<h4>Как запустить более одного интерфейса wg*<a class="headerlink" href="#wg" title="Permalink to this heading"></a></h4>
+<h4>Как запустить более одного интерфейса wg*<a class="headerlink" href="#wg" title="Link to this heading"></a></h4>
 <p>Для последующих интерфейсов все делается аналогично. <strong>Очень важный момент</strong> только для одной кофигурации
 можно задать перенапрявлять весь трафик <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">0.0.0.0/0,</span> <span class="pre">::/0</span></code> на остальных должны быть прописаны конкретные адреса.
 Например второй интерфейс имеет адрес <code class="docutils literal notranslate"><span class="pre">10.8.0.4/32</span></code> и используется как клиент тогда параметр <code class="docutils literal notranslate"><span class="pre">AllowedIPs</span> <span class="pre">=</span> <span class="pre">10.8.0.1/32</span></code>
@@ -163,11 +165,11 @@
 </section>
 </section>
 <section id="openvpn">
-<h2>OpenVPN<a class="headerlink" href="#openvpn" title="Permalink to this heading"></a></h2>
+<h2>OpenVPN<a class="headerlink" href="#openvpn" title="Link to this heading"></a></h2>
 <p>Ниже описаны особенности настройки VPN сервера <strong>OpenVPN</strong>. Считаем, что работа ведется через порт <code class="docutils literal notranslate"><span class="pre">1194</span></code> и
 Машина имеет белый IP</p>
 <section id="id3">
-<h3>Настройка сервера<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Настройка сервера<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>Перед началом разворачивания необходимо:</p>
 <ol class="arabic simple">
 <li><p>Открыть порт <code class="docutils literal notranslate"><span class="pre">1194</span></code> (добавив в исключения брандмауэра, антивируса и подобных систем)</p></li>
@@ -175,7 +177,7 @@
 </ol>
 </section>
 <section id="openvpn-docker">
-<h3>Установка OpenVPN в Docker<a class="headerlink" href="#openvpn-docker" title="Permalink to this heading"></a></h3>
+<h3>Установка OpenVPN в Docker<a class="headerlink" href="#openvpn-docker" title="Link to this heading"></a></h3>
 <ol class="arabic">
 <li><p>Установить <strong>Docker</strong> (будем использовать <a class="reference external" href="https://hub.docker.com/r/kylemanna/openvpn/">OpenVPN</a> )</p></li>
 <li><p>Добавим переменую окружения <code class="docutils literal notranslate"><span class="pre">OVPN_DATA=&quot;ovpn-data&quot;</span></code></p></li>
@@ -197,7 +199,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </sp
 </ol>
 </section>
 <section id="id5">
-<h3>Примечаания<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>Примечаания<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Удалить клиента: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$OVPN_DATA:/etc/openvpn</span> <span class="pre">--rm</span> <span class="pre">-it</span> <span class="pre">kylemanna/openvpn</span> <span class="pre">ovpn_revokeclient</span> <span class="pre">&lt;NAME&gt;</span> <span class="pre">remove</span></code></p></li>
 <li><p>Список клиентов: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-v</span> <span class="pre">$OVPN_DATA:/etc/openvpn</span> <span class="pre">--rm</span> <span class="pre">kylemanna/openvpn</span> <span class="pre">ovpn_listclients</span></code></p></li>
@@ -217,7 +219,7 @@ docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </sp
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
+    <p>&#169; Авторские права 2022. </p>
   </div>
 
   Собрано при помощи <a href="https://www.sphinx-doc.org/">Sphinx</a> с использованием
